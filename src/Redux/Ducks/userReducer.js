@@ -15,7 +15,7 @@ const LOGOUT = "LOGOUT"
 
 // ACTION CREATORS //
 export function loginUser(loginInfo) {
-    const userInfo = axios.post('api.....', loginInfo).then(res => {
+    const userInfo = axios.post('/Login', loginInfo).then(res => {
         return res.data;
     });
     return {
