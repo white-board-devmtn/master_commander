@@ -1,21 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
-
-const Profile = (props) => {
-    const [myProfile, setMyProfile] = useState({
-        name: 'Tanner',
-        email: 'tanner@scaddenfamily.com',
-        phone: 3852313361
+function Profile () {
+    const [userProfile, setUserProfile] = useState({
+        email: '',
+        currentPassword: '',
+        newPassword: '',
+        profilePic: '',
+        phoneNumber: '',
     })
 
-    return(
-        <>
-            <h1>{myProfile.name}</h1>
-            <h3>{myProfile.email}</h3>
-            <h3>{myProfile.phone}</h3>
-        </>
+    return (
+        <div>
+            Profile
+        </div>
     )
 }
-
-
-export default Profile;
