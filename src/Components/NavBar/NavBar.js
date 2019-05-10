@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-export default function NavBar() {
-  return (
+const NavBar = (props) => (
+  <div>
     <div>
-      
+      <h1>Hello</h1>
     </div>
-  )
-}
+  </div>
+)
+
+export default NavBar;
