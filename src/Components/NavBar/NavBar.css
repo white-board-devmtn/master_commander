@@ -1,0 +1,30 @@
+.navbar-container {
+    width: 10em;
+    height: 100em;
+
+    background: #bada55;
+}
+
+.navbar-option-container {
+
+    height: 30%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar-profile-img {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+
+    padding-top: 3em;
+    padding-bottom: 1em;
+}
+
+.navbar-image {
+    width: 6em;
+}
