@@ -10,9 +10,22 @@ function Login() {
         password: ''
     })
 
+
+
+function handleLogin() {
+
+}
+
+
+
     return (
         <div>
-            Login Page
+            <div>
+                <p>Login</p>
+                <input placeholder='Email'/>
+                <input placeholder='Password'/>
+                <button> Login </button>
+            </div>
         </div>
     )
 }
