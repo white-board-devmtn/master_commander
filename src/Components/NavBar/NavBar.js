@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
+
+import './NavBar.css';
+import noImage from '../../images/no-image.png'
+import masterChief from '../../images/masterchief.jpg';
 
 const NavBar = (props) => (
-  <div>
-    <div>
-      <h1>Hello</h1>
-      <h3>This will be the Navbar</h3>
+  <div className="navbar-container">
+    <div className="navbar-option-container">
+      <img src={masterChief} alt="of person" className="navbar-profile-img"/>
+      <Link to="/dashboard"><img src={noImage} alt="something" className="navbar-image"/></Link>
+      <Link to="/profile"><img src={noImage} alt="something" className="navbar-image"/></Link>
+      <Link to="/something"><img src={noImage} alt="something" className="navbar-image"/></Link>
+      <Link to="/"><img src={noImage} alt="something" className="navbar-image"/></Link>
     </div>
   </div>
 )
