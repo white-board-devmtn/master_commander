@@ -1,0 +1,5 @@
+.profileComponent {
+  width: calc(100vw - 10rem);
+  height: 100vh;
+  margin-left: 10rem
+}
