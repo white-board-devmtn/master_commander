@@ -1,11 +1,13 @@
 import axios from "axios";
 
 const initialState = {
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phoneNumber: 0,
     img: '',
     isTeacher: false,
+    loggedIn: false,
 }
 
 // ACTION TYPES //
@@ -16,6 +18,7 @@ const LOGOUT = "LOGOUT"
 // ACTION CREATORS //
 export function loginUser(loginInfo) {
     const userInfo = axios.post('/Login', loginInfo).then(res => {
+        console.log('UR', res.data.userData)
         return res.data;
     });
     return {
@@ -25,7 +28,8 @@ export function loginUser(loginInfo) {
 };
 
 export function getUser() {
-    const userInfo = axios.get('/api....').then(res => {
+    const userInfo = axios.get('/api/getuser').then(res => {
+        
         return res.data;
     })
     return {
@@ -48,12 +52,16 @@ export function logOutUser() {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN + "_FULFILLED": {
+            console.log(action.payload.userData)
             return {...state,
-                    name: action.payload.name,
-                    email: action.payload.email,
-                    phoneNumber: action.payload.number,
-                    img: action.payload.img,
-                    isTeacher: action.payload.isTeacher}
+                    firstName: action.payload.userData.firstName,
+                    lastName: action.payload.userData.lastName,
+                    email: action.payload.userData.email,
+                    phoneNumber: action.payload.userData.phoneNumber,
+                    img: action.payload.userData.img,
+                    isTeacher: action.payload.userData.isTeacher,
+                    loggedIn: true
+                }
         }
         case LOGOUT + "_FULFILLED": {
             return {...state, initialState}
