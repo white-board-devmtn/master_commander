@@ -10,6 +10,7 @@
 .navbar-option-container {
 
     width: 100%;
+    height: 60%;
 
     display: flex;
     justify-content: space-around;
@@ -22,10 +23,11 @@
     width: 6em;
     height: 6em;
     border-radius: 50%;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.navbar-image {
-    width: 6em;
+.navbar-font {
+    font-size: 5em;
+    color: black;
 }

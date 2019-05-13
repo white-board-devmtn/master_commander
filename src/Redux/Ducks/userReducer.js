@@ -38,7 +38,7 @@ export function getUser() {
 };
 
 export function logOutUser() {
-    axios.delete('/api.....').then(res => {
+    axios.delete('/Logout').then(res => {
         return res.data
     })
     return {
