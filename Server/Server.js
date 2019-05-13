@@ -28,6 +28,7 @@ app.post('/Login', authC.login)
 app.post('/Register', authC.register)
 app.get('/api/getuser', authC.getUser)
 app.delete('/Logout', authC.logout)
+app.put('/api/profile/:id', authC.updateUser)
 
 
 
