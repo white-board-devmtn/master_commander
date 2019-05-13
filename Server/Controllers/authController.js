@@ -59,7 +59,7 @@ module.exports = {
 
     getUser: (req, res) => {
         if (req.session.user) res.status(200).send({userData: req.session.user})
-        else res.status(200).send('Please log in');
+        else res.status(401).send('Please log in');
     },
     logout: (req, res) => {
         delete req.session.user;
