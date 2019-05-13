@@ -19,5 +19,21 @@
     width: 20rem;
     height: 100%;
     border-left: 1px solid rgba(128, 128, 128, 0.404);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.add-event-button:hover {
+    cursor: pointer;
+}
+
+.add-event-button {
+    padding: .5rem 3rem;
+    margin-top: 3rem;
+}
+
+.react-calendar {
+    width: 15rem;
+    word-wrap: 
 }
