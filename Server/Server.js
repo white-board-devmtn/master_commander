@@ -2,7 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const massive = require('massive');
 const session = require('express-session');
-const controller = require('./Controllers/controller');
+const authC = require('./Controllers/authController');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -23,6 +23,14 @@ app.use(session({
     }
 }))
 
-app.post('/Login', controller.login)
+// AUTH ENDPOINTS
+app.post('/Login', authC.login)
+app.post('/Register', authC.register)
+app.get('/api/getuser', authC.getUser)
+
+
+
+
+
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))
