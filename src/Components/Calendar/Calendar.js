@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddEvent from './AddEvent'
+import AddEvent from '../AddEvent/AddEvent'
 import BigCalendar from 'react-big-calendar'
 import Calendar from 'react-calendar'
 import moment from 'moment'
