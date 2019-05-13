@@ -2,7 +2,7 @@ import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import Login from '../Components/Login/Login'
 import NavBar from '../Components/NavBar/NavBar'
-import Classes from '../Components/Classes/Classes'
+import Dashboard from '../Components/Dashboard/Dashboard'
 import Profile from '../Components/Profile/Profile'
 import Calendar from '../Components/Calendar/Calendar'
 
