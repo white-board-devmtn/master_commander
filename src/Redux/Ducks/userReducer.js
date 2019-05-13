@@ -18,7 +18,6 @@ const LOGOUT = "LOGOUT"
 // ACTION CREATORS //
 export function loginUser(loginInfo) {
     const userInfo = axios.post('/Login', loginInfo).then(res => {
-        console.log('UR', res.data.userData)
         return res.data;
     });
     return {
@@ -52,7 +51,6 @@ export function logOutUser() {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN + "_FULFILLED": {
-            console.log(action.payload.userData)
             return {...state,
                     firstName: action.payload.userData.firstName,
                     lastName: action.payload.userData.lastName,
@@ -67,7 +65,7 @@ export default function reducer(state = initialState, action) {
             return {...state, initialState}
         }
         default: {
-            return {...state}
+            return state
         }
     }
 }
