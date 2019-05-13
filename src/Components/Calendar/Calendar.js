@@ -5,8 +5,7 @@ import Calendar from 'react-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
-
-// const DatePicker = require('react-bootstrap-date-picker')
+import NavBar from '../NavBar/NavBar'
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
@@ -29,6 +28,7 @@ function MyCalendar(props) {
 
   return (
     <div className='calendar-component'>
+      <NavBar />
       <AddEvent
         addEvent={addEvent}
         toggleAddEvent={toggleAddEvent}
@@ -53,6 +53,7 @@ function MyCalendar(props) {
       </div>
     </div>
   )
+
 }
 
 export default MyCalendar

@@ -4,16 +4,17 @@ import Login from '../Components/Login/Login'
 import NavBar from '../Components/NavBar/NavBar'
 import Classes from '../Components/Classes/Classes'
 import MyCalendar from '../Components/Calendar/Calendar'
-
-
+import Dashboard from '../Components/Dashboard/Dashboard'
+import Profile from '../Components/Profile/Profile'
 
 export default (
     <HashRouter>
-        <NavBar/>
         <Switch>
+            <Route path='/dashboard' component={Dashboard} />
             <Route exact path='/' component={Login} />
             <Route path='/dashboard'/>
             <Route path='/calendar' component={MyCalendar} />
+            <Route path='/profile' component={Profile} />
         </Switch>
     </HashRouter>
 )
