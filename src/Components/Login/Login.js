@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 import {connect} from 'react-redux';
 import {loginUser, getUser} from '../../Redux/Ducks/userReducer';
 import axios from 'axios';
@@ -12,27 +12,12 @@ const Login = (props) => {
     const [firstName, updateFirstName] = useState('')
     const [lastName, updateLastName] = useState('')
     const [loginToggle, updateLoginToggle] = useState(true)
-    
 
 
 async function handleLogin() {
     const loginInfo = {email, password}
-    props.loginUser(loginInfo)
-    setTimeout(()=>{
-        console.log(props)
-        if (props.loggedIn){
-            props.history.push('/dashboard')
-        }
-
-    },2000)
-    
-
-
-    // const res = await axios.post('/Login', loginInfo)
-    // if (res.data.loggedIn) {
-    //     console.log(res.data)
-    //     props.history.push('/dashboard')
-    //   }
+    const user = await props.loginUser(loginInfo)
+    if (user.value.loggedIn) props.history.push('/dashboard');
 }
 
  async function handleRegister() {
@@ -41,7 +26,7 @@ async function handleLogin() {
     if (res.data.loggedIn) {
         console.log(res.data)
         // props.history.push('/dashboard')
-      }
+    }
 }
 
     return (
@@ -72,9 +57,8 @@ async function handleLogin() {
 }
 
 function mapStateToProps(reduxState) {
-    console.log(reduxState)
     return {
-        user: reduxState
+        user: reduxState.user
     }
 };
 

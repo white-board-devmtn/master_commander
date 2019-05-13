@@ -9,9 +9,9 @@ const NavBar = (props) => (
   <div className="navbar-container">
     <div className="navbar-option-container">
       <img src={masterChief} alt="of person" className="navbar-profile-img"/>
-      <Link to="/dashboard"><img src={noImage} alt="something" className="navbar-image"/></Link>
       <Link to="/profile"><img src={noImage} alt="something" className="navbar-image"/></Link>
-      <Link to="/something"><img src={noImage} alt="something" className="navbar-image"/></Link>
+      <Link to="/dashboard"><img src={noImage} alt="something" className="navbar-image"/></Link>
+      <Link to="/Calendar"><img src={noImage} alt="something" className="navbar-image"/></Link>
       <Link to="/"><img src={noImage} alt="something" className="navbar-image"/></Link>
     </div>
   </div>
