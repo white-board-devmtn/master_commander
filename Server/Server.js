@@ -27,6 +27,7 @@ app.use(session({
 app.post('/Login', authC.login)
 app.post('/Register', authC.register)
 app.get('/api/getuser', authC.getUser)
+app.delete('/Logout', authC.logout)
 
 
 

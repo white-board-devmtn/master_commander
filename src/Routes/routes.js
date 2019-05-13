@@ -11,13 +11,12 @@ import Calendar from '../Components/Calendar/Calendar'
 
 export default (
     <HashRouter>
-        <NavBar/>
         <Switch>
+            <Route path='/dashboard' component={Dashboard} />
             <Route exact path='/' component={Login} />
             <Route path='/dashboard'/>
             <Route path='/profile' component={Profile} />
             <Route path='/calendar' component={Calendar} />
-
         </Switch>
     </HashRouter>
 )

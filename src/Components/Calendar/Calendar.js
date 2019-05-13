@@ -3,6 +3,7 @@ import BigCalendar from'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
+import NavBar from '../NavBar/NavBar'
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
@@ -20,6 +21,8 @@ function Calendar (props) {
     })
 
     return (
+        <>
+        <NavBar/>
         <div className='calendar-component'>
             <div className='calendar-container'>
                 <BigCalendar
@@ -34,6 +37,7 @@ function Calendar (props) {
         
             </div>
         </div>
+        </>
     )
 }
 
