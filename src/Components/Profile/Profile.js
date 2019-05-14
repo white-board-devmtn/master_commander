@@ -28,7 +28,7 @@ const Profile = (props) => {
       })
   }
 
-  console.log(props.user.email)
+  // console.log(props.user.email)
   return (
     <>
       <NavBar />
@@ -66,7 +66,7 @@ const Profile = (props) => {
 }
 
 function mapStateToProps(reduxState) {
-  console.log(reduxState)
+  // console.log(reduxState)
   return {
     user: reduxState.user
   }
