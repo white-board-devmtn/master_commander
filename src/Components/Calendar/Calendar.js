@@ -28,8 +28,8 @@ const MyCalendar = (props) => {
       {
         'title': 'Halo throw-down',
         'allDay': false,
-        'start': new Date(2019, 4, 17, 17, 0),
-        'end': new Date(2019, 4, 17, 19, 0),
+        'start': new Date('2019/05/14, 11:36'),
+        'end': new Date('2019/05/14, 12:45'),
       }
     ]
   })
