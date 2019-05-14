@@ -13,6 +13,7 @@ const Profile = (props) => {
   const [password, updatePassword] = useState('')
   const [phoneNumber, updatePhoneNumber] = useState('')
   const [editToggle, updateEditToggle] = useState(true)
+  
 
 
   useEffect(() => {

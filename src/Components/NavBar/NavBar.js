@@ -11,6 +11,7 @@ const NavBar = (props) => {
     await props.logOutUser();
     window.location.reload();
   }
+  
 
   useEffect(() => {
     getUser()
