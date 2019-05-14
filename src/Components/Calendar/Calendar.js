@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import BigCalendar from'react-big-calendar'
 import AddEvent from '../AddEvent/AddEvent'
-import Calendar from 'react-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 import './Calendar.css'
 import NavBar from '../NavBar/NavBar'
@@ -34,6 +35,7 @@ const MyCalendar = (props) => {
   })
   const [addEvent, toggleAddEvent] = useState(false)
   const [time, setTime] = useState(moment().format('MMMM Do YYYY, h:mm:ss a'))
+  const [startDate, setStartDate] = useState(new Date())
 
   setInterval(function(){setTime(moment().format('MMMM Do YYYY, h:mm:ss a'))})
 
@@ -43,7 +45,7 @@ const MyCalendar = (props) => {
       <AddEvent
         addEvent={addEvent}
         toggleAddEvent={toggleAddEvent}
-        />
+      />
       <div className='calendar-container'>
         <BigCalendar
           localizer={localizer}
@@ -54,8 +56,12 @@ const MyCalendar = (props) => {
         />
       </div>
       <div className='right-container'>
-        <Calendar
-          style={{width: ''}}
+        <DatePicker
+          inline
+          selected={startDate}
+          onChange={setStartDate}
+          showYearDropdown
+          style={{ marginTop: '2rem'}}
         />
         <hr />
         <p style={{textDecoration: 'underline'}}>Today</p>
