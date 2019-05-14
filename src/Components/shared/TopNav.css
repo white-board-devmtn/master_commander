@@ -1,5 +1,5 @@
 .topNav-container {
-  margin-left: 10rem;
+  margin-left: 2em;
 
   display: flex;
   align-items: center;
@@ -49,6 +49,9 @@
 .three {
   background: #2bd982;
 }
+.four {
+  background: #822BD9;
+}
 .flagTriangle {
   width: 0;
   height: 0;
@@ -61,4 +64,7 @@
 }
 .three-triangle{
   border-bottom: 10px solid #24c775
+}
+.four-triangle{
+  border-bottom: 10px solid #5E09B3
 }

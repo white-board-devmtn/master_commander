@@ -2,29 +2,96 @@ import React from 'react';
 
 import './TopNav.css';
 
-const TopNav = props => {
-  return(
-    <>
-    <nav className="topNav-container">
+export default function TopNav(props) {
 
-      <div className="triangle-container">
-        <div className="myProfileFlagContainer">
-          <div className="flagTriangle"></div>
-          <button className="myProfileFlag">Calendar</button>
-        </div>
-        <div className="myProfileFlagContainer">
-          <div className="flagTriangle two-triangle"></div>
-          <button className="myProfileFlag two">Grades</button>
-        </div>
-        <div className="myProfileFlagContainer">
-          <div className="flagTriangle three-triangle"></div>
-          <button className="myProfileFlag three">Assignments</button>
-        </div>
-      </div>
-    </nav>
-    <hr className="topNav-hr"/>
-    </>
-  )
+  const section1 = 
+    <div className="myProfileFlagContainer">
+      <div className="flagTriangle"></div>
+      <button name={props.name1} onClick={updateContent} className="myProfileFlag">{props.name1}</button>
+    </div>
+
+  const section2 =
+    <div className="myProfileFlagContainer">
+      <div className="flagTriangle two-triangle"></div>
+      <button name={props.name2} onClick={updateContent} className="myProfileFlag two">{props.name2}</button>
+    </div>
+
+  const section3 = 
+    <div className="myProfileFlagContainer">
+      <div className="flagTriangle three-triangle"></div>
+      <button name={props.name3} onClick={updateContent} className="myProfileFlag three">{props.name3}</button>
+    </div>
+
+  const section4 = 
+    <div className="myProfileFlagContainer">
+      <div className="flagTriangle four-triangle"></div>
+      <button name={props.name4} onClick={updateContent} className="myProfileFlag four">{props.name4}</button>
+    </div>
+
+  function updateContent(name) {
+    if(props.setComponent) {
+      props.setComponent(name)
+    }
+  }
+
+  switch(props.number) {
+    case 1: {
+      return ( 
+        <>
+        <nav className="topNav-container">
+          <div className="triangle-container">
+            {section1}
+          </div>
+        </nav>
+        <hr className="topNav-hr"/>
+        </>
+      )
+    }
+    case 2: {
+      return ( 
+        <>
+        <nav className="topNav-container">
+          <div className="triangle-container">
+            {section1}
+            {section2}
+          </div>
+        </nav>
+        <hr className="topNav-hr"/>
+        </>
+      )
+    }
+    case 3: {
+      return (
+        <>
+        <nav className="topNav-container">
+          <div className="triangle-container">
+            {section1}
+            {section2}
+            {section3}
+          </div>
+        </nav>
+        <hr className="topNav-hr"/>
+        </>
+      )
+    }
+    case 4: {
+      return (
+        <>
+        <nav className="topNav-container">
+  
+          <div className="triangle-container">
+            {section1}
+            {section2}
+            {section3}
+            {section4}
+          </div>
+        </nav>
+        <hr className="topNav-hr"/>
+        </>
+      )
+    }
+    default: {
+      return;
+    }
+  }
 }
-
-export default TopNav;
