@@ -15,9 +15,10 @@ const Dashboard = (props) => {
         props.getUser()
         .then(res => {
             const {id} = res.value.userData
-            axios.get(`/getc/api/getClassList?id=${id}lasses`)
+            axios.get(`/api/getClassList?id=${id}`)
             .then(response => {
-                updateClassList(...classList, response)
+                console.log(response)
+                updateClassList(response.data)
             })
         })
         
@@ -29,17 +30,18 @@ const Dashboard = (props) => {
 
     return(
         <>
-        <NavBar />
+        <NavBar/>
         <div>
             <h1>Dashboard</h1>
             <h3>Hello</h3>
             
         </div>
         <div className="class-tiles-container">
-                {classList.map((item) => {
+                
+                {classList.map((item, i) => {
                     return (
-                        <div className="class-tiles">
-                            <p>hi</p>
+                        <div className="class-tiles" key={i}>
+                            <p>{item.name}</p>
                         </div>
                     )
                 })}  
