@@ -2,7 +2,6 @@ const express = require('express');
 require('dotenv').config();
 const massive = require('massive');
 const session = require('express-session');
-const authC = require('./Controllers/authController');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -23,12 +22,26 @@ app.use(session({
     }
 }))
 
+// CONTROLLERS
+const authC = require('./Controllers/authController');
+const eventC = require('./Controllers/eventController');
+const userC = require('./Controllers/userController');
+
 // AUTH ENDPOINTS
 app.post('/Login', authC.login)
 app.post('/Register', authC.register)
 app.get('/api/getuser', authC.getUser)
 app.delete('/Logout', authC.logout)
 app.put('/api/profile/:id', authC.updateUser)
+
+// EVENT ENDPOINTS //
+app.get('/api/getEvents', eventC.getEventsByID)
+app.post('/api/addEvent', eventC.addEvent)
+
+
+
+// USER ENDPOINTS //
+app.get('/api/getClassList', userC.getClassList)
 
 
 
