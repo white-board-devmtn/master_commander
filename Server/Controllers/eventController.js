@@ -12,7 +12,7 @@ module.exports = {
     const {userID, eventDescription, eventTitle, startDate, endDate} = req.body;
 
     await db.addEvent(userID, eventDescription, eventTitle, startDate, endDate);
-    const events = await db.getEventsByUserID(id);
+    const events = await db.getEventsByUserID(userID);
     res.status(200).send(events);
   }
 }
