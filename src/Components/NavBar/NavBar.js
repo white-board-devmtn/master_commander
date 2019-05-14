@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './NavBar.css';
-import noImage from '../../images/no-image.png'
+
 import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
 
 
@@ -11,6 +11,7 @@ const NavBar = (props) => {
     await props.logOutUser();
     window.location.reload();
   }
+  
 
   useEffect(() => {
     getUser()
@@ -20,7 +21,7 @@ const NavBar = (props) => {
   return (
     <div className="navbar-container">
       <div className="navbar-option-container">
-        <div>
+        <div><Link to="/profile">
           {
             props.user.img ? (
               <img src={props.user.img} alt="of person" className="navbar-profile-img" />
@@ -30,9 +31,9 @@ const NavBar = (props) => {
                   <span>Account</span>
                 </div>
               )
-          }
+          }</Link>
         </div>
-        <Link to="/profile"><i className="fas fa-id-card navbar-font"></i></Link>
+        
         <Link to="/dashboard"><i className="fas fa-desktop navbar-font"></i></Link>
         <Link to="/calendar"><i className="fas fa-calendar-alt navbar-font"></i></Link>
         <a href="/"><i className="fas fa-power-off navbar-font" onClick={logout}></i></a>
