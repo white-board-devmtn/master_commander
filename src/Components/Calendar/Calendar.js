@@ -27,7 +27,6 @@ const MyCalendar = (props) => {
     events: [
       {
         'title': 'Halo throw-down',
-        'allDay': false,
         'start': new Date('2019/05/14, 11:36'),
         'end': new Date('2019/05/14, 12:45'),
       }

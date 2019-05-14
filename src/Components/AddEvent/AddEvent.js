@@ -7,7 +7,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 function AddEvent (props) {
 
   const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
 
+  
   function dateFormatChanger(date) {
     date = moment(date).format('YYYY/MM/DD, HH:mm')
     console.log(date);
@@ -24,8 +26,8 @@ function AddEvent (props) {
       <div className='empty-space' onClick={() => props.toggleAddEvent()}></div>
       <div className='addEvent-container'>
         <div className='addEvent-content'>
-          <div>
-            <h4>Date:</h4>
+          <div style={{marginBottom: '.5rem'}}>
+            <h4>Start Date:</h4>
             <DatePicker 
               selected={startDate}
               onChange={setStartDate}
@@ -37,11 +39,24 @@ function AddEvent (props) {
               timeCaption="time"
             />
           </div>
-          <div>
+          <div style={{marginBottom: '.5rem'}}>
+            <h4>End Date:</h4>
+            <DatePicker 
+              selected={endDate}
+              onChange={setEndDate}
+              showTimeSelect
+              showYearDropdown
+              timeFormat="H:mm"
+              timeIntervals={15}
+              dateFormat="yyyy/MM/dd HH:mm"
+              timeCaption="time"
+            />
+          </div>
+          <div style={{marginBottom: '.5rem'}}>
             <h4>Event Title:</h4>
             <textarea style={{width: '20rem'}}/>
           </div>
-          <div>
+          <div style={{marginBottom: '.5rem'}}>
             <h4>Event Description:</h4>
             <textarea style={{height: '5rem', width: '20rem', textAlign: 'top', wordWrap: 'inherit'}}/>
           </div>
