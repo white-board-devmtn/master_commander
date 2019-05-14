@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
 import {getUser} from '../../Redux/Ducks/userReducer'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
 import './Dashboard.css';
@@ -9,10 +10,11 @@ import './Dashboard.css';
 const Dashboard = (props) => {
 
     const [classList, updateClassList] = useState([])
+    const {getUser} = props
     
     
     useEffect( () => {
-        props.getUser()
+        getUser()
         .then(res => {
             const {id} = res.value.userData
             axios.get(`/api/getClassList?id=${id}`)
@@ -29,24 +31,24 @@ const Dashboard = (props) => {
 
 
     return(
-        <>
-        <NavBar/>
-        <div>
-            <h1>Dashboard</h1>
-            <h3>Hello</h3>
+        <div className="dashboard-component">
+            <NavBar/>
             
+            <div className="class-tiles-container">
+                    
+                    {classList.map((item, i) => {
+                        return (
+                            <Link to={`/class/${item.classid}`} key={i}>
+                                <div className="class-tiles" >
+                                    <h2 style={{fontSize:25, fontWeight:600}}>{item.name}-{item.classid}</h2>
+                                    <p>Start: {item.startdate}</p>
+                                    <p>End: {item.enddate}</p>
+                                </div>
+                            </Link>
+                        )
+                    })}  
+            </div>
         </div>
-        <div className="class-tiles-container">
-                
-                {classList.map((item, i) => {
-                    return (
-                        <div className="class-tiles" key={i}>
-                            <p>{item.name}</p>
-                        </div>
-                    )
-                })}  
-        </div>
-        </>
     )
 }
 
