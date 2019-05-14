@@ -36,6 +36,10 @@ const MyCalendar = (props) => {
   const [startDate, setStartDate] = useState(new Date())
   setInterval(function(){setTime(moment().format('MMMM Do YYYY, h:mm:ss a'))})
 
+  // const dailyEvents = events.map((event, i) => {
+  //   console.log('event', event)
+  // })
+
   return (
     <div className='calendar-component'>
       <NavBar />
@@ -65,6 +69,9 @@ const MyCalendar = (props) => {
         <hr />
         <p style={{textDecoration: 'underline'}}>Today</p>
         <p>{time}</p>
+        <div className='event-list'>
+
+        </div>
         <button className='add-event-button' onClick={() => toggleAddEvent(!addEvent)}>Add Event</button>
       </div>
     </div>

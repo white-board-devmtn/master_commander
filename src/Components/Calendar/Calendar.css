@@ -36,3 +36,9 @@
 .react-datepicker {
     margin: 1rem
 }
+
+.event-list {
+    width: 15rem;
+    height: 10rem;
+    border: 1px solid grey
+}
