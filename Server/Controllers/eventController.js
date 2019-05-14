@@ -4,9 +4,7 @@ module.exports = {
     const db = req.app.get('db');
     const { id } = req.query;
 
-    console.log(id);
     const events = await db.getEventsByUserID(id);
-    console.log(events);
     res.status(200).send(events);
   },
   addEvent: async (req, res) => {

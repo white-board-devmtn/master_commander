@@ -28,7 +28,6 @@ const MyCalendar = (props) => {
             });
           }).catch(err => console.log('error'));
       }).catch(() => props.history.push('/'));
-      console.log(events)
   }, [])
 
   const [events, setEvents] = useState([])
