@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import axios from 'axios';
 import './AddEvent.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -8,17 +9,21 @@ function AddEvent (props) {
 
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
+  const [title, setTitle] = useState('')
 
-  
-  function dateFormatChanger(date) {
-    date = moment(date).format('YYYY/MM/DD, HH:mm')
-    console.log(date);
-    // let month = date.substring()
-  }
 
-  async function createEvent() {
-    let date = startDate
-    await dateFormatChanger(date)
+  function createEvent() {
+    const sDate = moment(startDate).format('YYYY/MM/DD, HH:mm')
+    const eDate = moment(endDate).format('YYYY/MM/DD, HH:mm')
+    axios.put('/api/addEvent', {eventTitle: title, startDate: sDate, endDate: eDate}).then(res => {
+      console.log(props);
+      props.setEvents(() => {
+        return res.data.map(event => {
+            return {title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)}
+        })
+      });
+    }).catch(err => console.log(err))
+    props.toggleAddEvent(!props.addEvent)
   }
 
   return (
@@ -54,11 +59,7 @@ function AddEvent (props) {
           </div>
           <div style={{marginBottom: '.5rem'}}>
             <h4>Event Title:</h4>
-            <textarea style={{width: '20rem'}}/>
-          </div>
-          <div style={{marginBottom: '.5rem'}}>
-            <h4>Event Description:</h4>
-            <textarea style={{height: '5rem', width: '20rem', textAlign: 'top', wordWrap: 'inherit'}}/>
+            <textarea onChange={(event) => setTitle(event.target.value)} style={{width: '20rem'}}/>
           </div>
           <button className='create-event-button' onClick={createEvent}>Create Event</button>
         </div>

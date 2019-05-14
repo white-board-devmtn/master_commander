@@ -71,11 +71,9 @@ CREATE TABLE user_ass (
 CREATE TABLE Events (
 	event_id serial NOT NULL UNIQUE,
 	user_id integer NOT NULL,
-	event_description varchar(1000) NOT NULL,
 	event_title varchar(200) NOT NULL,
 	start_date varchar(50) NOT NULL,
 	end_date varchar(50) NOT NULL,
-	all_day varchar(50) NOT NULL,
 	CONSTRAINT Events_pk PRIMARY KEY (event_id)
 ) WITH (
   OIDS=FALSE
