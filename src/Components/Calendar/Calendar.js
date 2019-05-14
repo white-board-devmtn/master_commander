@@ -1,13 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import BigCalendar from'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+
 import './Calendar.css'
 import NavBar from '../NavBar/NavBar'
+import { getUser } from '../../Redux/Ducks/userReducer'
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
-function Calendar (props) {
+const Calendar = (props) => {
+
+    useEffect(() => {
+        props.getUser().then(() => {
+            return;
+        }).catch(() => props.history.push('/'));
+    }, []);
+
+
+    // setTimeout(() => {
+    //     console.log(props);
+    //     if (!props.user.loggedIn) props.history.push('/')
+    // }, 1000);
+
+    console.log(props.user);
 
     const [events, setEvents] = useState({
         events: [
@@ -41,4 +58,10 @@ function Calendar (props) {
     )
 }
 
-export default Calendar
+function mapStateToProps(reduxState) {
+    return {
+      user: reduxState.user
+    }
+  };
+
+export default connect(mapStateToProps, { getUser })(Calendar);
