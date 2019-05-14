@@ -35,7 +35,13 @@ const Profile = (props) => {
       <div className="profileComponent">
         {editToggle ? (
           <div>
-            <img src={props.user.img} alt='userImage' style={{width: '50%'}}></img>
+            {
+              props.user.img ? (
+                <img src={props.user.img} alt="of person" style={{ width: '30%' }} />
+              ) : (
+                  <i className="far fa-user navbar-font"></i>
+                )
+            }
             <p>Full Name: {props.user.firstName} {props.user.lastName}</p>
             <p>Email: {props.user.email}</p>
             <p>Contact Phone Number: {props.user.phoneNumber}</p>
@@ -51,7 +57,7 @@ const Profile = (props) => {
 
 
               <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
-              <button style={{ cursor: "pointer" }} onClick={() =>  updateEditToggle(true)}>Cancel</button>
+              <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(true)}>Cancel</button>
             </div>
           )}
       </div>
