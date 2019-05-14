@@ -21,22 +21,24 @@ const NavBar = (props) => {
   return (
     <div className="navbar-container">
       <div className="navbar-option-container">
-        <div><Link to="/profile">
+        <Link to="/profile">
           {
             props.user.img ? (
-              <img src={props.user.img} alt="of person" className="navbar-profile-img" />
+              <div style={{backgroundImage: `url(${props.user.img})`}} alt="Profile Picture" className="navbar-profile-img tooltip">
+                <span className='tooltiptext' style={{left: '7rem'}}>account</span>
+              </div>
             ) : (
                 <div className="navbar-option-container">
-                  <i className="far fa-user navbar-font"></i>
+                  <i className="far fa-user navbar-font tooltip"></i>
                   <span>Account</span>
+                  <span className='tooltiptext'>account</span>
                 </div>
               )
-          }</Link>
-        </div>
-        
-        <Link to="/dashboard"><i className="fas fa-desktop navbar-font"></i></Link>
-        <Link to="/calendar"><i className="fas fa-calendar-alt navbar-font"></i></Link>
-        <a href="/"><i className="fas fa-power-off navbar-font" onClick={logout}></i></a>
+          }
+        </Link>
+        <Link to="/dashboard"><i className="fas fa-desktop navbar-font tooltip"><span className='tooltiptext'>desktop</span></i></Link>
+        <Link to="/calendar"><i className="fas fa-calendar-alt navbar-font tooltip"><span className='tooltiptext'>calendar</span></i></Link>
+        <a href="/"><i className="fas fa-power-off navbar-font tooltip" onClick={logout}><span className='tooltiptext'>logout</span></i></a>
       </div>
     </div>
   )

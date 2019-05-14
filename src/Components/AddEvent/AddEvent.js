@@ -18,6 +18,7 @@ function AddEvent (props) {
               selected={startDate}
               onChange={setStartDate}
               showTimeSelect
+              showYearDropdown
               timeFormat="h:mm a"
               timeIntervals={15}
               dateFormat="MM/dd/yyyy h:mm aa"

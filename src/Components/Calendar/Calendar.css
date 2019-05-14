@@ -1,6 +1,6 @@
 .calendar-component {
     width: calc(100vw - 10rem);
-    height: 88vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,4 +36,8 @@
 .react-calendar {
     width: 15rem;
     word-wrap: 
+}
+
+.react-datepicker {
+    margin: 1rem
 }
