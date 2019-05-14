@@ -4,6 +4,7 @@ import { getUser } from '../../Redux/Ducks/userReducer'
 import './Profile.css'
 import NavBar from '../NavBar/NavBar'
 import axios from 'axios';
+import TopNav from '../shared/TopNav';
 
 const Profile = (props) => {
 
@@ -34,6 +35,10 @@ const Profile = (props) => {
     <>
       <NavBar />
       <div className="profileComponent">
+      <TopNav 
+        number={1}
+        name1={'Profile'}
+      />
         {editToggle ? (
           <div>
             {
