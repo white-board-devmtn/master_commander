@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import BigCalendar from'react-big-calendar'
-import React, { useState } from 'react';
 import AddEvent from '../AddEvent/AddEvent'
-import BigCalendar from 'react-big-calendar'
 import Calendar from 'react-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -22,8 +20,6 @@ const MyCalendar = (props) => {
           return;
       }).catch(() => props.history.push('/'));
   }, []);
-
-function MyCalendar(props) {
 
 
   const [events, setEvents] = useState({
