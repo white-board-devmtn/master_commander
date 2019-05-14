@@ -1,6 +1,6 @@
 .calendar-component {
     width: calc(100vw - 10rem);
-    height: 100vh;
+    height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
