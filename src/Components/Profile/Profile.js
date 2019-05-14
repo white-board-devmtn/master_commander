@@ -46,6 +46,7 @@ const Profile = (props) => {
             <p>Full Name: {props.user.firstName} {props.user.lastName}</p>
             <p>Email: {props.user.email}</p>
             <p>Contact Phone Number: {props.user.phoneNumber}</p>
+            <p>Grades will be here</p>
             <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button>
 
           </div>
@@ -55,6 +56,7 @@ const Profile = (props) => {
               <input placeholder='Last Name' value={lastName} onChange={e => updateLastName(e.target.value)} />
               <input placeholder='Profile Image' value={img} onChange={e => updateImg(e.target.value)} />
               <input placeholder='Phone Number' value={phoneNumber} onChange={e => updatePhoneNumber(e.target.value)} />
+
 
 
               <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
