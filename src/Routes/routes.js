@@ -7,7 +7,7 @@ import Profile from '../Components/Profile/Profile'
 
 export default (
     <HashRouter>
-        <Switch>
+        <Switch> 
             <Route path='/dashboard' component={Dashboard} />
             <Route exact path='/' component={Login} />
             <Route path='/calendar' component={MyCalendar} />
