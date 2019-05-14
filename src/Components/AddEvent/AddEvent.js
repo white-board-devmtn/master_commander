@@ -1,11 +1,23 @@
 import React, {useState} from 'react'
 import DatePicker from 'react-datepicker'
+import moment from 'moment'
 import './AddEvent.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function AddEvent (props) {
 
   const [startDate, setStartDate] = useState(new Date())
+
+  function dateFormatChanger(date) {
+    date = moment(date).format('YYYY/MM/DD, HH:mm')
+    console.log(date);
+    // let month = date.substring()
+  }
+
+  async function createEvent() {
+    let date = startDate
+    await dateFormatChanger(date)
+  }
 
   return (
     <div className={props.addEvent ? 'addEvent-component' : 'no-display'}>
@@ -18,9 +30,9 @@ function AddEvent (props) {
               selected={startDate}
               onChange={setStartDate}
               showTimeSelect
-              timeFormat="h:mm a"
+              timeFormat="H:mm"
               timeIntervals={15}
-              dateFormat="MM/dd/yyyy h:mm aa"
+              dateFormat="yyyy/MM/dd HH:mm"
               timeCaption="time"
             />
           </div>
@@ -32,7 +44,7 @@ function AddEvent (props) {
             <h4>Event Description:</h4>
             <textarea style={{height: '5rem', width: '20rem', textAlign: 'top', wordWrap: 'inherit'}}/>
           </div>
-          <button className='create-event-button'>Create Event</button>
+          <button className='create-event-button' onClick={createEvent}>Create Event</button>
         </div>
       </div>
     </div>
