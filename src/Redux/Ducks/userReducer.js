@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const initialState = {
+    id: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -52,6 +53,7 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN + "_FULFILLED": {
             return {...state,
+                    id: action.payload.userData.id,
                     firstName: action.payload.userData.firstName,
                     lastName: action.payload.userData.lastName,
                     email: action.payload.userData.email,

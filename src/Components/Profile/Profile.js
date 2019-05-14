@@ -3,39 +3,55 @@ import { connect } from 'react-redux';
 import { getUser } from '../../Redux/Ducks/userReducer'
 import './Profile.css'
 import NavBar from '../NavBar/NavBar'
+import axios from 'axios';
 
 const Profile = (props) => {
-  const [userProfile, setUserProfile] = useState({
-    email: '',
-    currentPassword: '',
-    newPassword: '',
-    profilePic: '',
-    phoneNumber: '',
-  })
 
+  const [firstName, updateFirstName] = useState('')
+  const [lastName, updateLastName] = useState('')
+  const [img, updateImg] = useState('')
+  const [password, updatePassword] = useState('')
+  const [phoneNumber, updatePhoneNumber] = useState('')
   const [editToggle, updateEditToggle] = useState(true)
+
 
   useEffect(() => {
     props.getUser()
   }, [])
 
-  console.log(props.user)
+  async function handleUpdateUser() {
+    const { id } = props.user
+    const updateInfo = { firstName, lastName, phoneNumber, img }
+    const res = await axios.put(`/api/profile/${id}`, updateInfo)
+      .then(res => {
+        props.getUser()
+      })
+  }
+
+  console.log(props.user.email)
   return (
     <>
       <NavBar />
       <div className="profileComponent">
         {editToggle ? (
           <div>
-            <img src={props.user.img}></img>
-            <p>{props.user.firstName} {props.user.lastName}</p>
-            <p>{props.user.email}</p>
-            <p>{props.user.phoneNumber}</p>
+            <img src={props.user.img} alt='userImage' style={{width: '50%'}}></img>
+            <p>Full Name: {props.user.firstName} {props.user.lastName}</p>
+            <p>Email: {props.user.email}</p>
+            <p>Contact Phone Number: {props.user.phoneNumber}</p>
             <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button>
 
           </div>
         ) : (
             <div>
+              <input placeholder='First Name' value={firstName} onChange={e => updateFirstName(e.target.value)} />
+              <input placeholder='Last Name' value={lastName} onChange={e => updateLastName(e.target.value)} />
+              <input placeholder='Profile Image' value={img} onChange={e => updateImg(e.target.value)} />
+              <input placeholder='Phone Number' value={phoneNumber} onChange={e => updatePhoneNumber(e.target.value)} />
 
+
+              <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
+              <button style={{ cursor: "pointer" }} onClick={() =>  updateEditToggle(true)}>Cancel</button>
             </div>
           )}
       </div>

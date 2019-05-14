@@ -6,13 +6,15 @@
     -webkit-box-shadow: 10px 0 5px -2px #888;
           box-shadow: 10px 0 5px -2px #888;
 
-    position: fixed
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .navbar-option-container {
 
     width: 100%;
-    height: 60%;
+    height: 80%;
 
     display: flex;
     justify-content: space-around;
@@ -30,6 +32,6 @@
 }
 
 .navbar-font {
-    font-size: 5em;
-    color: black;
+    font-size: 4em;
+    color: rgba(0, 0, 0, 0.555);
 }

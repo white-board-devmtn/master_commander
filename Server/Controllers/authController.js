@@ -3,18 +3,18 @@ const bcrypt = require('bcryptjs');
 module.exports = {
 
     login: async (req, res) => {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
         const db = req.app.get('db');
-        const result = await db.get_user_by_email({email})
+        const result = await db.get_user_by_email({ email })
         const userData = result[0]
-        if(!userData) {
+        if (!userData) {
             return res.status(401).send('Invalid Email')
         }
         const compare = bcrypt.compareSync(password, userData.hash);
-        if(!compare) {
+        if (!compare) {
             return res.status(401).send('Incorrect Password')
         }
-        req.session.user = { 
+        req.session.user = {
             id: userData.user_id,
             firstName: userData.first_name,
             lastName: userData.last_name,
@@ -28,20 +28,20 @@ module.exports = {
             userData: req.session.user,
             loggedIn: true
         })
-    }, 
+    },
 
     register: async (req, res) => {
         const db = req.app.get('db');
-        const {firstName, lastName, email, password} = req.body;
-        const result = await db.get_user_by_email({email});
+        const { firstName, lastName, email, password } = req.body;
+        const result = await db.get_user_by_email({ email });
         const userData = result[0]
         if (userData) {
             return res.status(401).send({ message: 'Email already in use' })
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        let newResult = await db.create_user({firstName, lastName, email, hash});
-        req.session.user = { 
+        let newResult = await db.create_user({ firstName, lastName, email, hash });
+        req.session.user = {
             id: newResult[0].user_id,
             firstName: newResult[0].firstname,
             lastName: newResult[0].lastname,
@@ -57,8 +57,35 @@ module.exports = {
         })
     },
 
+    updateUser: async (req, res) => {
+        const db = req.app.get('db');
+        const { id } = req.params
+        const { firstName, lastName, phoneNumber, img } = req.body
+        console.log(req.params)
+        console.log(req.body)
+
+        // const salt = bcrypt.genSaltSync(10);
+        // const hash = bcrypt.hashSync(password, salt);
+        let updatedUserArr = await db.update_user([id, firstName, lastName, phoneNumber, img])
+        req.session.user = {
+            id: updatedUserArr[0].user_id,
+            firstName: updatedUserArr[0].first_name,
+            lastName: updatedUserArr[0].last_name,
+            phoneNumber: updatedUserArr[0].phone_number,
+            img: updatedUserArr[0].img,
+            email: updatedUserArr[0].email
+            // password: updatedUserArr[0].hash
+        }
+        res.status(200).send({
+            message: 'User updated',
+            userData: req.session.user,
+            loggedIn: true
+        })
+
+    },
+
     getUser: (req, res) => {
-        if (req.session.user) res.status(200).send({userData: req.session.user})
+        if (req.session.user) res.status(200).send({ userData: req.session.user })
         else res.status(401).send('Please log in');
     },
     logout: (req, res) => {
