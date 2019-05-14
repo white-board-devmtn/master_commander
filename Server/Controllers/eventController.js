@@ -4,15 +4,18 @@ module.exports = {
     const db = req.app.get('db');
     const { id } = req.query;
 
+    console.log(id);
     const events = await db.getEventsByUserID(id);
+    console.log(events);
     res.status(200).send(events);
   },
   addEvent: async (req, res) => {
     const db = req.app.get('db');
-    const {userID, eventDescription, eventTitle, startDate, endDate} = req.body;
+    const {eventTitle, startDate, endDate} = req.body;
+    const { id } = req.session.user;
 
-    await db.addEvent(userID, eventDescription, eventTitle, startDate, endDate);
-    const events = await db.getEventsByUserID(userID);
+    await db.addEvent(id, eventTitle, startDate, endDate);
+    const events = await db.getEventsByUserID(id);
     res.status(200).send(events);
   }
 }

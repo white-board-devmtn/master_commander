@@ -36,7 +36,7 @@ app.put('/api/profile/:id', authC.updateUser)
 
 // EVENT ENDPOINTS //
 app.get('/api/getEvents', eventC.getEventsByID)
-app.post('/api/addEvent', eventC.addEvent)
+app.put('/api/addEvent', eventC.addEvent)
 
 
 
