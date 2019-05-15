@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 import './ClassHome.css';
-import ClassAnnouncments from './Announcments/ClassAnnouncments';
+import ClassAnnouncements from './Announcements/ClassAnnouncments';
 import RecentGraded from './RecentlyGraded/RecentGraded';
 import ClassUpcoming from './Upcoming/ClassUpcoming';
 import ClassSyllabus from './Syllabus/ClassSyllabus';
@@ -10,7 +10,7 @@ import ClassSyllabus from './Syllabus/ClassSyllabus';
 const ClassHome = (props) => {
   return (
     <div className="class-information-container">
-      <ClassAnnouncments />
+      <ClassAnnouncements />
       <ClassUpcoming
         id={props.id}
       />
