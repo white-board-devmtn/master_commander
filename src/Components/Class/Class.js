@@ -8,16 +8,16 @@ import Assignments from './Assignments/Assignments';
 
 import NavBar from '../NavBar/NavBar';
 import TopNav from '../shared/TopNav';
-import {getUser} from '../../Redux/Ducks/userReducer';
+import { getUser } from '../../Redux/Ducks/userReducer';
 
 const Class = (props) => {
 
   const [displayComponent, setDisplay] = useState('Class Home')
 
   useEffect(() => {
-    props.getUser();
+    props.getUser().then().catch(err => props.history.push('/'))
   }, [])
-  
+
   useEffect(() => {
     return () => {
       return displayComponent
@@ -35,7 +35,9 @@ const Class = (props) => {
         return <Assignments />
       }
       case 'Forum': {
-        return <Forum />
+        return <Forum
+          id={props.user.id}
+        />
       }
       default: {
         return <ClassHome
@@ -68,4 +70,4 @@ function mapStateToProps(reduxState) {
   }
 }
 
-export default connect(mapStateToProps, {getUser})(Class);
+export default connect(mapStateToProps, { getUser })(Class);

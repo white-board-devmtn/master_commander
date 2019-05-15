@@ -18,5 +18,22 @@ module.exports = {
     const assignments = await db.getUpcomingAssignments(id, classid, time)
     res.status(200).send(assignments)
 
+  },
+  getForumPosts: async (req, res) => {
+    const db = req.app.get('db');
+    const {classid} = req.query
+
+    const forums = await db.getForumByClassID(classid);
+    res.status(200).send(forums);
+  },
+  addForumPost: async (req, res) => {
+    const db = req.app.get('db');
+    const {id, classid, post} = req.body;
+    let time = new Date();
+    time = moment(time).format('YYYY-MM-DD')
+
+    await db.addForumPost(id, classid, post, time);
+    const forums = await db.getForumByClassID(classid);
+    res.status(200).send(forums);
   }
 }

@@ -22,7 +22,7 @@ const Dashboard = (props) => {
                 console.log(response)
                 updateClassList(response.data)
             })
-        })
+        }).catch(err => props.history.push('/'))
         
     }, [])
 

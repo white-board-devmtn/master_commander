@@ -43,5 +43,7 @@ app.put('/api/addEvent', eventC.addEvent)
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
 app.get('/api/getClassList', userC.getClassList)
 app.get('/api/class/upcomingAssignments', userC.getUpcomingAssignments)
+app.get('/api/class/getForum', userC.getForumPosts) // GETS FORUM POST BY CLASS ID 
+app.put('/api/class/addPost', userC.addForumPost) // ADDS FORUM POST
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))
