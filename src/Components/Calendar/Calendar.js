@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import BigCalendar from'react-big-calendar'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import BigCalendar from 'react-big-calendar'
 import AddEvent from './AddEvent/AddEvent'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -16,29 +16,49 @@ const localizer = BigCalendar.momentLocalizer(moment);
 
 
 const MyCalendar = (props) => {
-
-  useEffect(() => {
-      props.getUser().then(res => {
-          const { id } = res.value.userData
-          axios.get(`/api/getEvents?id=${id}`).then(res => {
-            setEvents(() => {
-              return res.data.map(event => {
-                  return {title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)}
-              })
-            });
-          }).catch(err => console.log('error'));
-      }).catch(() => props.history.push('/'));
-  }, [])
-
+  
   const [events, setEvents] = useState([])
   const [addEvent, toggleAddEvent] = useState(false)
   const [time, setTime] = useState(moment().format('MMMM Do YYYY, h:mm:ss a'))
-  const [startDate, setStartDate] = useState(new Date())
-  setInterval(function(){setTime(moment().format('MMMM Do YYYY, h:mm:ss a'))})
+  const [date, setDate] = useState(new Date())
+  const [today, setToday] = useState([])
+  
+  useEffect(() => {
+    console.log('swag')
+    props.getUser().then(res => {
+      const { id } = res.value.userData
+      axios.get(`/api/getEvents?id=${id}`).then(res => {
+        let myEvents = [];
+        res.data.map(event => {
+          myEvents.push({ title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)})
+        })
+        return setEvents(myEvents)
+      }).catch(err => console.log('error'));
+    }).catch(() => props.history.push('/'));
+  }, [])
 
-  // const dailyEvents = events.map((event, i) => {
-  //   console.log('event', event)
-  // })
+  useEffect(() => {
+    setInterval(function () { setTime(moment().format('MMMM Do YYYY, h:mm:ss a')) })
+  }, [time])
+
+  useEffect(() => {
+    let arr = [];
+    let todayArr = [];
+    let dateToday = JSON.stringify(date.toString()).split('').splice(1, 15).join('');
+    events.map((event, i) => {
+      let split = JSON.stringify(event.start.toString()).split('').splice(1, 15).join('');
+      arr.push({title: event.title, date: split})
+    })
+    
+    arr.map((event, i) => {
+      if(event.date == dateToday) {
+        todayArr.push(event.title)
+      }
+    })
+
+    setToday(todayArr)
+  }, [events, date])
+
 
   return (
     <div className='calendar-component'>
@@ -59,18 +79,25 @@ const MyCalendar = (props) => {
         />
       </div>
       <div className='right-container'>
+        <hr/>
+        <p style={{ textDecoration: 'underline' }}>Today</p>
+        <p>{time}</p>
         <DatePicker
           inline
-          selected={startDate}
-          onChange={setStartDate}
+          selected={date}
+          onChange={setDate}
           showYearDropdown
-          style={{ marginTop: '2rem'}}
+          style={{ marginTop: '2rem' }}
         />
-        <hr />
-        <p style={{textDecoration: 'underline'}}>Today</p>
-        <p>{time}</p>
+        <p>Events on {JSON.stringify(date.toString()).split('').splice(1, 10).join('')}</p>
         <div className='event-list'>
-
+          {today.map((event, i) => {
+            return (
+              <li style={{margin: '1rem 0rem 1rem 1rem'}} key={i}>
+                {event}
+              </li>
+            )
+          })}
         </div>
         <button className='add-event-button' onClick={() => toggleAddEvent(!addEvent)}>Add Event</button>
       </div>
@@ -81,9 +108,9 @@ const MyCalendar = (props) => {
 
 
 function mapStateToProps(reduxState) {
-    return {
-      user: reduxState.user
-    }
-  };
+  return {
+    user: reduxState.user
+  }
+};
 
 export default connect(mapStateToProps, { getUser })(MyCalendar);
