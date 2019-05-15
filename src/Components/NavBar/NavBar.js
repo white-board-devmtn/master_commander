@@ -36,7 +36,7 @@ const NavBar = (props) => {
               )
           }
         </Link>
-        <Link to="/dashboard"><i className="fas fa-desktop navbar-font tooltip"><span className='tooltiptext'>desktop</span></i></Link>
+        <Link to="/dashboard"><i className="fas fa-desktop navbar-font tooltip"><span className='tooltiptext'>dashboard</span></i></Link>
         <Link to="/calendar"><i className="fas fa-calendar-alt navbar-font tooltip"><span className='tooltiptext'>calendar</span></i></Link>
         <a href="/"><i className="fas fa-power-off navbar-font tooltip" onClick={logout}><span className='tooltiptext'>logout</span></i></a>
       </div>
