@@ -38,7 +38,7 @@ const ClassUpcoming = (props) => {
       return upcoming.map(assignment => {
         return (
           <>
-            <li>{assignment.dueDate}</li>
+            <li>{assignment.duedate}</li>
           </>
         )
       })
