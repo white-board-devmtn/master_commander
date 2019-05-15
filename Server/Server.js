@@ -42,5 +42,6 @@ app.put('/api/addEvent', eventC.addEvent)
 // USER ENDPOINTS //
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
 app.get('/api/getClassList', userC.getClassList)
+app.get('/api/class/upcomingAssignments', userC.getUpcomingAssignments)
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))
