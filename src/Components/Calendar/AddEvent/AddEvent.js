@@ -23,7 +23,8 @@ function AddEvent (props) {
         })
       });
     }).catch(err => console.log(err))
-    props.toggleAddEvent(!props.addEvent)
+    props.getData();
+    props.toggleAddEvent(!props.addEvent);
   }
 
   return (
