@@ -3,6 +3,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 import ClassHome from './Home/ClassHome';
+import Forum from './Forum/Forum';
+import Assignments from './Assignments/Assignments';
+
 import NavBar from '../NavBar/NavBar';
 import TopNav from '../shared/TopNav';
 import {getUser} from '../../Redux/Ducks/userReducer';
@@ -29,10 +32,10 @@ const Class = (props) => {
         />
       }
       case 'Assignments': {
-        return
+        return <Assignments />
       }
       case 'Forum': {
-        return
+        return <Forum />
       }
       default: {
         return <ClassHome
