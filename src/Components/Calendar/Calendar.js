@@ -24,7 +24,6 @@ const MyCalendar = (props) => {
   const [today, setToday] = useState([])
   
   useEffect(() => {
-    console.log('swag')
     props.getUser().then(res => {
       const { id } = res.value.userData
       axios.get(`/api/getEvents?id=${id}`).then(res => {
