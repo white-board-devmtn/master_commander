@@ -3,7 +3,7 @@ require('dotenv').config();
 const massive = require('massive');
 const session = require('express-session');
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(session({
 const authC = require('./Controllers/authController');
 const eventC = require('./Controllers/eventController');
 const userC = require('./Controllers/userController');
+const amazonCtrl = require('./Controllers/amazonController');
 
 // AUTH ENDPOINTS
 app.post('/Login', authC.login)
@@ -38,14 +39,8 @@ app.put('/api/profile/:id', authC.updateUser)
 app.get('/api/getEvents', eventC.getEventsByID)
 app.put('/api/addEvent', eventC.addEvent)
 
-
-
 // USER ENDPOINTS //
+app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
 app.get('/api/getClassList', userC.getClassList)
-
-
-
-
-
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))
