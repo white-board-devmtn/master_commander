@@ -39,13 +39,26 @@
 
 
 .event-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 15rem;
     height: 8rem;
     border: 1px solid grey;
     border-radius: 5px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    /* margin-top: 1rem;
+    margin-bottom: 1rem; */
     overflow-y: auto;
+}
+
+.event-list-item {
+  display: flex;
+  justify-content: space-between;
+  width:90%;
+  margin: 0;
+  padding: 0;
+
+
 }
 
 .rbc-addons-dnd .rbc-addons-dnd-row-body {
@@ -116,3 +129,11 @@
     cursor: ew-resize;
   }
   
+
+  .rbc-event {
+    padding: 2px 5px;
+    background-color: #ad313b;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }

@@ -38,6 +38,7 @@ app.put('/api/profile/:id', authC.updateUser)
 // EVENT ENDPOINTS //
 app.get('/api/getEvents', eventC.getEventsByID)
 app.put('/api/addEvent', eventC.addEvent)
+app.put('/api/updateEvent', eventC.updateEvent)
 
 // USER ENDPOINTS //
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
