@@ -30,15 +30,20 @@
 
 .add-event-button {
     padding: .5rem 3rem;
-    margin-top: 3rem;
 }
 
 .react-datepicker {
     margin: 1rem
 }
 
+
+
 .event-list {
     width: 15rem;
-    height: 10rem;
-    border: 1px solid grey
+    height: 8rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-y: auto;
 }
