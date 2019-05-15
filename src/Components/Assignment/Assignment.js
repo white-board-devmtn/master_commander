@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getUser } from '../../Redux/Ducks/userReducer'
 import NavBar from '../NavBar/NavBar'
@@ -14,10 +14,10 @@ const Assignment = (props) => {
 
   return (
     <>
-    <NavBar/>
-    <div>
-      
-    </div>
+      <NavBar />
+      <div>
+
+      </div>
     </>
   )
 }
