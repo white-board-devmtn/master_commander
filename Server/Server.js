@@ -27,6 +27,7 @@ const authC = require('./Controllers/authController');
 const eventC = require('./Controllers/eventController');
 const userC = require('./Controllers/userController');
 const amazonCtrl = require('./Controllers/amazonController');
+const teachCtrl = require('./Controllers/teacherController')
 
 // AUTH ENDPOINTS
 app.post('/Login', authC.login)
@@ -46,6 +47,8 @@ app.get('/api/getClassList', userC.getClassList)
 app.get('/api/class/upcomingAssignments', userC.getUpcomingAssignments)
 
 app.get('/api/class/classAssignments', userC.getClassAssignments)
+
+app.post('/api/class/addAssignment', teachCtrl.createAssignment)
 
 app.get('/api/class/getForum', userC.getForumPosts) // GETS FORUM POST BY CLASS ID 
 app.put('/api/class/addPost', userC.addForumPost) // ADDS FORUM POST

@@ -7,6 +7,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 function AddPost (props) {
   const [newPost, setNewPost] = useState('')
 
+
+
   function addPost() {
     const post = {
       id: props.id,
