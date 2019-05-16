@@ -13,7 +13,7 @@ const Assignment = (props) => {
     props.getUser()
   }, [])
 
-  function divide(num1, num2){
+  function divide(num1, num2) {
     return num1 / num2
   }
 
@@ -52,17 +52,24 @@ const Assignment = (props) => {
   // due_date = moment(due_date).format('MM-DD-YYYY')
   return (
     <>
-      <div>
-        {
-          complete ? (
-            <li>{name} -  Score: {divide(points, outof / 100)}%</li>
-          ) : (
-              <li>{name} - {description} Points Possible: {outof} Due Date: {due_date}</li>
-            )
-        }
-        {showDetails()}
+      {
+        props.user.isTeacher ? (
+          <div>
+            <li>{name} - {description} Points Possible: {outof} Due Date: {due_date}</li>
+          </div>
 
-      </div>
+        ) : (
+            <div>
+              {
+                complete ? (
+                  <li>{name} -  Score: {divide(points, outof / 100)}%</li>
+                ) : (
+                    <li>{name} - Points Possible: {outof} Due Date: {due_date}</li>
+                  )
+              }
+              {showDetails()}
+            </div>)
+      }
     </>
   )
 }

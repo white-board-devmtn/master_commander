@@ -12,14 +12,18 @@ const ClassUpcoming = (props) => {
       return upcoming
     };
   }, [upcoming])
+
+
+
+  
 console.log(props)
   useEffect(() => {
-    if (props.id) {
-      axios.get(`/api/class/upcomingAssignments?id=${props.id}&classid=${classID}`).then((res) => {
+    if (props.user.id) {
+      axios.get(`/api/class/upcomingAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
         return setUpcoming(res.data)
       }).catch(() => console.log('could not get at this time'));
     }
-  }, [props.id])
+  }, [props.user.id])
 
   function showUpcomingName() {
     if (upcoming) {
