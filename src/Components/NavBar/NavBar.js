@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './NavBar.css';
-
+import CalendarToday  from '@material-ui/icons/CalendarToday';
+import PermIdentity from '@material-ui/icons/PermIdentity';
 import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
 
 
@@ -24,21 +25,23 @@ const NavBar = (props) => {
         <Link to="/profile">
           {
             props.user.img ? (
-              <div style={{backgroundImage: `url(${props.user.img})`}} alt="Profile Picture" className="navbar-profile-img tooltip">
-                <span className='tooltiptext' style={{left: '7rem'}}>account</span>
+              <div className="Navbar-icon-container">
+                {/* <figure className="Navbar-profile-image-figure"> */}
+                  <img src={props.user.img} alt="Profile Picture" className="navbar-profile-img tooltip" />
+                {/* </figure> */}
+                <h2 className='tooltiptext'>Account</h2>
               </div>
             ) : (
-                <div className="navbar-option-container">
-                  <i className="far fa-user navbar-font tooltip"></i>
-                  <span>Account</span>
-                  <span className='tooltiptext'>account</span>
+                <div className="Navbar-icon-container">
+                  <CalendarToday size="2x" className="navbar-font tooltip"/>
+                  <h2>Account</h2>
                 </div>
               )
           }
         </Link>
-        <Link to="/dashboard"><i className="fas fa-desktop navbar-font tooltip"><span className='tooltiptext'>dashboard</span></i></Link>
-        <Link to="/calendar"><i className="fas fa-calendar-alt navbar-font tooltip"><span className='tooltiptext'>calendar</span></i></Link>
-        <a href="/"><i className="fas fa-power-off navbar-font tooltip" onClick={logout}><span className='tooltiptext'>logout</span></i></a>
+        <Link to="/dashboard"><div className="Navbar-icon-container"><CalendarToday className="navbar-font tooltip"/><h2 className="tooltiptext">Dashboard</h2></div></Link>
+        <Link to="/calendar"><div className="Navbar-icon-container"><CalendarToday className="navbar-font tooltip"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
+        <a href="/"><div className="Navbar-icon-container"><PermIdentity size="2x"className="navbar-font tooltip"/><h2 className='tooltiptext'>Logout</h2></div></a>
       </div>
     </div>
   )

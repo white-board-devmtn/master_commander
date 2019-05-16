@@ -5,6 +5,13 @@ import './Profile.css'
 import NavBar from '../NavBar/NavBar'
 import axios from 'axios';
 import TopNav from '../shared/TopNav';
+import ProfileCard from './ProfileCard/ProfileCard'
+import withStyles from '@material-ui/core/styles/withStyles';
+
+const styles = theme => ({
+  
+})
+
 
 const Profile = (props) => {
 
@@ -14,7 +21,7 @@ const Profile = (props) => {
   const [password, updatePassword] = useState('')
   const [phoneNumber, updatePhoneNumber] = useState('')
   const [editToggle, updateEditToggle] = useState(true)
-  
+
 
 
   useEffect(() => {
@@ -35,39 +42,38 @@ const Profile = (props) => {
     <>
       <NavBar />
       <div className="profileComponent">
-      <TopNav 
-        number={1}
-        name1={'Profile'}
-      />
-        {editToggle ? (
-          <div>
-            {
-              props.user.img ? (
-                <img src={props.user.img} alt="of person" style={{ width: '30%' }} />
-              ) : (
-                  <i className="far fa-user navbar-font"></i>
-                )
-            }
-            <p>Full Name: {props.user.firstName} {props.user.lastName}</p>
-            <p>Email: {props.user.email}</p>
-            <p>Contact Phone Number: {props.user.phoneNumber}</p>
-            <p>Grades will be here</p>
-            <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button>
-
-          </div>
-        ) : (
+        <TopNav
+          number={1}
+          name1={'Profile'}
+        />
+        <div className="profile-home-container">
+          {editToggle ? (
             <div>
-              <input placeholder='First Name' value={firstName} onChange={e => updateFirstName(e.target.value)} />
-              <input placeholder='Last Name' value={lastName} onChange={e => updateLastName(e.target.value)} />
-              <input placeholder='Profile Image' value={img} onChange={e => updateImg(e.target.value)} />
-              <input placeholder='Phone Number' value={phoneNumber} onChange={e => updatePhoneNumber(e.target.value)} />
+              <ProfileCard
+                img={props.user.img}
+                firstName={props.user.firstName}
+                lastName={props.user.lastName}
+                email={props.user.email}
+                number={props.user.phoneNumber}
+              />
+                <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button>
+              
 
-
-
-              <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
-              <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(true)}>Cancel</button>
             </div>
-          )}
+          ) : (
+              <div>
+                <input placeholder='First Name' value={firstName} onChange={e => updateFirstName(e.target.value)} />
+                <input placeholder='Last Name' value={lastName} onChange={e => updateLastName(e.target.value)} />
+                <input placeholder='Profile Image' value={img} onChange={e => updateImg(e.target.value)} />
+                <input placeholder='Phone Number' value={phoneNumber} onChange={e => updatePhoneNumber(e.target.value)} />
+
+                
+                  <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
+                  <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(true)}>Cancel</button>
+                
+              </div>
+            )}
+      </div>
       </div>
     </>
   )

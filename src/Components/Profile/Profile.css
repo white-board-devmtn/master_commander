@@ -1,5 +1,11 @@
 .profileComponent {
   width: calc(100vw - 10rem);
   height: 100vh;
-  margin-left: 10rem
+  margin-left: 6rem
+}
+
+.profile-home-container {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
 }
