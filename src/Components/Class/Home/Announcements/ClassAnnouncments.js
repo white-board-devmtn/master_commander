@@ -23,9 +23,9 @@ const ClassAnnouncements = (props) => {
     if (announcements) {
       return announcements.map(announcement => {
         return (
-          <div className="class-home-annoucnment">
-          <h3>{announcement.name}</h3>
-          <p>{announcement.details}</p>
+          <div key={announcement.id} className="class-home-annoucnment">
+          <h3>{announcement.info}</h3>
+          <p>{announcement.date}</p>
           </div>
         )
       })

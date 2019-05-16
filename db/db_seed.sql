@@ -114,7 +114,16 @@ CREATE TABLE Course (
 );
 
 
+CREATE TABLE Announcements (
+	announcement_id serial NOT NULL,
+	class_id INT NOT NULL,
+	announcement_info varchar(300) NOT NULL,
+	timestamp date NOT NULL
+);
 
+
+
+ALTER TABLE Announcements ADD CONSTRAINT Class_fk0 FOREIGN KEY (class_id) REFERENCES Class(class_id);
 
 ALTER TABLE Class ADD CONSTRAINT Class_fk0 FOREIGN KEY (course_id) REFERENCES Course(course_id);
 
