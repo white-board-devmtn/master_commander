@@ -10,15 +10,18 @@
 .topNav-hr {
   margin-bottom: 3em;
   width: 103%;
+  z-index: 9000;
 }
 
 .triangle-container {
   display: flex;
   width: 30em;
+  z-index: 9000;
 }
 
 .topNav-option-container {
   display: flex;
+  z-index: 9000;
 }
 
 .myProfileFlagContainer{
