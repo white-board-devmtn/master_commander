@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone'; // Used for uploading image into react
 import { v4 as randomString } from 'uuid'; // used to create random string for S3 url
 import axios from 'axios';
 
-function UploadImage() {
+function UploadImage(props) {
 
   const [image, setImage] = useState('');
   
