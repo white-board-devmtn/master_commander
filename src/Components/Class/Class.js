@@ -32,7 +32,8 @@ const Class = (props) => {
         />
       }
       case 'Assignments': {
-        return <Assignments />
+        return <Assignments 
+        id={props.user.id}/>
       }
       case 'Forum': {
         return <Forum />
