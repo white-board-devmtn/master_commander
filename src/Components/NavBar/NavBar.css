@@ -30,9 +30,6 @@
     border-radius: 40%;
 }
 
-.navbar-font {
-    color: rgb(110, 110, 110);
-}
 
 .Navbar-icon-container {
     display: flex;
@@ -43,6 +40,15 @@
     min-height: 4em;
 }
 
+.Navbar-icon-container > .navbar-font {
+    font-size: 2.2em;
+    color: rgb(110, 110, 110);
+}
+
 .navbar-container a {
     color: black;
+}
+
+.Navbar-icon-container > .tooltiptext .tooltiptext:link .tooltiptext:visited {
+    text-decoration: none !important;
 }

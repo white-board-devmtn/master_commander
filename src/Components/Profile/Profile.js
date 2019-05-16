@@ -4,16 +4,28 @@ import { getUser } from '../../Redux/Ducks/userReducer'
 import './Profile.css'
 import NavBar from '../NavBar/NavBar'
 import axios from 'axios';
-import TopNav from '../shared/TopNav';
-import ProfileCard from './ProfileCard/ProfileCard'
+
+import ProfileImage from './ProfileCard/ProfileImage'
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import StudentInfo from './StudentInfo/StudentInfo';
+
 const styles = theme => ({
-  
-})
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    minHeight: '30em',
+    backgroundColor: 'red'
+  },
+  listItem: {
+    height: '8em'
+  }
+});
 
 
 const Profile = (props) => {
+
+  const { classes } = props;
 
   const [firstName, updateFirstName] = useState('')
   const [lastName, updateLastName] = useState('')
@@ -31,33 +43,41 @@ const Profile = (props) => {
   async function handleUpdateUser() {
     const { id } = props.user
     const updateInfo = { firstName, lastName, phoneNumber, img }
-    const res = await axios.put(`/api/profile/${id}`, updateInfo)
-      .then(res => {
-        props.getUser()
-      })
-  }
+    axios.put(`/api/profile/${id}`, updateInfo).then(() => {
+      props.getUser().then().catch(err => console.log(err));
+    }).catch(err => console.log(err));
+  };
 
-  // console.log(props.user.email)
+  console.log(props);
   return (
     <>
       <NavBar />
       <div className="profileComponent">
-        <TopNav
-          number={1}
-          name1={'Profile'}
-        />
         <div className="profile-home-container">
           {editToggle ? (
             <div>
-              <ProfileCard
+              <ProfileImage
                 img={props.user.img}
-                firstName={props.user.firstName}
-                lastName={props.user.lastName}
-                email={props.user.email}
-                number={props.user.phoneNumber}
               />
-                <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button>
-              
+              <div className="profile-info-container">
+                <div className="profile-student-info">
+                  <h1>Your Information</h1>
+                  {/* <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(false)}>Edit Profile</button> */}
+                  <StudentInfo 
+                    email={props.user.email}
+                    firstName={props.user.firstName}
+                    lastName={props.user.lastName}
+                    number={props.user.phoneNumber}
+                  />
+                  
+                </div>
+
+                <div className="profile-student-info">
+                  <h1>Class Grades</h1>
+                </div>
+
+              </div>
+
 
             </div>
           ) : (
@@ -67,24 +87,23 @@ const Profile = (props) => {
                 <input placeholder='Profile Image' value={img} onChange={e => updateImg(e.target.value)} />
                 <input placeholder='Phone Number' value={phoneNumber} onChange={e => updatePhoneNumber(e.target.value)} />
 
-                
-                  <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
-                  <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(true)}>Cancel</button>
-                
+
+                <button style={{ cursor: "pointer" }} onClick={() => { updateEditToggle(true); handleUpdateUser() }}>Edit Profile</button>
+                <button style={{ cursor: "pointer" }} onClick={() => updateEditToggle(true)}>Cancel</button>
+
               </div>
             )}
-      </div>
+        </div>
       </div>
     </>
   )
 }
 
 function mapStateToProps(reduxState) {
-  // console.log(reduxState)
   return {
     user: reduxState.user
   }
 };
 
 
-export default connect(mapStateToProps, { getUser })(Profile)
+export default connect(mapStateToProps, { getUser })(withStyles(styles)(Profile));

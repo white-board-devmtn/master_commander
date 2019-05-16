@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import './ProfileCard.css';
+import './ProfileImage.css';
 
-const ProfileCard = (props) => {
+const ProfileImage = (props) => {
 
   const [edit, toggleEdit] = useState(false);
 
@@ -21,4 +21,4 @@ const ProfileCard = (props) => {
   )
 }
 
-export default ProfileCard;
+export default ProfileImage;

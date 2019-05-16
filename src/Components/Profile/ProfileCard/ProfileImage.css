@@ -1,0 +1,23 @@
+.profilecard-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../images/midnightCity.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 10em;
+  width: 103.4%;
+  margin-left: -1em;
+}
+
+.profile-personal-image-box {
+  width: 20em;
+  position: relative;
+  top: 3.5em;
+  left: 44em;
+}
+
+.profile-personal-image {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+}
