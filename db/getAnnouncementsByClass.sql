@@ -1,2 +1,7 @@
-select * from Announcements
-where class_id = $1;
+select 
+announcement_id as id,
+announcement_info as info,
+timestamp as date
+from Announcements
+where class_id = $1
+limit 2;

@@ -117,7 +117,7 @@ CREATE TABLE Course (
 CREATE TABLE Announcements (
 	announcement_id serial NOT NULL,
 	class_id INT NOT NULL,
-	accouncement_info varchar(300) NOT NULL,
+	announcement_info varchar(300) NOT NULL,
 	timestamp date NOT NULL
 );
 

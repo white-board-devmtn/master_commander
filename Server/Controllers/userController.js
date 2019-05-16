@@ -35,5 +35,12 @@ module.exports = {
     await db.addForumPost(id, classid, post, time);
     const forums = await db.getForumByClassID(classid);
     res.status(200).send(forums);
+  },
+  getAnnouncements: async (req, res) => {
+    const db = req.app.get('db');
+    const {classid} = req.query;
+
+    const announcements = await db.getAnnouncementsByClass(classid);
+    res.status(200).send(announcements);
   }
 }
