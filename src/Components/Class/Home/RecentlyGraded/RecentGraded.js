@@ -14,12 +14,12 @@ const RecentGraded = (props) => {
   }, [recent])
 
   useEffect(() => {
-    if (props.id) {
-      axios.get(`/api/class/recentlyGraded?id=${props.id}&classid=${classID}`).then((res) => {
+    if (props.user.id) {
+      axios.get(`/api/class/recentlyGraded?id=${props.user.id}&classid=${classID}`).then((res) => {
         return setRecent(res.data)
       }).catch(() => console.log('could not get at this time'));
     }
-  }, [props.id])
+  }, [props.user.id])
 
   function showRecentName() {
     if (recent) {

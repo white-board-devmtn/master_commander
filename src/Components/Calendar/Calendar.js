@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BigCalendar from 'react-big-calendar'
-import AddEvent from './AddEvent/AddEvent'
+import AddEvent from '../../AddEvent/AddEvent'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -15,39 +15,59 @@ import { DragDropContext } from "react-dnd";
 import './Calendar.css'
 import NavBar from '../NavBar/NavBar'
 import { getUser } from '../../Redux/Ducks/userReducer'
+import EditEvent from './EditEvent';
+import styled from 'styled-components';
 
 const localizer = BigCalendar.momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(BigCalendar);
+
+
+
+
+
 
 class MyCalendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
       events: [],
+      assignments: [],
       addEvent: false,
       time: moment().format('MMMM Do YYYY, h:mm:ss a'),
       date: new Date(),
-      today: []
+      today: [],
+      editEvent: false
     }
-    this.clicker = React.createRef()
   }
-  // const [events, setEvents] = useState([])
-  // const [addEvent, toggleAddEvent] = useState(false)
-  // const [time, setTime] = useState(moment().format('MMMM Do YYYY, h:mm:ss a'))
-  // const [date, setDate] = useState(new Date())
-  // const [today, setToday] = useState([])
   
   componentDidMount() {
     this.timeClock();
     this.getData();
-    // document.getElementById('clicker2').click(console.log('click'))
-    // this.clicker.current.focus(console.log('clicker'))
+    this.getAssignments();
+  }
+
+  getAssignments = () => {
+    this.props.getUser().then(res => {
+      const { id } = res.value.userData
+       axios.get(`/api/getAssignments/${id}`).then(res => {
+         let myAssignments = [];
+         res.data.map(assignment => {
+          myAssignments.push({ assignment_id: assignment.id, title: assignment.title, start: new Date(assignment.duedate), end: new Date(assignment.duedate)})
+        })
+        this.setState({
+          assignments: myAssignments
+        })
+        this.dateToEvent(this.state.date);
+        // setTimeout(() => document.getElementById('clicker').focus(console.log('click')), 1000)
+        
+      }).catch(err => console.log('error'));
+    }).catch(() => this.props.history.push('/'));
   }
 
   getData = () => {
     this.props.getUser().then(res => {
       const { id } = res.value.userData
-      axios.get(`/api/getEvents?id=${id}`).then(res => {
+       axios.get(`/api/getEvents?id=${id}`).then(res => {
         let myEvents = [];
         res.data.map(event => {
           myEvents.push({ id: event.event_id, title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)})
@@ -56,27 +76,30 @@ class MyCalendar extends Component {
           events: myEvents
         })
         this.dateToEvent(this.state.date);
+        // setTimeout(() => document.getElementById('clicker').focus(console.log('click')), 1000)
+        
       }).catch(err => console.log('error'));
     }).catch(() => this.props.history.push('/'));
   }
-
+  
   timeClock = () => {
     setInterval(() => this.setState({time: (moment().format('MMMM Do YYYY, h:mm:ss a'))}), 1000)
   }
-
+  
   dateToEvent = (date) => {
     let arr = [];
     let todayArr = [];
     let dateToday = JSON.stringify(date.toString()).split('').splice(1, 15).join('');
-
+    
     this.state.events.map(event => {
       let split = JSON.stringify(event.start.toString()).split('').splice(1, 15).join('');
-      arr.push({title: event.title, date: split})
+      arr.push({id: event.id, title: event.title, date: split})
     })
+
     
     arr.map(event => {
       if(event.date === dateToday) {
-        todayArr.push(event.title)
+        todayArr.push({id: event.id, title: event.title})
       }
     })
 
@@ -86,6 +109,8 @@ class MyCalendar extends Component {
   }
   
   moveEvent = ({ event, start, end }) => {
+    console.log(event)
+    if(event.assignment_id) return
     const {events} = this.state;
     const idx = events.indexOf(event);
     const updatedEvent = { ...event, start, end };
@@ -111,7 +136,45 @@ class MyCalendar extends Component {
     this.dateToEvent(date);
   }
 
+  eventStyleGetter = (event, start, end, isSelected) => {
+    var style = {
+        backgroundColor: 'white',
+        borderRadius: '3px',
+        opacity: 0.8,
+        color: 'red',
+        border: '2px solid red',
+        display: 'block',
+        fontWeight: '900'
+    };
+
+    if(event.assignment_id) {
+      style.border = '2px solid #8b68ff'
+      style.color = '#8b68ff'
+    }
+
+    return {
+        style: style
+    };
+  }
+
   render () {
+
+    const calendarEvents = []
+    this.state.events.map(event => {
+      calendarEvents.push(event)
+    })
+    this.state.assignments.map(assignment => {
+      calendarEvents.push(assignment)
+    })
+
+    const eventsList = this.state.today.map((event, i) => {
+      return <EditEvent
+        key={i}
+        event={event}
+        getData={this.getData}
+      />
+    })
+
     return (
       <div className='calendar-component'>
         <NavBar />
@@ -124,17 +187,18 @@ class MyCalendar extends Component {
         <div className='calendar-container'>
           <DragAndDropCalendar
             selectable
-            events={this.state.events}
+            events={calendarEvents}
             onEventDrop={this.moveEvent}
             localizer={localizer}
             defaultView={BigCalendar.Views.MONTH}
             defaultDate={new Date(this.state.date)}
+            eventPropGetter={(this.eventStyleGetter)}
             style={{ width: '95%', height: '95%' }}
           />
         </div>
         <div className='right-container'>
           <hr/>
-          <p ref={this.clicker} style={{ textDecoration: 'underline' }}>Today</p>
+          <p id='clicker' style={{ textDecoration: 'underline' }}>Today</p>
           <p>{this.state.time}</p>
           <DatePicker
             inline
@@ -145,18 +209,7 @@ class MyCalendar extends Component {
           />
           <p>Events on {JSON.stringify(this.state.date.toString()).split('').splice(1, 10).join('')}</p>
           <div className='event-list'>
-            {this.state.today.map((event, i) => {
-              return (
-                <div className="event-list-item" key={i}>
-                  <li >
-                    {event}
-                  </li>
-                  <div>
-                    swag
-                  </div>
-                </div>
-              )
-            })}
+            {eventsList}
           </div>
           <button id="clicker2" className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
         </div>

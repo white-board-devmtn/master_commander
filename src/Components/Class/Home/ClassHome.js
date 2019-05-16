@@ -7,16 +7,19 @@ import RecentGraded from './RecentlyGraded/RecentGraded';
 import ClassUpcoming from './Upcoming/ClassUpcoming';
 import ClassSyllabus from './Syllabus/ClassSyllabus';
 
+
 const ClassHome = (props) => {
+  console.log(props)
   return (
     <div className="class-information-container">
-      <ClassAnnouncements />
+      <ClassAnnouncements 
+      user={props.user}/>
       <ClassUpcoming
-        id={props.id}
+        user={props.user}
       />
       <ClassSyllabus />
       <RecentGraded
-        id={props.id}
+        user={props.user}
       />
     </div>
   )

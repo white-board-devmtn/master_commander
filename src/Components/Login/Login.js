@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {loginUser, getUser} from '../../Redux/Ducks/userReducer';
 import axios from 'axios';
 import './Login.css'
+import louis from '../../images/thisIsLouis.jpg'
 
 
 const Login = (props) => {
@@ -30,7 +31,7 @@ async function handleLogin() {
 }
 
     return (
-        <div className="login-page">
+        <div className="login-page" style={{backgroundImage: `url(${louis})`}}>
             <div className="login-register-container"> 
                 { loginToggle ?(  
                 <div className="login-container">
