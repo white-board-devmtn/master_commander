@@ -12,7 +12,7 @@ const ClassUpcoming = (props) => {
       return upcoming
     };
   }, [upcoming])
-
+console.log(props)
   useEffect(() => {
     if (props.id) {
       axios.get(`/api/class/upcomingAssignments?id=${props.id}&classid=${classID}`).then((res) => {
