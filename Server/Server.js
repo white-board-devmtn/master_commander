@@ -27,6 +27,7 @@ const authC = require('./Controllers/authController');
 const eventC = require('./Controllers/eventController');
 const userC = require('./Controllers/userController');
 const amazonCtrl = require('./Controllers/amazonController');
+const assignC = require('./Controllers/assignmentController');
 
 // AUTH ENDPOINTS
 app.post('/Login', authC.login)
@@ -35,10 +36,15 @@ app.get('/api/getuser', authC.getUser)
 app.delete('/Logout', authC.logout)
 app.put('/api/profile/:id', authC.updateUser)
 
+// ASS ENDPOINTS
+app.get('/api/getAssignments/:id', assignC.getAssignments)
+
 // EVENT ENDPOINTS //
 app.get('/api/getEvents', eventC.getEventsByID)
 app.put('/api/addEvent', eventC.addEvent)
 app.put('/api/updateEvent', eventC.updateEvent)
+app.put('/api/editTitle', eventC.editTitle)
+app.delete('/api/deleteEvent/:id', eventC.deleteEvent)
 
 // USER ENDPOINTS //
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
