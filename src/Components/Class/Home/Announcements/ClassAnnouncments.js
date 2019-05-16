@@ -33,13 +33,26 @@ const ClassAnnouncements = (props) => {
   }
   
   return (
+
+props.user.isTeacher ? (
+
     <div className="class-home-info-box">
+      <h1 className="class-home-box-title">Announcements</h1>
+      <button>New Announcement</button>
+      <div>
+        {showAnnouncements()}
+      </div>
+    </div>
+) : (
+  <div className="class-home-info-box">
       <h1 className="class-home-box-title">Announcements</h1>
       <div>
         {showAnnouncements()}
       </div>
     </div>
+)
   )
+
 }
 
 export default withRouter(ClassAnnouncements);
