@@ -29,6 +29,7 @@ module.exports = {
 
     const assignments = await db.getAssignmentsByStudentId(id, classid, time)
     res.status(200).send(assignments)
+  },
 
   getForumPosts: async (req, res) => {
     const db = req.app.get('db');
