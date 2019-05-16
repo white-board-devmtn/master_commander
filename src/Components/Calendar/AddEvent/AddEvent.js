@@ -13,16 +13,11 @@ function AddEvent (props) {
 
 
   function createEvent() {
+    console.log('settevent', props)
     const sDate = moment(startDate).format('YYYY/MM/DD, HH:mm')
     const eDate = moment(endDate).format('YYYY/MM/DD, HH:mm')
-    axios.put('/api/addEvent', {eventTitle: title, startDate: sDate, endDate: eDate}).then(res => {
-      console.log(props);
-      props.setEvents(() => {
-        return res.data.map(event => {
-            return {title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)}
-        })
-      });
-    }).catch(err => console.log(err))
+    axios.put('/api/addEvent', {eventTitle: title, startDate: sDate, endDate: eDate})
+    .catch(err => console.log(err))
     props.getData();
     props.toggleAddEvent(!props.addEvent);
   }

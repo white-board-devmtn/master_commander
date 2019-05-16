@@ -38,11 +38,18 @@ app.put('/api/profile/:id', authC.updateUser)
 // EVENT ENDPOINTS //
 app.get('/api/getEvents', eventC.getEventsByID)
 app.put('/api/addEvent', eventC.addEvent)
+app.put('/api/updateEvent', eventC.updateEvent)
 
 // USER ENDPOINTS //
 app.put('/aws/getLink', amazonCtrl.getAWS); // GETS AWS LINK
 app.get('/api/getClassList', userC.getClassList)
 app.get('/api/class/upcomingAssignments', userC.getUpcomingAssignments)
+
 app.get('/api/class/classAssignments', userC.getClassAssignments)
+
+app.get('/api/class/getForum', userC.getForumPosts) // GETS FORUM POST BY CLASS ID 
+app.put('/api/class/addPost', userC.addForumPost) // ADDS FORUM POST
+app.get('/api/class/getAnnouncements', userC.getAnnouncements) // GETS ANNOUNCEMENTS
+
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))

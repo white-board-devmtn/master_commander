@@ -29,6 +29,7 @@ class MyCalendar extends Component {
       date: new Date(),
       today: []
     }
+    this.clicker = React.createRef()
   }
   // const [events, setEvents] = useState([])
   // const [addEvent, toggleAddEvent] = useState(false)
@@ -39,6 +40,8 @@ class MyCalendar extends Component {
   componentDidMount() {
     this.timeClock();
     this.getData();
+    // document.getElementById('clicker2').click(console.log('click'))
+    // this.clicker.current.focus(console.log('clicker'))
   }
 
   getData = () => {
@@ -47,7 +50,7 @@ class MyCalendar extends Component {
       axios.get(`/api/getEvents?id=${id}`).then(res => {
         let myEvents = [];
         res.data.map(event => {
-          myEvents.push({ title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)})
+          myEvents.push({ id: event.event_id, title: event.event_title, start: new Date(event.start_date), end: new Date(event.end_date)})
         })
         this.setState({
           events: myEvents
@@ -84,16 +87,18 @@ class MyCalendar extends Component {
   
   moveEvent = ({ event, start, end }) => {
     const {events} = this.state;
-    console.log('working')
     const idx = events.indexOf(event);
     const updatedEvent = { ...event, start, end };
-
+    
     const nextEvents = [...events];
     nextEvents.splice(idx, 1, updatedEvent);
-
+    
     this.setState({
       events: nextEvents
     })
+    axios.put('/api/updateEvent', updatedEvent)
+
+    this.dateToEvent(this.state.date)
   }
 
   toggleAddEvent = () => this.setState({addEvent: !this.state.addEvent})
@@ -124,15 +129,12 @@ class MyCalendar extends Component {
             localizer={localizer}
             defaultView={BigCalendar.Views.MONTH}
             defaultDate={new Date(this.state.date)}
-
-            // startAccessor='start'
-            // endAccessor='end'
             style={{ width: '95%', height: '95%' }}
           />
         </div>
         <div className='right-container'>
           <hr/>
-          <p style={{ textDecoration: 'underline' }}>Today</p>
+          <p ref={this.clicker} style={{ textDecoration: 'underline' }}>Today</p>
           <p>{this.state.time}</p>
           <DatePicker
             inline
@@ -145,13 +147,18 @@ class MyCalendar extends Component {
           <div className='event-list'>
             {this.state.today.map((event, i) => {
               return (
-                <li style={{margin: '1rem 0rem 1rem 1rem'}} key={i}>
-                  {event}
-                </li>
+                <div className="event-list-item" key={i}>
+                  <li >
+                    {event}
+                  </li>
+                  <div>
+                    swag
+                  </div>
+                </div>
               )
             })}
           </div>
-          <button className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
+          <button id="clicker2" className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
         </div>
       </div>
     )
