@@ -1,24 +1,18 @@
-export function CalculateAverage(pPossible, pReceived, tPossible = 0, tRecieved = 0,  ) {
-  if (Array.isArray(pPossible) && Array.isArray(pReceived)) {
-    if (tPossible > 0 && tRecieved > 0) {
-      let index = pPossible.findIndex((num, i) => {
-        if (num === tPossible && pReceived[i] === tRecieved) return i;
-      })
-      if (index > 0) {
-        pPossible[index] = tPossible;
-        pReceived[index] = tRecieved;
-      } else {
-        pPossible.push(tPossible);
-        pReceived.push(tRecieved);
-      }
+export function CalculateAverage(pPossible, pRecieved, tPossible = [0], tRecieved = [0]) {
+  if (Array.isArray(pPossible) && Array.isArray(pRecieved)) {
+    if (!Array.isArray(tPossible) || !Array.isArray(tRecieved)) {
+      return 'tPossible or tRecieved are not a(n) array(s)'
     }
-    pReceived = pReceived.reduce((sum, acc) => {
+    tPossible.forEach(num => pPossible.push(num));
+    tRecieved.forEach(num => pRecieved.push(num));
+
+    pRecieved = pRecieved.reduce((sum, acc) => {
       return sum += acc
     }, 0)
     pPossible = pPossible.reduce((sum, acc) => {
       return sum += acc
     }, 0)
-    let average = ((pReceived / pPossible) * 100)
+    let average = ((pRecieved / pPossible) * 100)
     if (average > 93) return ['A', average];
     if (average > 90) return ['A-', average];
     if (average > 87) return ['B+', average];
@@ -32,6 +26,6 @@ export function CalculateAverage(pPossible, pReceived, tPossible = 0, tRecieved 
     if (average > 60) return ['D-', average];
     if (average < 60) return ['F', average];
   } else {
-    return 'pPossible or pReceived are not a(n) array(s)';
+    return 'pPossible or pRecieved are not a(n) array(s)';
   }
 }

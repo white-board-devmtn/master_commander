@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone'; // Used for uploading image into react
 import { v4 as randomString } from 'uuid'; // used to create random string for S3 url
 import axios from 'axios';
 
-function UploadImage(props) {
+export default function UploadFile(props) {
 
-  const [image, setImage] = useState('');
+  const {setFile} = props; // setFile gets passed down from parent component to set the file
   
   // On drop takes the file uploaded through react-dropzone formats the file and link to be ready for AWS upload
   async function onDrop(files) {
@@ -21,7 +21,7 @@ function UploadImage(props) {
     axios.put('/aws/getLink', obj).then(res => {
       const { signedRequest, url } = res.data;
       const { file } = obj
-      setImage(() => {
+      setFile(() => {
         return url
       })
       const header = {
@@ -43,7 +43,7 @@ function UploadImage(props) {
   };
 
   return (
-    <Dropzone onDropAccepted={onDrop} multiple={false}> 
+    <Dropzone onDropAccepted={onDrop} multiple={false} style={{width : '100%', height : '20%', border: '1px solid black'}}> 
     {/* DROPZONE ALLOWS US TO DROP A FILE INTO REACT, ondrop accepted will call the onDrop function */}
       {
         ({ getRootProps, getInputProps }) => (
@@ -58,5 +58,3 @@ function UploadImage(props) {
     </Dropzone>
   )
 }
-
-export default UploadImage;
