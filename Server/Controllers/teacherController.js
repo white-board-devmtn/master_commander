@@ -17,5 +17,14 @@ module.exports = {
     }
     res.status(200).send('successfully created assignment');
 
+  },
+
+  createAnnouncement: async (req, res) => {
+    const db = req.app.get('db')
+    const {classid, name, date} = req.body
+
+    await db.createAnnouncement([classid, name, date])
+    res.status(200).send('successfully created announcement')
+
   }
 }

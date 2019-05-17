@@ -59,6 +59,7 @@ app.post('/api/class/addAssignment', teachCtrl.createAssignment)
 app.get('/api/class/getForum', userC.getForumPosts) // GETS FORUM POST BY CLASS ID 
 app.put('/api/class/addPost', userC.addForumPost) // ADDS FORUM POST
 app.get('/api/class/getAnnouncements', userC.getAnnouncements) // GETS ANNOUNCEMENTS
+app.post('/api/class/addAnnouncement', teachCtrl.createAnnouncement)
 
 app.get('/api/profile/getGrades', userC.getGradesByClass); // Will get the class name, with points possible and points recieved for every assignment that has been graded. 
 
