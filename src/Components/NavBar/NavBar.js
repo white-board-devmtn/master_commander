@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import './NavBar.css';
 import CalendarToday  from '@material-ui/icons/CalendarToday';
 import PermIdentity from '@material-ui/icons/PermIdentity';
-import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
+import Dashboard from '@material-ui/icons/Dashboard';
+import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 
+import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
 
 const NavBar = (props) => {
   async function logout() {
@@ -30,18 +32,18 @@ const NavBar = (props) => {
               {/* </figure> */}
               <h2 className='tooltiptext'>Account</h2>
             </div>
-          ) : (
-              <div className="Navbar-icon-container">
-                <CalendarToday size="2x" className="navbar-font tooltip"/>
-                <h2>Account</h2>
-              </div>
-            )
-        }
+            ) : (
+            <div className="Navbar-icon-container">
+              <PermIdentity className="navbar-font"/>
+              <h2>Account</h2>
+            </div>
+           )
+         }
       </Link>
       <div className="navbar-option-container">
-        <Link to="/dashboard"><div className="Navbar-icon-container"><CalendarToday className="navbar-font tooltip"/><h2 className="tooltiptext">Dashboard</h2></div></Link>
-        <Link to="/calendar"><div className="Navbar-icon-container"><CalendarToday className="navbar-font tooltip"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
-        <a href="/"><div className="Navbar-icon-container"><PermIdentity size="2x"className="navbar-font tooltip"/><h2 className='tooltiptext'>Logout</h2></div></a>
+        <Link to="/dashboard"><div className="Navbar-icon-container"><Dashboard className="navbar-font"/><h2 className="tooltiptext">Dashboard</h2></div></Link>
+        <Link to="/calendar"><div className="Navbar-icon-container"><CalendarToday className="navbar-font"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
+        <a href="/"><div className="Navbar-icon-container"><PowerSettingsNew className="navbar-font"/><h2 className='tooltiptext'>Logout</h2></div></a>
       </div>
     </div>
   )

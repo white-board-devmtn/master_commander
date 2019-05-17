@@ -9,3 +9,28 @@
   display: flex;
   flex-direction: column;
 }
+
+.profile-info-container {
+
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10em;
+  margin-bottom: 5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.profile-student-info {
+  width: 90%;
+  height: 40em;
+  margin: 0 auto;
+  background: #f2f2f2;
+  padding-bottom: 5em;
+  border-radius: 2%;
+}
+
+.profile-student-info > h1 {
+  text-align: center;
+  font-size: 2em;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import Assignment from '../../Assignment/Assignment'
+import AddAssignment from './AddAssignment'
 
 
 import './Assignments.css';
@@ -11,7 +12,7 @@ const Assignments = (props) => {
 
   const classID = props.match.params.id;
   const [assignments, setAssignments] = useState([]);
-  const [edit, setEdit] = useState(false);
+  const [adding, toggleAdd] = useState(false);
 
 
   useEffect(() => {
@@ -34,9 +35,17 @@ const Assignments = (props) => {
 
   return (
 
+
+
     props.user.isTeacher ? (
       <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
         <button>New Assignment</button>
+        <button onClick={() => toggleAdd(true)}>New Assignment</button>
+        <AddAssignment
+          adding={adding}
+          toggleAdd={toggleAdd}
+          user={props.user}
+          classid={classID}        />
         <div>
           {assignments.map(item => {
             return <Assignment key={item.id}
@@ -59,6 +68,7 @@ const Assignments = (props) => {
         </div>
       )
   )
+
 }
 
 export default withRouter(Assignments);
