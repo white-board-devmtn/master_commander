@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment'
+
 
 const ClassAnnouncements = (props) => {
 
@@ -21,9 +23,11 @@ const ClassAnnouncements = (props) => {
 
   function showAnnouncements() {
     if (announcements) {
+      
       return announcements.map(announcement => {
+        announcement.date = moment(announcement.date).format('M-D-YYYY')
         return (
-          <div key={announcement.id} className="class-home-annoucnment">
+          <div key={announcement.id} className="class-home-announcement">
           <h3>{announcement.info}</h3>
           <p>{announcement.date}</p>
           </div>
