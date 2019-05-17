@@ -29,7 +29,7 @@ function EditEvent (props) {
       </div>
     ) : (
       <div className="event-list-item">
-        <li>
+        <li className='daily-event-title'>
           {props.event.title}
         </li>
         <div className='edit-event-container'>

@@ -1,14 +1,14 @@
 .calendar-component {
-    width: calc(100vw - 10rem);
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10rem;
+    /* margin-left: 7rem; */
 }
 
 .calendar-container {
-    width: 100%;
+    width: calc(100vw - 23rem);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -16,9 +16,8 @@
 }
 
 .right-container {
-    width: 20rem;
     height: 100%;
-    border-left: 1px solid rgba(128, 128, 128, 0.404);
+    /* border-left: 1px solid rgba(128, 128, 128, 0.404); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,10 +32,8 @@
 }
 
 .react-datepicker {
-    margin: 1rem
+  margin-bottom: 1rem
 }
-
-
 
 .event-list {
     display: flex;
@@ -46,8 +43,7 @@
     height: 8rem;
     border: 1px solid grey;
     border-radius: 5px;
-    /* margin-top: 1rem;
-    margin-bottom: 1rem; */
+    margin-bottom: 1rem;
     overflow-y: auto;
 }
 
@@ -83,7 +79,12 @@
   font-size: .8rem;
 }
 
+.daily-event-title {
+  width: 80%;
+  word-wrap: break-word
+}
 
+/* 
 .rbc-addons-dnd .rbc-addons-dnd-row-body {
     position: relative;
   }
@@ -151,8 +152,8 @@
   margin-bottom: auto;
   height: 10px;
   cursor: ew-resize;
-}
-
+} */
+/* 
 
 .rbc-event {
   padding: 2px 5px;
@@ -164,4 +165,4 @@
 
 .rbc-event.rbc-selected {
     background-color: #265985;
-}
+} */

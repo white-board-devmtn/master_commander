@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import BigCalendar from 'react-big-calendar'
 import AddEvent from '../../AddEvent/AddEvent'
 import moment from 'moment'
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
@@ -126,6 +127,21 @@ class MyCalendar extends Component {
     this.dateToEvent(this.state.date)
   }
 
+  resizeEvent = (resizeType, { event, start, end }) => {
+    console.log('resizing')
+    if(event.assignment_id) return
+    const { events } = this.state;
+    const nextEvents = events.map(existingEvent => {
+      return existingEvent.id == event.id
+        ? { ...existingEvent, start, end }
+        : existingEvent;
+    });
+
+    this.setState({
+      events: nextEvents
+    });
+  };
+
   toggleAddEvent = () => this.setState({addEvent: !this.state.addEvent})
 
   handleChange = (date) => {
@@ -142,13 +158,14 @@ class MyCalendar extends Component {
         borderRadius: '3px',
         opacity: 0.8,
         color: 'red',
-        border: '2px solid red',
+        border: '1px solid red',
         display: 'block',
-        fontWeight: '900'
+        fontWeight: '900',
+        textIndent: '.3rem'
     };
 
     if(event.assignment_id) {
-      style.border = '2px solid #8b68ff'
+      style.border = '1px solid #8b68ff'
       style.color = '#8b68ff'
     }
 
@@ -184,34 +201,38 @@ class MyCalendar extends Component {
           events={this.state.events}
           getData={this.getData}
         />
-        <div className='calendar-container'>
-          <DragAndDropCalendar
-            selectable
-            events={calendarEvents}
-            onEventDrop={this.moveEvent}
-            localizer={localizer}
-            defaultView={BigCalendar.Views.MONTH}
-            defaultDate={new Date(this.state.date)}
-            eventPropGetter={(this.eventStyleGetter)}
-            style={{ width: '95%', height: '95%' }}
-          />
-        </div>
-        <div className='right-container'>
-          <hr/>
-          <p id='clicker' style={{ textDecoration: 'underline' }}>Today</p>
-          <p>{this.state.time}</p>
-          <DatePicker
-            inline
-            selected={this.state.date}
-            onChange={this.handleChange}
-            showYearDropdown
-            style={{ marginTop: '2rem' }}
-          />
-          <p>Events on {JSON.stringify(this.state.date.toString()).split('').splice(1, 10).join('')}</p>
-          <div className='event-list'>
-            {eventsList}
+        <div style={{width: 'calc(100vw - 7rem', height: '100vh', display: 'flex'}}>
+          <div className='calendar-container'>
+            <DragAndDropCalendar
+              selectable
+              events={calendarEvents}
+              onEventDrop={this.moveEvent}
+              resizable
+              onEventResize={this.resizeEvent}
+              localizer={localizer}
+              defaultView={BigCalendar.Views.MONTH}
+              defaultDate={new Date(this.state.date)}
+              eventPropGetter={(this.eventStyleGetter)}
+              style={{ width: '95%', height: '95%' }}
+            />
           </div>
-          <button id="clicker2" className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
+          <div className='right-container'>
+            <hr/>
+            <p id='clicker' style={{ textDecoration: 'underline' }}>Today</p>
+            <p>{this.state.time}</p>
+            <DatePicker
+              inline
+              selected={this.state.date}
+              onChange={this.handleChange}
+              showYearDropdown
+              style={{ marginTop: '2rem', width: '90%' }}
+            />
+            <p>Events on {JSON.stringify(this.state.date.toString()).split('').splice(1, 10).join('')}</p>
+            <div className='event-list'>
+              {eventsList}
+            </div>
+            <button id="clicker2" className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
+          </div>
         </div>
       </div>
     )

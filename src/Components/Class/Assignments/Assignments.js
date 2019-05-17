@@ -38,7 +38,8 @@ const Assignments = (props) => {
 
 
     props.user.isTeacher ? (
-      <div style={{ marginLeft: '100px' }}>
+      <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
+        <button>New Assignment</button>
         <button onClick={() => toggleAdd(true)}>New Assignment</button>
         <AddAssignment
           adding={adding}
@@ -55,7 +56,7 @@ const Assignments = (props) => {
         </div>
       </div>
     ) : (
-        <div style={{ marginLeft: '100px' }}>
+        <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
           <div>
             {assignments.map(item => {
               return <Assignment key={item.id}
