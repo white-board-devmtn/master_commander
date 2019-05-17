@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { getUser } from '../../Redux/Ducks/userReducer'
-import NavBar from '../NavBar/NavBar'
+import Button from '@material-ui/core/Button';
 import moment from 'moment'
+
+import UploadFile from '../shared/UploadFile';
 
 
 const Assignment = (props) => {
 
   const [edit, setEdit] = useState(false);
+  const [file, setFile] = useState('');
 
   useEffect(() => {
     props.getUser()
   }, [])
 
+  useEffect(() => {
+    return () => {
+      return file;
+    }
+  }, [file])
+
   function divide(num1, num2) {
     return num1 / num2
   }
-
-  // console.log(props)
 
   let { name, description, points, outof, due_date, complete } = props.assignment
   due_date = moment(due_date).format('M-D-YYYY')
@@ -33,7 +40,10 @@ const Assignment = (props) => {
               complete ? (
                 <>
                   {description} Date: {due_date}
-                  <button>Submit</button>
+                  <UploadFile
+                    setFile={setFile}
+                  />
+                  <Button color='secondary'>Submit</Button>
                   <p onClick={() => setEdit(false)}>Close</p>
                 </>
               ) : (

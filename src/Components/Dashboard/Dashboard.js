@@ -56,11 +56,8 @@ const Dashboard = (props) => {
             return classList.map((item, i) => {
                 let grade
                 if (grades[i]) {
-                    grade = CalculateAverage(grades[i].pointspossible, grades[i].pointsrecieved)[1] + '%'
-                } else {
-                    grade = 'N/A'
+                    grade = CalculateAverage(grades[i].pointspossible, grades[i].pointsrecieved)
                 }
-                console.log(grade);
                 return (
                     <Link to={`/class/${item.classid}`} key={i}>
                         <div className="class-tiles" >
@@ -68,7 +65,16 @@ const Dashboard = (props) => {
                             <p>Start: {item.startdate}</p>
                             <p>End: {item.enddate}</p>
                             <p>{item.des}</p>
-                            <p>{grade}</p>
+                            {!props.user.isTeacher ? (Array.isArray(grade) ? (
+                                <>
+                                    <p>{grade[0]}</p>
+                                    <p>{grade[1]}%</p>
+                                </>
+                            ) : (
+                                <p>No grades available</p>
+                            )) : (
+                                <h1>You have 50 students</h1>
+                            )}
                         </div>
                     </Link>
                 )
@@ -77,8 +83,7 @@ const Dashboard = (props) => {
             console.log('hi');
             return (
                 <div>
-                    <CircularProgress className={classes.progress} size={500}/>
-                    <CircularProgress className={classes.progress} size={500} color="secondary" />
+                    <CircularProgress className={classes.progress} size={50} color="secondary" />
                 </div>
             )
         }
