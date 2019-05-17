@@ -2,7 +2,6 @@
 
 .class-parent-container {
   display: flex;
-  width: 100%;
 }
 
 .class-parent-container ul {
@@ -10,8 +9,7 @@
 }
 
 .class-container {
-  margin-left: 8em;
-  width: 100%;
+  width: calc(100% - 7rem);
 }
 
 .class-information-container {
@@ -19,7 +17,6 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: 50em;
-  margin-left: 2em;
 }
 
 .class-home-info-box {

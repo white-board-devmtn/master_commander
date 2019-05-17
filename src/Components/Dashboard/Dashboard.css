@@ -1,14 +1,14 @@
 .dashboard-component {
-    width: calc(100vw - 10rem);
+    width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 10rem;
 }
 
 .class-tiles-container {
+    width: calc(100% - 7rem);
     display: flex;
+    justify-content: center;
     flex-wrap: wrap
 }
 
