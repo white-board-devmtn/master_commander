@@ -4,6 +4,8 @@ import { v4 as randomString } from 'uuid'; // used to create random string for S
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
+const [file, setFile] = useState('')
+
 export default function UploadFile(props) {
 
   const {setFile} = props; // setFile gets passed down from parent component to set the file
