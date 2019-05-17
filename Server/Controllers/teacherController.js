@@ -7,8 +7,14 @@ module.exports = {
     let time = new Date();
     time = moment(dueDate).format('YYYY-MM-DD')
 
-    const assignment = await db.addAssignment(classid, name, description, points, time, type)
-    res.status(200).send(assignment)
+    const assignmentID = await db.addAssignment(classid, name, description, points, time, type)
+    console.log(assignmentID);
+    const students = await db.getStudentIDByClassID(classid);
+    console.log(students);
+    for (let i = 0; i < students.length; i++) {
+      await db.addAssignmentToStudents(assignmentID[0].ass_id, students[i].user_id);
+    }
+    res.status(200).send('successfully created assignment');
 
   }
 }
