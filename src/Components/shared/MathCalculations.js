@@ -7,12 +7,12 @@ export function CalculateAverage(pPossible, pRecieved, tPossible = [0], tRecieve
     tRecieved.forEach(num => pRecieved.push(num));
 
     pRecieved = pRecieved.reduce((sum, acc) => {
-      return sum += acc
+      return sum += +acc
     }, 0)
     pPossible = pPossible.reduce((sum, acc) => {
-      return sum += acc
+      return sum += +acc
     }, 0)
-    let average = ((pRecieved / pPossible) * 100)
+    let average = ((pRecieved / pPossible) * 100).toFixed(2)
     if (average > 93) return ['A', average];
     if (average > 90) return ['A-', average];
     if (average > 87) return ['B+', average];
