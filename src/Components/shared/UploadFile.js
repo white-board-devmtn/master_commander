@@ -2,6 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone'; // Used for uploading image into react
 import { v4 as randomString } from 'uuid'; // used to create random string for S3 url
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 const [file, setFile] = useState('')
 
@@ -31,7 +32,6 @@ export default function UploadFile(props) {
           'Content-Type': obj.fileType
         }
       };
-      console.log(file);
       putInAWS({signedRequest, header, file});
     }).catch(err => console.log('error at generateLink', err));
   };
@@ -39,20 +39,19 @@ export default function UploadFile(props) {
   // This function will upload the image to amazon using the url given to use in generateAWSLink, with the file and header
   function putInAWS(obj) {
     const { header, signedRequest, file } = obj;
-    console.log(file)
     axios.put(signedRequest, file, header).then(() => {
     }).catch(err => console.log('error at addToAws', err))
   };
 
   return (
-    <Dropzone onDropAccepted={onDrop} multiple={false} style={{width : '100%', height : '20%', border: '1px solid black'}}> 
+    <Dropzone onDropAccepted={onDrop} multiple={false}> 
     {/* DROPZONE ALLOWS US TO DROP A FILE INTO REACT, ondrop accepted will call the onDrop function */}
       {
         ({ getRootProps, getInputProps }) => (
           <section className="aws-drop-zone">
             <div {...getRootProps()}>
               <input {...getInputProps()} />
-              <button>Image</button>
+              <Button color='secondary'>Upload File</Button>
             </div>
           </section>
         )
