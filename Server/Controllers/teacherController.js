@@ -21,10 +21,18 @@ module.exports = {
 
   createAnnouncement: async (req, res) => {
     const db = req.app.get('db')
-    const {classid, name, date} = req.body
+    const {classid, name, date} = req.body;
 
     await db.createAnnouncement([classid, name, date])
     res.status(200).send('successfully created announcement')
 
+  },
+
+  getStudentsByAssignment: async (req, res) => {
+    const db = req.app.get('db');
+    const {classid, id} = req.query;
+
+    const students = await db.getAllUserAssignmentsByAssignmentID(id, classid)
+    res.status(200).send(students);
   }
 }
