@@ -8,9 +8,12 @@ import axios from 'axios';
 import lake from '../../images/lake.jpg';
 
 import ProfileImage from './ProfileCard/ProfileImage'
+
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import ProfileImage from './ProfileCard/ProfileImage'
 import StudentInfo from './StudentInfo/StudentInfo';
+import ClassGrades from './ClassGrades/ClassGrades';
 
 const styles = theme => ({
   root: {

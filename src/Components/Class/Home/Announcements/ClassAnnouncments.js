@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment'
+import AddAnnouncement from './AddAnnouncement';
+
 
 const ClassAnnouncements = (props) => {
 
   const classID = props.match.params.id;
   const [announcements, setAnnouncements] = useState('');
+  const [adding, toggleAdd] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -21,9 +25,16 @@ const ClassAnnouncements = (props) => {
 
   function showAnnouncements() {
     if (announcements) {
+      
       return announcements.map(announcement => {
+        announcement.date = moment(announcement.date).format('M-D-YYYY')
         return (
-          <div key={announcement.id} className="class-home-annoucnment">
+          <div key={announcement.id} className="class-home-announcement">
+          <AddAnnouncement
+          adding={adding}
+          toggleAdd={toggleAdd}
+          user={props.user}
+          classid={classID}        />
           <h3>{announcement.info}</h3>
           <p>{announcement.date}</p>
           </div>
@@ -38,7 +49,7 @@ props.user.isTeacher ? (
 
     <div className="class-home-info-box">
       <h1 className="class-home-box-title">Announcements</h1>
-      <button>New Announcement</button>
+      <button onClick={() => toggleAdd(true)}>New Announcement</button>
       <div>
         {showAnnouncements()}
       </div>
