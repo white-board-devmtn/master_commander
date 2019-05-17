@@ -22,11 +22,6 @@ import styled from 'styled-components';
 const localizer = BigCalendar.momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(BigCalendar);
 
-
-
-
-
-
 class MyCalendar extends Component {
   constructor(props) {
     super(props)
@@ -39,6 +34,8 @@ class MyCalendar extends Component {
       today: [],
       editEvent: false
     }
+
+    this.resizeEvent = this.resizeEvent.bind(this)
   }
   
   componentDidMount() {
@@ -127,15 +124,21 @@ class MyCalendar extends Component {
     this.dateToEvent(this.state.date)
   }
 
-  resizeEvent = (resizeType, { event, start, end }) => {
-    console.log('resizing')
+  resizeEvent({ event, start, end }) {
     if(event.assignment_id) return
     const { events } = this.state;
-    const nextEvents = events.map(existingEvent => {
+    let index = 0
+    const nextEvents = events.map((existingEvent, i) => {
+      if (existingEvent.id == event.id) {
+        index = i;
+      }
       return existingEvent.id == event.id
-        ? { ...existingEvent, start, end }
-        : existingEvent;
+      ? { ...existingEvent, start, end }
+      : existingEvent;
     });
+    console.log('nextEvents', nextEvents[index])
+
+    axios.put('/api/updateEvent', nextEvents[index])
 
     this.setState({
       events: nextEvents
