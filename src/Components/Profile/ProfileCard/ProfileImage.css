@@ -5,19 +5,17 @@
   background-size: cover;
   position: relative;
   height: 10em;
-  width: 103.4%;
-  margin-left: -1em;
+  width: 100;
 }
 
 .profile-personal-image-box {
-  width: 20em;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   top: 3.5em;
-  left: 44em;
-}
-
-.profile-personal-image {
-  border-radius: 50%;
-  width: 100%;
-  height: auto;
+  left: calc(50% - 10rem);
 }

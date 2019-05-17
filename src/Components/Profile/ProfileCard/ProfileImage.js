@@ -14,9 +14,7 @@ const ProfileImage = (props) => {
 
   return (
     <div className="profilecard-container">
-      <div className="profile-personal-image-box">
-        <img src={props.img} className="profile-personal-image"/>
-      </div>
+      <div style={{backgroundImage: `url(${props.img})`}} className="profile-personal-image-box"></div>
     </div>
   )
 }
