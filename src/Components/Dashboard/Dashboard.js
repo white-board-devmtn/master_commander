@@ -68,6 +68,7 @@ const Dashboard = (props) => {
                             <p>Start: {item.startdate}</p>
                             <p>End: {item.enddate}</p>
                             <p>{item.des}</p>
+                            
                             <p>{grade}</p>
                         </div>
                     </Link>

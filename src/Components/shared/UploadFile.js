@@ -3,6 +3,8 @@ import Dropzone from 'react-dropzone'; // Used for uploading image into react
 import { v4 as randomString } from 'uuid'; // used to create random string for S3 url
 import axios from 'axios';
 
+const [file, setFile] = useState('')
+
 export default function UploadFile(props) {
 
   const {setFile} = props; // setFile gets passed down from parent component to set the file
