@@ -9,4 +9,4 @@ Ass.due_date as dueDate
 from user_ass
 inner join Ass using (ass_id)
 where user_id = $1
-and Ass.ass_type = 'assignment';
+and Ass.ass_type = 'test';
