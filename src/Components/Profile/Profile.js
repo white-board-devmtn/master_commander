@@ -4,11 +4,11 @@ import { getUser } from '../../Redux/Ducks/userReducer'
 import './Profile.css'
 import NavBar from '../NavBar/NavBar'
 import axios from 'axios';
-
-import ProfileImage from './ProfileCard/ProfileImage'
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import ProfileImage from './ProfileCard/ProfileImage'
 import StudentInfo from './StudentInfo/StudentInfo';
+import ClassGrades from './ClassGrades/ClassGrades';
 
 const styles = theme => ({
   root: {
@@ -74,6 +74,9 @@ const Profile = (props) => {
 
                 <div className="profile-student-info">
                   <h1>Class Grades</h1>
+                  <ClassGrades 
+                    id={props.user.id}
+                  />
                 </div>
 
               </div>
