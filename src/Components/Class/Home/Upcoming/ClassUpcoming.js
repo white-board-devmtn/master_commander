@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment'
+
 
 const ClassUpcoming = (props) => {
 
@@ -14,9 +16,8 @@ const ClassUpcoming = (props) => {
   }, [upcoming])
 
 
-
   
-console.log(props)
+  console.log(props)
   useEffect(() => {
     if (props.user.id) {
       axios.get(`/api/class/upcomingAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
@@ -24,25 +25,26 @@ console.log(props)
       }).catch(() => console.log('could not get at this time'));
     }
   }, [props.user.id])
-
+  
   function showUpcomingName() {
     if (upcoming) {
       return upcoming.map(assignment => {
         return (
           <>
-            <li>{assignment.name}</li>
+            <p>{assignment.name}</p>
           </>
         )
       })
     }
   }
-
+  
   function showUpcomingDate() {
     if (upcoming) {
       return upcoming.map(assignment => {
+        assignment.duedate = moment(assignment.duedate).format('M-D-YYYY')
         return (
           <>
-            <li>{assignment.duedate}</li>
+            <p>{assignment.duedate}</p>
           </>
         )
       })

@@ -30,7 +30,7 @@ const Forum = (props) => {
         return (
           <div key={post.id} className="forum-post">
           <h3>{post.firstname} {post.lastname}</h3>
-          <p>{moment(post.date).format('YYYY-MM-DD')}</p>
+          <p>{moment(post.date).format('M-D-YYYY')}</p>
           <p>{post.post}</p>
           </div>
         )

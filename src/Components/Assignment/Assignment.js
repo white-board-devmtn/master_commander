@@ -20,7 +20,7 @@ const Assignment = (props) => {
   // console.log(props)
 
   let { name, description, points, outof, due_date, complete } = props.assignment
-  due_date = moment(due_date).format('MM-DD-YYYY')
+  due_date = moment(due_date).format('M-D-YYYY')
 
   function showDetails() {
     return (
