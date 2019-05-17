@@ -4,4 +4,5 @@ announcement_info as info,
 timestamp as date
 from Announcements
 where class_id = $1
-limit 2;
+
+order by timestamp desc;
