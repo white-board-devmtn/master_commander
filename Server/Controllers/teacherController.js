@@ -9,6 +9,7 @@ module.exports = {
 
     const assignmentID = await db.addAssignment(classid, name, description, points, time, type)
     console.log(assignmentID);
+    console.log(classid);
     const students = await db.getStudentIDByClassID(classid);
     console.log(students);
     for (let i = 0; i < students.length; i++) {
