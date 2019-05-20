@@ -43,7 +43,7 @@ const Dashboard = (props) => {
                     .then(response => {
                         updateClassList(response.data)
                     })
-                axios.get(`/api/profile/getGrades?id=${id}`).then(res => {
+                axios.get(`/api/profile/getGrades/${id}`).then(res => {
                     setGrades(res.data);
                     console.log(res.data);
                 }).catch(err => console.log(err));

@@ -60,13 +60,10 @@ module.exports = {
     updateUser: async (req, res) => {
         const db = req.app.get('db');
         const { id } = req.params
-        const { firstName, lastName, phoneNumber, img } = req.body
-        console.log(req.params)
-        console.log(req.body)
-
+        const { firstName, lastName, email, phoneNumber, img } = req.body
         // const salt = bcrypt.genSaltSync(10);
         // const hash = bcrypt.hashSync(password, salt);
-        let updatedUserArr = await db.update_user([id, firstName, lastName, phoneNumber, img])
+        let updatedUserArr = await db.update_user([id, firstName, lastName, email, phoneNumber, img])
         req.session.user = {
             id: updatedUserArr[0].user_id,
             firstName: updatedUserArr[0].first_name,
