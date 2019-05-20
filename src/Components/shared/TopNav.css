@@ -1,3 +1,6 @@
+
+
+
 .topNav-container {
   margin-left: 2em;
 
@@ -44,8 +47,9 @@
   letter-spacing: 1px;
   font-weight: 500;
   border: none;
-  font-size: 1em;
+  font-size: 100%;
   cursor: pointer;
+  font-family: Montserrat, sans-serif;
 }
 .two {
   background: #2b82d9;

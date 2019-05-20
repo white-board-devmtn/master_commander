@@ -27,21 +27,21 @@ const Class = (props) => {
 
   function changeDisplay() {
     switch (displayComponent) {
-      case 'Class Home': {
+      case 'CLASS HOME': {
         return <ClassHome
           user={props.user}
         />
       }
-      case 'Assignments': {
+      case 'ASSIGNMENTS': {
         return <Assignments
           user={props.user} />
       }
-      case 'Forum': {
+      case 'FORUM': {
         return <Forum
           id={props.user.id}
         />
       }
-      case 'Students': {
+      case 'STUDENTS': {
         return <Students
           user={props.user} />
       }
@@ -60,10 +60,10 @@ const Class = (props) => {
           <div className="class-container">
               <TopNav
                 number={4}
-                name1={'Class Home'}
-                name2={'Assignments'}
-                name3={'Forum'}
-                name4={'Students'}
+                name1={'CLASS HOME'}
+                name2={'ASSIGNMENTS'}
+                name3={'FORUM'}
+                name4={'STUDENTS'}
                 setComponent={setDisplay}
                 displayComponent={displayComponent}
               />
@@ -74,9 +74,9 @@ const Class = (props) => {
             <div className="class-container">
               <TopNav
                 number={3}
-                name1={'Class Home'}
-                name2={'Assignments'}
-                name3={'Forum'}
+                name1={'CLASS HOME'}
+                name2={'ASSIGNMENTS'}
+                name3={'FORUM'}
                 setComponent={setDisplay}
                 displayComponent={displayComponent}
               />
