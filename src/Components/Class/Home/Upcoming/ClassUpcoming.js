@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const ClassUpcoming = (props) => {
@@ -16,7 +17,7 @@ const ClassUpcoming = (props) => {
   }, [upcoming])
 
 
-  
+
   console.log(props)
   useEffect(() => {
     if (props.user.id) {
@@ -25,7 +26,7 @@ const ClassUpcoming = (props) => {
       }).catch(() => console.log('could not get at this time'));
     }
   }, [props.user.id])
-  
+
   function showUpcomingName() {
     if (upcoming) {
       return upcoming.map(assignment => {
@@ -37,7 +38,7 @@ const ClassUpcoming = (props) => {
       })
     }
   }
-  
+
   function showUpcomingDate() {
     if (upcoming) {
       return upcoming.map(assignment => {
@@ -55,14 +56,22 @@ const ClassUpcoming = (props) => {
     <div className="class-home-info-box">
       <h1 className="class-home-box-title">Upcoming Assignments</h1>
       <div className="class-home-list-assignment-box">
-        <ul>
-          <h1>Assignment Name</h1>
-          {showUpcomingName()}
-        </ul>
-        <ul>
-          <h1>Assignment Due Date</h1>
-          {showUpcomingDate()}
-        </ul>
+        {upcoming.length ? (
+          <>
+          <ul>
+            <h1>Assignment Name</h1>
+            {showUpcomingName()}
+          </ul>
+          <ul>
+            <h1>Assignment Due Date</h1>
+            {showUpcomingDate()}
+          </ul>
+          </>
+      ) : (
+            <div>
+              <CircularProgress size={50} color="secondary" />
+            </div>
+          )}
       </div>
     </div>
   )

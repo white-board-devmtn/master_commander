@@ -7,6 +7,8 @@ import './Forum.scss';
 import AddPost from './addPost/AddPost'
 import Button from '@material-ui/core/Button';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 const Forum = (props) => {
 
   const classID = props.match.params.id;
@@ -30,7 +32,7 @@ const Forum = (props) => {
       return forum.map(post => {
         return (
           <div key={post.id} className="post">
-            <img src={post.img} alt="person"/>
+            <img src={post.img} alt="person" />
             <div className="info">
               <div className="title">
                 <h3>{post.firstname} {post.lastname}:</h3>
@@ -59,9 +61,15 @@ const Forum = (props) => {
       <div className="header">
         <Button onClick={() => toggleAdd(() => !adding)}>Add Post</Button>
       </div>
-      <div className="class-posts">
-        {showForum()}
-      </div>
+      {forum.length ? (
+        <div className="class-posts">
+          {showForum()}
+        </div>
+      ) : (
+          <div>
+            <CircularProgress size={50} color="secondary" />
+          </div>
+        )}
     </div>
   )
 }

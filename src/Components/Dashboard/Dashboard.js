@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
+import TopNav from '../shared/TopNav';
 import './Dashboard.css';
 
 const styles = theme => ({
@@ -24,15 +25,15 @@ const Dashboard = (props) => {
 
 
     useEffect(() => {
-      return () => {
-        return classList
-      };
+        return () => {
+            return classList
+        };
     }, [classList])
 
     useEffect(() => {
-      return () => {
-        return grades
-      };
+        return () => {
+            return grades
+        };
     }, [grades])
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const Dashboard = (props) => {
                             <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
                             <p>Start: {item.startdate}</p>
                             <p>End: {item.enddate}</p>
-                            <p>{item.des}</p>                            
+                            <p>{item.des}</p>
 
                             {!props.user.isTeacher ? (Array.isArray(grade) ? (
                                 <>
@@ -72,10 +73,10 @@ const Dashboard = (props) => {
                                     <p>{grade[1]}%</p>
                                 </>
                             ) : (
-                                <p>No grades available</p>
-                            )) : (
-                                <h1>You have 50 students</h1>
-                            )}
+                                    <p>No grades available</p>
+                                )) : (
+                                    <h1>You have 50 students</h1>
+                                )}
                         </div>
                     </Link>
                 )
@@ -94,10 +95,10 @@ const Dashboard = (props) => {
         <div className="dashboard-component">
             <NavBar />
             <div className='dashboard-right-container'>
-                <header className="myProfileFlagContainerD">
-                    <div className="flagTriangleD"></div>
-                    <div className="myProfileFlagD"> PROFILE</div>
-                </header>
+                <TopNav
+                    number={1}
+                    name1={'PROFILE'}
+                />
                 <div className="class-tiles-container">
                     {showClasses()}
                 </div>
