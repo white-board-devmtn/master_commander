@@ -6,6 +6,7 @@ import CalendarToday  from '@material-ui/icons/CalendarToday';
 import PermIdentity from '@material-ui/icons/PermIdentity';
 import Dashboard from '@material-ui/icons/Dashboard';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
+import wb from '../../images/wb.png'
 
 import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
 
@@ -23,6 +24,9 @@ const NavBar = (props) => {
 
   return (
     <div className="navbar-container">
+      <div className="wb">
+        <img src={wb}/>
+      </div>
       <Link to="/profile">
         {
           props.user.img ? (

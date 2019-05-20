@@ -10,18 +10,41 @@
     z-index: 4000;
 }
 
+.navbar-container h2{
+    font-size: .8rem;
+    margin-top: .6rem
+}
+
 .navbar-option-container {
-    height: 20rem;
+    height: 22rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    margin-top: 6rem
+    margin-top: 1rem
+    
+}
+
+.wb {
+    height: 6.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* background: #d6d3d3; */
+    background: white;
+    margin-bottom: 3rem;
+    border-bottom: #d6d3d3 solid 1.5px
+    
+}
+.wb img{
+    width: 4rem;
+    height: 2.38rem;
 }
 
 .navbar-profile-img {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,20 +53,25 @@
 
 
 .Navbar-icon-container {
-    height: 7rem;
-    width: 7rem;
+    height: 5rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    position: fixed;
+    justify-content: center;
+    /* position: fixed; */
     left: 0;
-    margin-top: 2rem
+    margin-top: 1rem
 }
 
 .Navbar-icon-container > .navbar-font {
-    font-size: 2.2em;
+    font-size: 2.5em;
     color: rgb(110, 110, 110);
+}
+
+
+.Navbar-icon-container:active {
+    transform: scale(.9)
 }
 
 .navbar-container a {
@@ -52,4 +80,8 @@
 
 .Navbar-icon-container > .tooltiptext .tooltiptext:link .tooltiptext:visited {
     text-decoration: none !important;
+}
+
+.navbar-container a{
+    text-decoration: none
 }
