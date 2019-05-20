@@ -3,8 +3,9 @@ message_id as id,
 post,
 timestamp as date,
 users.first_name as firstname,
-users.last_name as lastname
+users.last_name as lastname,
+users.img as img
 from Forums
 inner join users using (user_id)
 where class_id = $1
-order by timestamp;
+order by timestamp asc;

@@ -42,7 +42,7 @@ module.exports = {
     const db = req.app.get('db');
     const {id, classid, post} = req.body;
     let time = new Date();
-    time = moment(time).format('YYYY-MM-DD')
+    time = moment(time).format('YYYY-MM-DD hh:mm:ss')
 
     await db.addForumPost(id, classid, post, time);
     const forums = await db.getForumByClassID(classid);

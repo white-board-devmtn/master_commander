@@ -1,0 +1,60 @@
+.topNav-container {
+  display: flex;
+  align-items: center;
+  height: 6.5em;
+  border-bottom: #d6d3d3 solid 1.5px;
+  margin-bottom: 2.5em;
+  .container {
+    display: flex;
+    width: 30em;
+    z-index: 9000;
+    .option {
+      height: 50px;
+      width: 100%;
+      padding-left: 1em;
+      display: flex;
+      flex-direction: row;
+      .triangle {
+        width: 0;
+        height: 0;
+        border-bottom: 10px solid rgb(177, 13, 13);
+        border-left: 10px solid transparent !important;
+        margin-top: 4.3em;
+        &.two {
+          border-bottom-color: #2475c7;
+        }
+        &.three {
+          border-bottom-color: #24c775;
+        }
+        &.four {
+          border-bottom-color: #5e09b3;
+        }
+      }
+      button {
+        height: 50px;
+        width: 150px;
+        /* background-color: #FA9292; */
+        background: #d92b2b;
+        margin-top: 4.3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        letter-spacing: 1px;
+        font-weight: 500;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        &.two {
+          background: #2b82d9;
+        }
+        &.three {
+          background: #2bd982;
+        }
+        &.four {
+          background: #822bd9;
+        }
+      }
+    }
+  }
+}
