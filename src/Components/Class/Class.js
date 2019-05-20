@@ -53,7 +53,7 @@ const Class = (props) => {
     }
   }
   return (
-    <div className="class-parent-container">
+    <div className="class-parent-container" style={{background: 'rgb(236, 236, 236)', width: '100%'}}>
       <NavBar />
       {
         props.user.isTeacher ? (
