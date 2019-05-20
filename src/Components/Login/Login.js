@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {loginUser, getUser} from '../../Redux/Ducks/userReducer';
 import axios from 'axios';
 import './Login.css'
-import louis from '../../images/thisIsLouis.jpg'
+import wbLogo3 from '../../images/wbLogo3.png'
+import markerBG from '../../images/markerBG.jpg'
 
 
 const Login = (props) => {
@@ -31,12 +32,12 @@ async function handleLogin() {
 }
 
     return (
-        <div className="login-page" style={{backgroundImage: `url(${louis})`}}>
+        <div className="login-page" style={{backgroundImage: `url(${markerBG})`}}>
             <div className="login-register-container"> 
                 { loginToggle ?(  
                 <div className="login-container">
-                    <h2>Login</h2>
-                    <input placeholder='Email' value={email} onChange={e => updateEmail(e.target.value)} />
+                    <img src={wbLogo3} style={{height:80, marginBottom:25}} />
+                    <input placeholder='Email Address' value={email} onChange={e => updateEmail(e.target.value)} />
                     <input placeholder='Password' value={password} onChange={e => updatePassword(e.target.value)} />
                     <button onClick={handleLogin}> Login </button>
                     <p style={{cursor:"pointer"}} onClick={() => updateLoginToggle(false)}> need to register?</p>
@@ -61,7 +62,7 @@ function mapStateToProps(reduxState) {
     return {
         user: reduxState.user
     }
-};
+}
 
 
 export default connect(mapStateToProps, {loginUser, getUser})(Login)

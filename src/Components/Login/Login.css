@@ -1,13 +1,15 @@
 .login-page {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    /* background-image: url(https://images.unsplash.com/photo-1446833390291-c6e4ff838112?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80); */
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center
+    background-position: center;
+    /* background: rgb(245, 245, 245); */
+    /* background-size: 100% 100%; */
+    opacity: .8;
 }
 
 .login-register-container {
@@ -16,7 +18,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
-    margin-right: 5rem
+    margin-bottom: 3.3rem;
+   
 }
 
 .login-container {
@@ -24,12 +27,60 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 15em;
-    width: 15em;
-    border: 1px solid black;
+    height: 24em;
+    width: 25em;
+    /* border: 1px solid black; */
     border-radius: 1rem;
     background-color: white;
+    box-shadow: 0 14px 28px 0 rgba(0,0,0, .25),
+                0 10px 10px 0 rgba(0,0,0, .26);
 }
+
+
+.login-container input {
+    width: 75%;
+    /* height: 10%; */
+    font-size: 1.2em;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: black solid 1px;
+    background: transparent;
+    outline: none;
+}
+
+
+
+
+
+.login-container button {
+    margin-top: .7em;
+    width: 30%;
+    height: 2.5em;
+    color: rgba(0, 0, 0, 0.561);
+    border: rgba(0, 0, 0, 0.561) solid 1.5px;
+    font-size: 1.2em;
+    background: transparent;
+    margin-bottom: 15px;
+    border-radius: 1rem;
+    outline: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-container button:hover{
+    background:  rgba(0, 0, 0, 0.561);
+    border: rgba(0, 0, 0, 0) solid 1.5px;
+    color: white;
+    transition: 500ms;
+}
+
+
+.login-container button:active {
+	transform: scale(0.90);
+}
+
 
 .register-container {
     display: flex;

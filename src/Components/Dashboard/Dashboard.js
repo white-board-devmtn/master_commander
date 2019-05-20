@@ -64,7 +64,8 @@ const Dashboard = (props) => {
                             <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
                             <p>Start: {item.startdate}</p>
                             <p>End: {item.enddate}</p>
-                            <p>{item.des}</p>
+                            <p>{item.des}</p>                            
+
                             {!props.user.isTeacher ? (Array.isArray(grade) ? (
                                 <>
                                     <p>{grade[0]}</p>
