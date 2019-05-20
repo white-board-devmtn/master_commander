@@ -21,7 +21,7 @@ module.exports = {
 
   createAnnouncement: async (req, res) => {
     const db = req.app.get('db')
-    const {classid, name, date} = req.body;
+    const { classid, name, date } = req.body;
 
     await db.createAnnouncement([classid, name, date])
     res.status(200).send('successfully created announcement')
@@ -30,9 +30,17 @@ module.exports = {
 
   getStudentsByAssignment: async (req, res) => {
     const db = req.app.get('db');
-    const {classid, id} = req.query;
+    const { classid, id } = req.query;
 
     const students = await db.getAllUserAssignmentsByAssignmentID(id, classid)
     res.status(200).send(students);
+  },
+
+  getStudentsByClassId: async (req, res) => {
+    const db = req.app.get('db')
+    const { id } = req.query;
+    
+    const students = await db.getStudentsByClassId(id)
+    res.status(200).send(students)
   }
 }

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
-import './Forum.css';
+import './Forum.scss';
 import AddPost from './addPost/AddPost'
+import Button from '@material-ui/core/Button';
 
 const Forum = (props) => {
 
@@ -28,10 +29,17 @@ const Forum = (props) => {
     if (forum) {
       return forum.map(post => {
         return (
-          <div key={post.id} className="forum-post">
-          <h3>{post.firstname} {post.lastname}</h3>
-          <p>{moment(post.date).format('M-D-YYYY')}</p>
-          <p>{post.post}</p>
+          <div key={post.id} className="post">
+            <img src={post.img} alt="person"/>
+            <div className="info">
+              <div className="title">
+                <h3>{post.firstname} {post.lastname}:</h3>
+                <p>Date: {moment(post.date).format('M-D-YYYY h:mm:ss')}</p>
+              </div>
+              <div className="details">
+                <p>{post.post}</p>
+              </div>
+            </div>
           </div>
         )
       })
@@ -39,18 +47,19 @@ const Forum = (props) => {
   }
 
 
-  return(
+  return (
     <div className="class-forum-container">
-    <AddPost
-      adding={adding}
-      toggleAdd={toggleAdd}
-      id={props.id}
-      classid={classID}
-      updateForum={updateForum}
-    />
-      <h1>Forum</h1>
-      <button className='add-event-button' onClick={() => toggleAdd(() => !adding)}>Add Post</button>
-      <div className="class-posts-container">
+      <AddPost
+        adding={adding}
+        toggleAdd={toggleAdd}
+        id={props.id}
+        classid={classID}
+        updateForum={updateForum}
+      />
+      <div className="header">
+        <Button onClick={() => toggleAdd(() => !adding)}>Add Post</Button>
+      </div>
+      <div className="class-posts">
         {showForum()}
       </div>
     </div>

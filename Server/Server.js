@@ -64,6 +64,7 @@ app.get('/api/profile/getGrades/:id', userC.getGradesById); // Will get the clas
 // TEACHER ENDPOINTS 
 app.post('/api/class/addAssignment', teachCtrl.createAssignment);
 app.get('/api/class/geAssignmentStudents', teachCtrl.getStudentsByAssignment); // using assignment id and class id will select all students with that assignment id, with their grade.
+app.get('/api/class/classStudents', teachCtrl.getStudentsByClassId)
 
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))
