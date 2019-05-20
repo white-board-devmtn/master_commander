@@ -2,11 +2,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import { CalculateAverage } from '../../../shared/MathCalculations';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment'
+
+const styles = theme => ({
+  progress: {
+      margin: theme.spacing.unit * 2,
+  },
+});
 
 const Students = (props) => {
 
   const classID = props.match.params.id;
+  const { classes } = props;
 
   const [students, setStudents] = useState([]);
 
@@ -23,8 +32,6 @@ const Students = (props) => {
     }).catch(() => console.log('could not get at this time'))
   }, [])
 
-  console.log(students)
-
   let mappedStudents = students.map(item => {
     for (let i = 0; i < item.duedate.length; i++) {
       let date = moment(new Date()).format('YYYY-DD-MM')
@@ -34,26 +41,29 @@ const Students = (props) => {
         delete item.outof[i]
         delete item.points[i]
       }
-
     }
-    console.log(item.outof, item.points)
     let grade = CalculateAverage(item.outof, item.points)
-    console.log(grade)
-    if(grade) {
-      
+    if (grade) {
+
       return <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
-    } 
+    }
     return <li>{item.firstname} {item.lastname}</li>
   })
   // console.log(mappedStudents)
   return (
     <div>
-      <ul>
-        {mappedStudents}
-      </ul>
+      {mappedStudents.length ? (
+        <ul>
+          {mappedStudents}
+        </ul>
+      ) : (
+        <div>
+          <CircularProgress className={classes.progress} size={50} color="secondary" />
+        </div>
+      )}
     </div>
   )
 
 }
 
-export default withRouter(Students);
+export default withRouter(withStyles(styles)(Students));
