@@ -93,9 +93,14 @@ const Dashboard = (props) => {
     return (
         <div className="dashboard-component">
             <NavBar />
-
-            <div className="class-tiles-container">
-                {showClasses()}
+            <div className='dashboard-right-container'>
+                <header className="myProfileFlagContainerD">
+                    <div className="flagTriangleD"></div>
+                    <div className="myProfileFlagD"> PROFILE</div>
+                </header>
+                <div className="class-tiles-container">
+                    {showClasses()}
+                </div>
             </div>
         </div>
     )
