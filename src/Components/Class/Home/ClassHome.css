@@ -1,6 +1,7 @@
 
 
 .class-parent-container {
+  width: calc(100vw);
   display: flex;
 }
 

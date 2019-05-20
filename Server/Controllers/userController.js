@@ -55,10 +55,9 @@ module.exports = {
     const announcements = await db.getAnnouncementsByClass(classid);
     res.status(200).send(announcements);
 
-  },getGradesByClass: async (req, res) => {
+  },getGradesById: async (req, res) => {
     const db = req.app.get('db');
-    const {id} = req.query;
-
+    const {id} = req.params;
     const grades = await db.getGradesForClassByStudentID(id);
     res.status(200).send(grades);
   }
