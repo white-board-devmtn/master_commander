@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Navbar from '../../../NavBar/NavBar'
 import Students from '../Students/Students';
-
 import Popup from 'reactjs-popup'
 
 const Student = (props) => {
