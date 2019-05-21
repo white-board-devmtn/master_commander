@@ -1,0 +1,99 @@
+.assignment-home {
+  margin-top: 3em;
+  min-height: calc(100vh - 16.5vh);
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    background: white;
+
+
+    .key {
+      width: 90%;
+      height: 1.3em;
+      margin: 0 auto;
+      padding: .4em;
+      background-color: rgba(0, 0, 0, 0.637);
+      color: white;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border: 1px solid grey;
+      border-bottom: none;
+      border-radius: 1%;
+
+      h1 { 
+        width: 83%;
+      }
+    }
+
+    .grade-box {
+      width: 90%;
+      margin: 0 auto;
+      padding: .4em;
+      background-color: rgba(0, 0, 0, 0.637);
+      color: white;
+
+      border: 1px solid grey;
+      border-top: none;
+      p {
+        text-align: right;
+        padding-right: 2em;
+      }
+    }
+
+    .assignment {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      min-height: 1em;
+      padding: .4em;
+      border: 1px solid grey;
+      border-top: none;
+      margin: 0 auto;
+      .info {
+        width: 100%;
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          min-width: 30%;
+          span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p {
+              font-weight: bold;
+            }
+          }
+          .button {
+            background: lightblue;
+          }
+        }
+        .points {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 6.5em;
+          padding-right: 2em;
+          p {
+            max-width: 1.3em;
+            font-size: .9em;
+          }
+        }
+      }
+      .more-info {
+        margin: 1em;
+        text-align: center;
+      }
+    }
+    .assignment:first-of-type {
+      border-top: 1px solid grey;
+    }
+  }
+}
