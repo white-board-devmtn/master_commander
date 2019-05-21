@@ -48,9 +48,9 @@ class MyCalendar extends Component {
     this.props.getUser().then(res => {
       const { id } = res.value.userData
        axios.get(`/api/getAssignments/${id}`).then(res => {
-         console.log(res.data)
-         let myAssignments = [];
-         res.data.map(assignment => {
+        console.log(res.data)
+        let myAssignments = [];
+        res.data.map(assignment => {
           myAssignments.push({ assignment_id: assignment.id, title: assignment.title, start: new Date(assignment.duedate), end: new Date(assignment.duedate)})
         })
         this.setState({
