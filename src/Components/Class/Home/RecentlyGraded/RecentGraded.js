@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecentGraded = (props) => {
 
@@ -23,23 +24,19 @@ const RecentGraded = (props) => {
 
   function showRecentName() {
     if (recent) {
-      return recent.map(assignment => {
+      return recent.map((assignment, index) => {
         return (
-          <>
-            <li>{assignment.name}</li>
-          </>
+          <li key={index}>{assignment.name}</li>
         )
       })
     }
   }
 
-  function showRecentAverage() {
+  function showRecentPossible() {
     if (recent) {
-      return recent.map(assignment => {
+      return recent.map((assignment, index) => {
         return (
-          <>
-            <li>{assignment.average}</li>
-          </>
+          <li key={index + 100}>{assignment.outof}</li>
         )
       })
     }
@@ -47,33 +44,37 @@ const RecentGraded = (props) => {
 
   function showRecentGrade() {
     if (recent) {
-      return recent.map(assignment => {
+      return recent.map((assignment, index) => {
         return (
-          <>
-            <li>{assignment.grade}</li>
-          </>
+          <li key={index + 1000}>{assignment.grade}</li>
         )
       })
     }
   }
 
   return (
-    <div className="class-home-info-box">
-      <h1 className="class-home-box-title">Recently Graded Assignments</h1>
-      <div className="class-home-list-assignment-box">
-        <ul>
-          <h1>Assignment Name</h1>
-          {showRecentName()}
-        </ul>
-        <ul>
-          <h1>Class Average</h1>
-          {showRecentAverage()}
-        </ul>
-        <ul>
-          <h1>Grade</h1>
-          {showRecentGrade()}
-        </ul>
-      </div>
+    <div className="home-box">
+      <h1 className="title">Recently Graded Assignments</h1>
+      {recent.length ? (
+        <div className="recent">
+          <ul>
+            <h1>Assignment Name</h1>
+            {showRecentName()}
+          </ul>
+          <ul>
+            <h1>Points Possible</h1>
+            {showRecentPossible()}
+          </ul>
+          <ul>
+            <h1>Grade</h1>
+            {showRecentGrade()}
+          </ul>
+        </div>
+      ) : (
+          <div className="loading-box">
+            <CircularProgress size={50} color="secondary" />
+          </div>
+        )}
     </div>
   )
 }

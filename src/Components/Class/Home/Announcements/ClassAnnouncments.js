@@ -30,14 +30,16 @@ const ClassAnnouncements = (props) => {
       return announcements.map(announcement => {
         announcement.date = moment(announcement.date).format('M-D-YYYY')
         return (
-          <div key={announcement.id} className="class-home-announcement">
+          <div key={announcement.id} className="announcement-box">
             <AddAnnouncement
               adding={adding}
               toggleAdd={toggleAdd}
               user={props.user}
               classid={classID} />
-            <h3>{announcement.info}</h3>
-            <p>{announcement.date}</p>
+            <div className="box">
+              <p>{announcement.date}</p>
+              <h3>{announcement.info}</h3>
+            </div>
           </div>
         )
       })
@@ -48,8 +50,8 @@ const ClassAnnouncements = (props) => {
 
     props.user.isTeacher ? (
 
-      <div className="class-home-info-box">
-        <h1 className="class-home-box-title">Announcements</h1>
+      <div className="home-box">
+        <h1 className="title">Announcements</h1>
         <button onClick={() => toggleAdd(true)}>New Announcement</button>
         {announcements.length ? (
           <div>
@@ -62,14 +64,14 @@ const ClassAnnouncements = (props) => {
           )}
       </div>
     ) : (
-        <div className="class-home-info-box">
-          <h1 className="class-home-box-title">Announcements</h1>
+        <div className="home-box">
+          <h1 className="title">Announcements</h1>
           {announcements.length ? (
           <div>
             {showAnnouncements()}
           </div>
         ) : (
-            <div>
+            <div className="loading-box">
               <CircularProgress size={50} color="secondary" />
             </div>
           )}
