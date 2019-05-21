@@ -37,8 +37,8 @@ async function handleLogin() {
                 { loginToggle ?(  
                 <div className="login-container">
                     <img src={wbLogo3} style={{height:80, marginBottom:25}} />
-                    <input placeholder='Email Address' value={email} onChange={e => updateEmail(e.target.value)} />
-                    <input placeholder='Password' value={password} onChange={e => updatePassword(e.target.value)} />
+                    <input id='email' placeholder='Email Address' value={email} onChange={e => updateEmail(e.target.value)} />
+                    <input id='password' placeholder='Password' value={password} onChange={e => updatePassword(e.target.value)} />
                     <button onClick={handleLogin}> Login </button>
                     <p style={{cursor:"pointer"}} onClick={() => updateLoginToggle(false)}> need to register?</p>
                 </div>
