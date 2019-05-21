@@ -23,6 +23,7 @@ export default function UploadFile(props) {
     axios.put('/aws/getLink', obj).then(res => {
       const { signedRequest, url } = res.data;
       const { file } = obj
+      console.log('url', url)
       setFile(() => {
         return url
       })

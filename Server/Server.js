@@ -58,12 +58,13 @@ app.get('/api/class/getForum', userC.getForumPosts) // GETS FORUM POST BY CLASS 
 app.put('/api/class/addPost', userC.addForumPost) // ADDS FORUM POST
 app.get('/api/class/getAnnouncements', userC.getAnnouncements) // GETS ANNOUNCEMENTS
 app.post('/api/class/addAnnouncement', teachCtrl.createAnnouncement)
-app.get('/api/profile/getGrades', userC.getGradesByClass); // Will get the class name, with points possible and points recieved for every assignment that has been graded. 
-
+app.get('/api/profile/getGrades/:id', userC.getGradesById); // Will get the class name, with points possible and points recieved for every assignment that has been graded. 
+app.get('/api/class/recentlyGraded', userC.getRecentlyGraded); //GETS RECENT GRADED ASSIGNMENTS
 
 // TEACHER ENDPOINTS 
 app.post('/api/class/addAssignment', teachCtrl.createAssignment);
 app.get('/api/class/geAssignmentStudents', teachCtrl.getStudentsByAssignment); // using assignment id and class id will select all students with that assignment id, with their grade.
+app.get('/api/class/classStudents', teachCtrl.getStudentsByClassId)
 
 
 app.listen(SERVER_PORT, () => console.log(`It's over ${SERVER_PORT}!!!`))

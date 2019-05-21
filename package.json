@@ -14,6 +14,7 @@
     "express-session": "^1.16.1",
     "massive": "^5.8.0",
     "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-big-calendar": "^0.20.4",
     "react-bootstrap-date-picker": "^5.1.0",
@@ -35,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -54,5 +55,8 @@
     ]
   },
   "proxy": "http://localhost:4000",
-  "main": "Server/Server.js"
+  "main": "Server/Server.js",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
 }

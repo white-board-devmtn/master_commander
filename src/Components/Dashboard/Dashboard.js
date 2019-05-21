@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
+import TopNav from '../shared/TopNav';
 import './Dashboard.css';
 import Assignment from '@material-ui/icons/Assignment'
 
@@ -25,15 +26,15 @@ const Dashboard = (props) => {
 
 
     useEffect(() => {
-      return () => {
-        return classList
-      };
+        return () => {
+            return classList
+        };
     }, [classList])
 
     useEffect(() => {
-      return () => {
-        return grades
-      };
+        return () => {
+            return grades
+        };
     }, [grades])
 
     useEffect(() => {
@@ -44,7 +45,7 @@ const Dashboard = (props) => {
                     .then(response => {
                         updateClassList(response.data)
                     })
-                axios.get(`/api/profile/getGrades?id=${id}`).then(res => {
+                axios.get(`/api/profile/getGrades/${id}`).then(res => {
                     setGrades(res.data);
                     console.log(res.data);
                 }).catch(err => console.log(err));

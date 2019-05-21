@@ -10,13 +10,22 @@
     z-index: 4000;
 }
 
+.navbar-float {
+    width: 7rem;
+    position: fixed;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
 .navbar-container h2{
     font-size: .8rem;
     margin-top: .6rem
 }
 
 .navbar-option-container {
-    height: 22rem;
+    height: 25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,8 +62,8 @@
 
 
 .Navbar-icon-container {
-    height: 5rem;
-    width: 7rem;
+    height: 6rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

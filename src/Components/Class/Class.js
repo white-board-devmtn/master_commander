@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 import ClassHome from './Home/ClassHome';
@@ -53,7 +52,7 @@ const Class = (props) => {
     }
   }
   return (
-    <div className="class-parent-container">
+    <div className="class-parent-container" style={{background: 'rgb(236, 236, 236)', width: '100%'}}>
       <NavBar />
       {
         props.user.isTeacher ? (

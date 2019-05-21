@@ -50,7 +50,6 @@ const Assignments = (props) => {
       return(
         props.user.isTeacher ? (
           <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-            <button>New Assignment</button>
             <button onClick={() => toggleAdd(true)}>New Assignment</button>
             <AddAssignment
               adding={adding}

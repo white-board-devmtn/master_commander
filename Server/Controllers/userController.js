@@ -42,7 +42,7 @@ module.exports = {
     const db = req.app.get('db');
     const {id, classid, post} = req.body;
     let time = new Date();
-    time = moment(time).format('YYYY-MM-DD')
+    time = moment(time).format('YYYY-MM-DD hh:mm:ss')
 
     await db.addForumPost(id, classid, post, time);
     const forums = await db.getForumByClassID(classid);
@@ -55,11 +55,18 @@ module.exports = {
     const announcements = await db.getAnnouncementsByClass(classid);
     res.status(200).send(announcements);
 
-  },getGradesByClass: async (req, res) => {
+  },
+  getGradesById: async (req, res) => {
     const db = req.app.get('db');
-    const {id} = req.query;
-
+    const {id} = req.params;
     const grades = await db.getGradesForClassByStudentID(id);
     res.status(200).send(grades);
+  },
+  getRecentlyGraded: async (req, res) => {
+    const db = req.app.get('db');
+    const { id, classid } = req.query;
+
+    const assignments = await db.getRecentGradedAssignments(id, classid)
+    res.status(200).send(assignments);
   }
 }
