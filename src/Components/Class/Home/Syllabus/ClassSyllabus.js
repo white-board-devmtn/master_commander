@@ -12,8 +12,8 @@ const ClassSyllabus = (props) => {
   }
 
   return (
-    <div className="class-home-info-box">
-      <h1 className="class-home-box-title">Syllabus</h1>
+    <div className="home-box">
+      <h1 className="title">Syllabus</h1>
       <div>
         <Document
           file="https://s3-us-west-1.amazonaws.com/group-project-whiteboard/Sample-Syllabus.pdf"

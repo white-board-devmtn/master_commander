@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-import './ClassHome.css';
+import './ClassHome.scss';
 import ClassAnnouncements from './Announcements/ClassAnnouncments';
 import RecentGraded from './RecentlyGraded/RecentGraded';
 import ClassUpcoming from './Upcoming/ClassUpcoming';
