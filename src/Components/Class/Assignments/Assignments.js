@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
-import Assignment from '../../Assignment/Assignment'
+import Assignment from './Assignment/Assignment'
 import AddAssignment from './AddAssignment'
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
 
 
-import './Assignments.css';
+import './Assignments.scss';
 
 
 
@@ -45,41 +46,42 @@ console.log(props)
     }
   }, [props.id])
 
-
   function display() {
     if (assignments.length) {
-      return(
-        props.user.isTeacher ? (
-          <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-            <button onClick={() => toggleAdd(true)}>New Assignment</button>
-            <AddAssignment
-              adding={adding}
-              toggleAdd={toggleAdd}
-              user={props.user}
-              classid={classID} />
-            <div>
-              {assignments.map(item => {
-                return <Assignment key={item.id}
-                  assignment={item}
-                />
-              })}
+      return (
+        <div className="assignment-home">
+          {props.user.isTeacher ? (
+            <>
+              <Button onClick={() => toggleAdd(!adding)}>Add Assignment</Button>
+              <AddAssignment
+                adding={adding}
+                toggleAdd={toggleAdd}
+                user={props.user}
+                classid={classID} />
+            </>) : (<></>)}
+          <div className="container">
+            <div className="key">
+              <h1>Assignment Name</h1>
+              <h2>Grade</h2>
+              <h2>Possible</h2>
             </div>
-          </div>
-        ) : (
-            <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-              <div>
-                {assignments.map(item => {
-                  return <Assignment key={item.id}
-                    assignment={item}
-                  />
-                })}
+            {assignments.map(item => {
+              return <Assignment key={item.id}
+                assignment={item}
+              />
+            })}
+            <div className="grade-box">
+              <div className="grade">
+                <p>200 / 500</p>
+                <p>Grade: 100% A</p>
               </div>
             </div>
-          )
+          </div>
+        </div>
       )
     } else {
       return (
-        <div>
+        <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
           <CircularProgress className={classes.progress} size={50} color="secondary" />
         </div>
       )

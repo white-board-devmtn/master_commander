@@ -55,16 +55,18 @@ const Students = (props) => {
   })
   // console.log(mappedStudents)
   return (
-    <div>
+    <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
       {mappedStudents.length ? (
         <ul>
           {mappedStudents}
         </ul>
       ) : (
+
           <div>
             <CircularProgress className={classes.progress} size={50} color="secondary" />
           </div>
         )}
+
     </div>
   )
 
