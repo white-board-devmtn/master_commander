@@ -5,7 +5,28 @@ import axios from 'axios';
 import './Login.css'
 import wbLogo3 from '../../images/wbLogo3.png'
 import markerBG from '../../images/markerBG.jpg'
+import TextField from '@material-ui/core/TextField';
 
+
+
+const styles = theme => ({
+    
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+    },
+    dense: {
+      marginTop: 16,
+    },
+    menu: {
+      width: 200,
+    },
+    
+    
+  });
+  
+
+  
 
 const Login = (props) => {
 
@@ -34,25 +55,35 @@ async function handleLogin() {
     return (
         <div className="login-page" style={{backgroundImage: `url(${markerBG})`}}>
             <div className="login-register-container"> 
-                { loginToggle ?(  
                 <div className="login-container">
                     <img src={wbLogo3} style={{height:80, marginBottom:25}} />
-                    <input placeholder='Email Address' value={email} onChange={e => updateEmail(e.target.value)} />
-                    <input placeholder='Password' value={password} onChange={e => updatePassword(e.target.value)} />
+
+                    <TextField className="loginInput"
+                    id="outlined-with-placeholder"
+                    label="Email Address"
+                    // placeholder="Email Address"
+                    value={email}
+                    onChange={e => updateEmail(e.target.value)}
+                    margin="normal"
+                    variant="outlined" 
+                    
+                    >
+                    </TextField>
+
+                    <TextField
+                    id="outlined-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    margin="normal"
+                    value={password} 
+                    onChange={e => updatePassword(e.target.value)}
+                    variant="outlined">
+                    </TextField>
                     <button onClick={handleLogin}> Login </button>
-                    <p style={{cursor:"pointer"}} onClick={() => updateLoginToggle(false)}> need to register?</p>
+                    {/* <p style={{cursor:"pointer"}} onClick={() => updateLoginToggle(false)}> need to register?</p> */}
                 </div>
-                ):(
-                <div className="register-container">
-                    <h2>Register</h2>
-                    <input placeholder='First Name' value={firstName} onChange={e => updateFirstName(e.target.value)} />
-                    <input placeholder='Last Name' value={lastName} onChange={e => updateLastName(e.target.value)} />
-                    <input placeholder='Email' value={email} onChange={e => updateEmail(e.target.value)} />
-                    <input placeholder='Password' value={password} onChange={e => updatePassword(e.target.value)} />
-                    <button onClick={handleRegister}> Register </button>
-                    <p style={{cursor:"pointer"}} onClick={() => updateLoginToggle(true)}> already have login?</p>
-                </div>
-                )}
+                
             </div>
         </div>
     )
