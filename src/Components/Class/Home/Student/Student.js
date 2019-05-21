@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Navbar from '../../../NavBar/NavBar'
 import Students from '../Students/Students';
-import Assignment from '../../../Assignment/Assignment'
+import Assignment from '../../Assignments/Assignment/Assignment'
 import Popup from 'reactjs-popup'
 
 const Student = (props) => {
