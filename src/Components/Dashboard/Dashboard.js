@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
 import './Dashboard.css';
+import Assignment from '@material-ui/icons/Assignment'
 
 const styles = theme => ({
     progress: {
@@ -59,23 +60,31 @@ const Dashboard = (props) => {
                     grade = CalculateAverage(grades[i].pointspossible, grades[i].pointsrecieved)
                 }
                 return (
-                    <Link to={`/class/${item.classid}`} key={i}>
+                <Link to={`/class/${item.classid}`} key={i}>
                         <div className="class-tiles" >
-                            <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
-                            <p>Start: {item.startdate}</p>
-                            <p>End: {item.enddate}</p>
-                            <p>{item.des}</p>                            
-
+                            <div className="class-tiles-top">
+                                <Assignment style={{marginRight:2}}></Assignment>
+    
+                                <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
+                            </div> 
+                            <div className='class-tiles-bottom'>
                             {!props.user.isTeacher ? (Array.isArray(grade) ? (
-                                <>
-                                    <p>{grade[0]}</p>
-                                    <p>{grade[1]}%</p>
-                                </>
+                                <div className='class-tiles-bottom-grades'>
+                                    <p style={{fontSize:20, fontWeight:900, color:'black'}}>{grade[0]} ({grade[1]}%)</p>
+                                </div>
                             ) : (
-                                <p>No grades available</p>
-                            )) : (
-                                <h1>You have 50 students</h1>
-                            )}
+                                <div className='class-tiles-bottom-grades'>
+                                    <p style={{color: 'black'}}>No grades available</p>
+                                </div>
+                                )) : (
+                                    <h1>You have 50 students</h1>
+                                    )}
+                            <div className="class-tiles-bottom-semester">
+                                <p>{item.des}</p>
+                                <p>Begins: {item.startdate}</p>
+                                <p>Ends: {item.enddate}</p>
+                            </div>  
+                            </div>                          
                         </div>
                     </Link>
                 )
@@ -96,7 +105,7 @@ const Dashboard = (props) => {
             <div className='dashboard-right-container'>
                 <header className="myProfileFlagContainerD">
                     <div className="flagTriangleD"></div>
-                    <div className="myProfileFlagD"> PROFILE</div>
+                    <div className="myProfileFlagD"> CLASSES</div>
                 </header>
                 <div className="class-tiles-container">
                     {showClasses()}
