@@ -6,6 +6,7 @@ import AddAssignment from './AddAssignment'
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
+import { CalculateAverage } from '../../shared/MathCalculations';
 
 
 import './Assignments.scss';
@@ -26,6 +27,8 @@ const Assignments = (props) => {
   const classID = props.match.params.id;
   const [assignments, setAssignments] = useState([]);
   const [adding, toggleAdd] = useState(false);
+  const [points, setPoints] = useState([]);
+  const [grade, setGrade] = useState([]);
   const { classes } = props;
 
 
@@ -35,15 +38,46 @@ const Assignments = (props) => {
     };
   }, [assignments])
 
+  useEffect(() => {
+    return () => {
+      return points
+    };
+  }, [points])
+
+  useEffect(() => {
+    return () => {
+      return grade
+    };
+  }, [grade])
+
   // console.log(props.user.id)
 
   useEffect(() => {
     if (props.user.id) {
       axios.get(`/api/class/classAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
-        return setAssignments(res.data)
+        getPoints(res.data);
+        return setAssignments(res.data);
       }).catch(() => console.log('could not get at this time'));
     }
   }, [props.id])
+
+  console.log(grade);
+
+  function getPoints(allAssignments) {
+    let pointsArr = [];
+    let outOfArr = [];
+    for (let i in allAssignments) {
+      if (allAssignments[i].complete) {
+        let points = Number(allAssignments[i].points)
+        pointsArr.push(points)
+        outOfArr.push(allAssignments[i].outof)
+      }
+    }
+    let totalPoints = pointsArr.reduce((sum, acc) => sum += acc)
+    let totalPossible = outOfArr.reduce((sum, acc) => sum += acc)
+    setPoints([[totalPossible], [totalPoints]])
+    setGrade(CalculateAverage([totalPossible], [totalPoints]));
+  }
 
   function display() {
     if (assignments.length) {
@@ -71,8 +105,8 @@ const Assignments = (props) => {
             })}
             <div className="grade-box">
               <div className="grade">
-                <p>200 / 500</p>
-                <p>Grade: 100% A</p>
+                <p>{points[1]} / {points[0]}</p>
+                <p>Grade: {grade.length ? <>{grade[0]} {grade[1]}</> : <></>}</p>
               </div>
             </div>
           </div>
