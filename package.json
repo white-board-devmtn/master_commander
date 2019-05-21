@@ -58,5 +58,6 @@
   "proxy": "http://localhost:4000",
   "main": "Server/Server.js",
   "devDependencies": {
-    "cypress": "^3.3.0",
+    "cypress": "^3.3.0"
+  }
 }
