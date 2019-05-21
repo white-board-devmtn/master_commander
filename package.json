@@ -59,6 +59,4 @@
   "main": "Server/Server.js",
   "devDependencies": {
     "cypress": "^3.3.0",
-    "jest": "^24.8.0"
-  }
 }

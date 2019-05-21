@@ -78,7 +78,7 @@ const Assignments = (props) => {
       )
     } else {
       return (
-        <div>
+        <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
           <CircularProgress className={classes.progress} size={50} color="secondary" />
         </div>
       )
