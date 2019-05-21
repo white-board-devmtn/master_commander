@@ -2,6 +2,7 @@ select
 Ass.ass_name as name,
 Ass.ass_description as description,
 user_ass.grade as points,
+user_ass.ass_link as link,
 Ass.grade_possible as outof,
 user_ass.complete,
 user_ass.ass_id,

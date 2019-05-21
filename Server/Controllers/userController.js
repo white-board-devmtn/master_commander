@@ -72,10 +72,11 @@ module.exports = {
 
   submitAssignment: async (req, res) => {
     const db = req.app.get('db');
-    const { id, assId } = req.query;
-    const { link, complete } = req.body
-    const assignments = await db.submitAssignment([id, assId, link, complete])
-    res.status(200).send(assignments)
+    const { id, assignmentId } = req.query;
+    const { link } = req.body
+    const assignment = await db.submitAssignment([id, assignmentId, link])
+    res.status(200).send(assignment)
+    console.log(res.data)
 
 
   }

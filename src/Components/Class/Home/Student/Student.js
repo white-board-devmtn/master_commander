@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Navbar from '../../../NavBar/NavBar'
 import Students from '../Students/Students';
-import Assignment from '../../../Assignment/Assignment'
+
 import Popup from 'reactjs-popup'
 
 const Student = (props) => {
@@ -42,13 +42,13 @@ const Student = (props) => {
           ) : (
               <div>
 
-                <li>{item.name}  <Popup trigger={<button>Assignment</button>} position="top left">
+                <li>{item.name}  <Popup trigger={<button>Assignment</button>} position="bottom left">
                   {close => (
                     <div>
                       <div>
                         {item.name}
                       </div>
-                      {item.link}
+                      <iframe src={item.link}></iframe>
                       <button className="close" onClick={close}>
                         Close
                       </button>
