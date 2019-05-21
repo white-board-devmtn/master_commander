@@ -25,9 +25,14 @@ const Assignment = (props) => {
 
   function submitAssignment() {
     if (file) {
-      axios.put('/api/class/submitAssignment', {file, assignmentID: props.assignment.ass_id}).then(() => {
+      const assignmentId = props.assignment.ass_id
+      const {id} = props.user
+      axios.put(`/api/class/submitAssignment?id=${id}&assignmentId=${assignmentId}`, {file}).then(() => {
         console.log('uploaded assignment');
       }).catch(() => console.log('failed to upload'));
+      console.log(id)
+      console.log(assignmentId)
+      console.log(file)
     }
   }
 
@@ -53,7 +58,7 @@ const Assignment = (props) => {
                     <UploadFile
                       setFile={setFile}
                     />
-                    <Button onclick={submitAssignment}>Submit</Button>
+                    <Button onClick={submitAssignment}>Submit</Button>
                   </div>
                 )
             }

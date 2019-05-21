@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
-import Assignment from './Assignment/Assignment'
+import Assignment from '../Assignments/Assignment/Assignment'
 import AddAssignment from './AddAssignment'
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
