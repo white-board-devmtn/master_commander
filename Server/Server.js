@@ -60,6 +60,7 @@ app.get('/api/class/getAnnouncements', userC.getAnnouncements) // GETS ANNOUNCEM
 app.post('/api/class/addAnnouncement', teachCtrl.createAnnouncement)
 app.get('/api/profile/getGrades/:id', userC.getGradesById); // Will get the class name, with points possible and points recieved for every assignment that has been graded. 
 app.get('/api/class/recentlyGraded', userC.getRecentlyGraded); //GETS RECENT GRADED ASSIGNMENTS
+app.put('/api/class/submitAssignment', userC.submitAssignment) //student submitting the assignment
 
 // TEACHER ENDPOINTS 
 app.post('/api/class/addAssignment', teachCtrl.createAssignment);

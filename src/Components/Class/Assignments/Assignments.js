@@ -35,7 +35,8 @@ const Assignments = (props) => {
   }, [assignments])
 
   // console.log(props.user.id)
-
+console.log(assignments)
+console.log(props)
   useEffect(() => {
     if (props.user.id) {
       axios.get(`/api/class/classAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {

@@ -19,7 +19,7 @@
   .home-box {
     background: white;
     margin: 2em;
-    max-height: 33vh;
+    min-height: 33vh;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.466);

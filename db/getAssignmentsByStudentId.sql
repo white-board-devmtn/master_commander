@@ -4,6 +4,7 @@ Ass.ass_description as description,
 user_ass.grade as points,
 Ass.grade_possible as outof,
 user_ass.complete,
+user_ass.ass_id,
 ass.class_id,
 ass.due_date 
 from user_ass 
