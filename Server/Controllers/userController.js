@@ -11,7 +11,7 @@ module.exports = {
 
   getUpcomingAssignments: async (req, res) => {
     const db = req.app.get('db');
-    const {id, classid} = req.query
+    const { id, classid } = req.query
     let time = new Date();
     time = moment(time).format('YYYY-MM-DD')
 
@@ -22,8 +22,8 @@ module.exports = {
 
 
   getClassAssignments: async (req, res) => {
-    const db =req.app.get('db');
-    const {id, classid} = req.query
+    const db = req.app.get('db');
+    const { id, classid } = req.query
     let time = new Date();
     time = moment(time).format('YYYY-MM-DD')
 
@@ -33,14 +33,14 @@ module.exports = {
 
   getForumPosts: async (req, res) => {
     const db = req.app.get('db');
-    const {classid} = req.query
+    const { classid } = req.query
 
     const forums = await db.getForumByClassID(classid);
     res.status(200).send(forums);
   },
   addForumPost: async (req, res) => {
     const db = req.app.get('db');
-    const {id, classid, post} = req.body;
+    const { id, classid, post } = req.body;
     let time = new Date();
     time = moment(time).format('YYYY-MM-DD hh:mm:ss')
 
@@ -50,7 +50,7 @@ module.exports = {
   },
   getAnnouncements: async (req, res) => {
     const db = req.app.get('db');
-    const {classid} = req.query;
+    const { classid } = req.query;
 
     const announcements = await db.getAnnouncementsByClass(classid);
     res.status(200).send(announcements);
@@ -58,7 +58,7 @@ module.exports = {
   },
   getGradesById: async (req, res) => {
     const db = req.app.get('db');
-    const {id} = req.params;
+    const { id } = req.params;
     const grades = await db.getGradesForClassByStudentID(id);
     res.status(200).send(grades);
   },
@@ -68,5 +68,15 @@ module.exports = {
 
     const assignments = await db.getRecentGradedAssignments(id, classid)
     res.status(200).send(assignments);
+  },
+
+  submitAssignment: async (req, res) => {
+    const db = req.app.get('db');
+    const { id, assId } = req.query;
+    const { link, complete } = req.body
+    const assignments = await db.submitAssignment([id, assId, link, complete])
+    res.status(200).send(assignments)
+
+
   }
 }

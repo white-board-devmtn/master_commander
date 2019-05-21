@@ -5,10 +5,12 @@ import { CalculateAverage } from '../../../shared/MathCalculations';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment'
+import { Link } from 'react-router-dom'
+
 
 const styles = theme => ({
   progress: {
-      margin: theme.spacing.unit * 2,
+    margin: theme.spacing.unit * 2,
   },
 });
 
@@ -44,10 +46,12 @@ const Students = (props) => {
     }
     let grade = CalculateAverage(item.outof, item.points)
     if (grade) {
-
-      return <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
+      return <Link to={`/student/${item.id}/${classID}`}> 
+      <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
+      </Link>
     }
     return <li>{item.firstname} {item.lastname}</li>
+
   })
   // console.log(mappedStudents)
   return (
@@ -57,10 +61,12 @@ const Students = (props) => {
           {mappedStudents}
         </ul>
       ) : (
-        <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-          <CircularProgress className={classes.progress} size={50} color="secondary" />
-        </div>
-      )}
+
+          <div>
+            <CircularProgress className={classes.progress} size={50} color="secondary" />
+          </div>
+        )}
+
     </div>
   )
 
