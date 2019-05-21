@@ -31,7 +31,6 @@ const Assignment = (props) => {
     }
   }
 
-  console.log(props.assignment)
   let { name, description, points, outof, due_date, complete } = props.assignment
   due_date = moment(due_date).format('M-D-YYYY')
 
