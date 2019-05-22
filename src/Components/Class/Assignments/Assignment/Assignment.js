@@ -49,12 +49,12 @@ const Assignment = (props) => {
             {
               complete ? (
                 <>
-                  {description} Date: {due_date}
+                  <h1 style={{fontWeight: '900'}}>{description}</h1>
+                   Submitted: {due_date}
                 </>
               ) : (
                   <div>
-
-                    {description}
+                    <h1 style={{fontWeight: '900'}}>{description}</h1>
                     <UploadFile
                       setFile={setFile}
                     />
@@ -79,16 +79,18 @@ const Assignment = (props) => {
             <div className="assignment">
               <div className="info">
                 <div className="title">
-                  <span>{complete ? <p>&#10003;</p> : <p>&#x2717;</p>} <p>{name}</p></span>
-                  <Button className="button" onClick={() => setEdit(!edit)}>{!edit ? 'Show Details' : 'Close'}</Button>
+                  <span>{complete ? <p>&#10003;</p> : <p>&#x2717;</p>}<hr/><p style={{width: '25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</p></span>
+                  <Button style={{textAlign: 'center'}} className="button" onClick={() => setEdit(!edit)}>{!edit ? 'Details' : 'Close'}</Button>
                 </div>
                 <div className="points">
-                  <p>{points === null ? 'N/A' : points}</p>
-                  <p>/</p>
+                  <div style={{width: '3.25rem', display: 'flex', justifyContent : 'space-between'}}>
+                    <p>{points === null ? 'N/A' : points}</p>
+                    <p>/</p>
+                  </div>
                   <p>{outof}</p>
                 </div>
               </div>
-              <div className="more-info">
+              <div className={edit ? "more-info" : 'no-display'}>
                 {showDetails()}
               </div>
             </div>)
