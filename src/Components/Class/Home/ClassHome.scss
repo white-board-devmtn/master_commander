@@ -9,7 +9,7 @@
 
 .class-container {
   width: calc(100% - 7rem);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .class-information-container {
