@@ -47,7 +47,7 @@ const NavBar = (props) => {
             }
           </Link>
           <Link to="/dashboard"><div className="Navbar-icon-container"><Dashboard className="navbar-font"/><h2 className="tooltiptext">Dashboard</h2></div></Link>
-          <Link to="/calendar"><div id='calendar' className="Navbar-icon-container"><CalendarToday className="navbar-font"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
+          <Link to="/calendar"><div className="Navbar-icon-container"><CalendarToday className="navbar-font"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
           <a href="/"><div className="Navbar-icon-container"><PowerSettingsNew className="navbar-font"/><h2 className='tooltiptext'>Logout</h2></div></a>
         </div>
       </div>

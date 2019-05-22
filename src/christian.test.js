@@ -12,17 +12,8 @@
 //   setEmail,
 //   setImg,
 //   setPhoneNumber
-// } = require('./Components/Profile/Profile');
+// } = require('./Components/shared/profileStates');
 
-// test('should change state', () => {
+// describe('should change state', () => {
 //   expect(setFirstName('Louis')).toBe('Louis')
 // })
-
-
-// import Profile from './Components/Profile/Profile';
-// import React {useState} from 'react';
-// import {mount} from 'enzyme';
-  
-test('fake test', () => {
-  expect(true).toBeTruthy()
-})
