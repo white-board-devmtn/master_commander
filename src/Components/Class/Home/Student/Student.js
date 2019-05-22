@@ -34,12 +34,12 @@ const Student = (props) => {
   }, [props.id])
 
   function divide(num1, num2) {
-    return num1 / num2 *100
+    return num1 / num2 * 100
   }
 
 
 
-  console.log(props)
+  // console.log(props)
   let mappedAssignments = assignments.map(item => {
 
     function gradeAssignment() {

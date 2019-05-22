@@ -9,7 +9,7 @@ import ClassSyllabus from './Syllabus/ClassSyllabus';
 
 
 const ClassHome = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <div className="class-information-container">
       <ClassAnnouncements 
