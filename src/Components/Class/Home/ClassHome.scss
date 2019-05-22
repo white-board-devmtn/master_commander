@@ -25,6 +25,15 @@
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.466);
     border-radius: 1%;
+    overflow-y: auto;
+    .add-announcement {
+      position: absolute;
+      width: 1em;
+      font-size: 2em;
+      left: 48%;
+      top: 17.5%;
+      padding: none;
+    }
     .loading-box {
       display: absolute;
       margin: 18% auto;

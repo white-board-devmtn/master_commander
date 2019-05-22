@@ -43,12 +43,16 @@ const Assignments = (props) => {
 // console.log(props)
   useEffect(() => {
     if (props.user.id) {
+      console.log(props.user.id, classID);
       axios.get(`/api/class/classAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
+        console.log(res);
+        setAssignments(res.data);
         getPoints(res.data);
-        return setAssignments(res.data);
-      }).catch(() => console.log('could not get at this time'));
+        return;
+      }).catch((err) => console.log('could not get at this time', err));
     }
   }, [props.id])
+  console.log(assignments);
 
   useEffect(() => {
     return () => {
@@ -72,10 +76,15 @@ const Assignments = (props) => {
         outOfArr.push(allAssignments[i].outof)
       }
     }
-    let totalPoints = pointsArr.reduce((sum, acc) => sum += acc)
-    let totalPossible = outOfArr.reduce((sum, acc) => sum += acc)
-    setPoints([[totalPossible], [totalPoints]])
-    setGrade(CalculateAverage([totalPossible], [totalPoints]));
+    if (pointsArr.length || outOfArr.length) {
+      let totalPoints = pointsArr.reduce((sum, acc) => sum += acc)
+      let totalPossible = outOfArr.reduce((sum, acc) => sum += acc)
+      setPoints([[totalPossible], [totalPoints]])
+      setGrade(CalculateAverage([totalPossible], [totalPoints]));
+      return;
+    } else {
+      return;
+    }
   }
 
 
