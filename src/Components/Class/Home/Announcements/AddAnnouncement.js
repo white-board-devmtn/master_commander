@@ -24,7 +24,7 @@ const AddAnnouncement = (props) => {
   
 
   date = moment(new Date()).format('YYYY-MM-DD')
-  console.log(date)
+  // console.log(date)
   return (
 
     <div className={props.adding ? 'addEvent-component' : 'no-display'}>

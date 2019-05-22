@@ -50,7 +50,6 @@ module.exports = {
     const { grade } = req.body
     const assignment = await db.gradeAssignment([id, assignmentId, grade])
     res.status(200).send(assignment)
-    console.log(res.data)
 
 
   }

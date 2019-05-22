@@ -47,7 +47,7 @@ const Dashboard = (props) => {
                     })
                 axios.get(`/api/profile/getGrades/${id}`).then(res => {
                     setGrades(res.data);
-                    console.log(res.data);
+                    // console.log(res.data);
                 }).catch(err => console.log(err));
             }).catch(() => props.history.push('/'))
 
@@ -91,7 +91,7 @@ const Dashboard = (props) => {
                 )
             })
         } else {
-            console.log('hi');
+            // console.log('hi');
             return (
                 <div>
                     <CircularProgress className={classes.progress} size={50} color="secondary" />
