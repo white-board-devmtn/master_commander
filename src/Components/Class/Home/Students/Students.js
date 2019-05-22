@@ -50,7 +50,7 @@ const Students = (props) => {
       <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
       </Link>
     }
-    return <li>{item.firstname} {item.lastname}</li>
+    return 
 
   })
   // console.log(mappedStudents)
