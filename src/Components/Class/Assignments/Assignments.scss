@@ -6,6 +6,7 @@
     width: fit-content;
     margin: 0 auto;
     background: white;
+    margin-bottom: 2rem;
 
     .key {
       width: 50rem;
@@ -50,7 +51,6 @@
     .assignment {
       width: 50rem;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 1em;

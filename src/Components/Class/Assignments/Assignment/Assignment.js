@@ -73,7 +73,13 @@ const Assignment = (props) => {
       {
         props.user.isTeacher ? (
           <div className="assignment">
-            <p>{name} - {description} Points Possible: {outof} Due Date: {due_date}</p>
+            <div style={{width: '95%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '.5rem 0rem'}}>
+              <p>{name} - {description}</p>
+              <div>
+                <p>Points Possible: {outof}</p> 
+                <p>Due Date: {due_date}</p>
+              </div>
+            </div>
           </div>
         ) : (
             <div className="assignment">
