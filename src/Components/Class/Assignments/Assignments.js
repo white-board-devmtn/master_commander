@@ -103,9 +103,13 @@ const Assignments = (props) => {
             </>) : (<></>)}
           <div className="container">
             <div className="key">
-              <h1>Assignment Name</h1>
-              <h2>Grade</h2>
-              <h2>Possible</h2>
+              <div style={{width: '95%', display: 'flex', justifyContent: 'space-between'}}>
+                <h1>Assignment Name</h1>
+                <div style={{width: '6.5rem', display: 'flex', justifyContent: 'space-between'}}>
+                  <h2>Grade</h2>
+                  <h2>Total</h2>
+                </div>
+              </div>
             </div>
             {assignments.map(item => {
               return <Assignment key={item.id}
@@ -114,7 +118,13 @@ const Assignments = (props) => {
             })}
             <div className="grade-box">
               <div className="grade">
-                <p>{points[1]} / {points[0]}</p>
+                <div style={{width: '6.5rem', display: 'flex', justifyContent : 'space-between'}}>
+                  <div style={{width: '3.25rem', display: 'flex', justifyContent : 'space-between'}}>
+                    <p style={{width: '3.25rem', display: 'flex', justifyContent : 'space-between'}}>{points[1]}</p>
+                    <p>/</p> 
+                  </div>                    
+                  <p>{points[0]}</p>
+                </div>
                 <p>Grade: {grade.length ? <>{grade[0]} {grade[1]}</> : <></>}</p>
               </div>
             </div>
