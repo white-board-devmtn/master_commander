@@ -95,12 +95,25 @@ const Assignments = (props) => {
           {props.user.isTeacher ? (
             <>
               <Button onClick={() => toggleAdd(!adding)}>Add Assignment</Button>
-              <AddAssignment
-                adding={adding}
-                toggleAdd={toggleAdd}
-                user={props.user}
-                classid={classID} />
-            </>) : (<></>)}
+              <div className='container'>
+                <AddAssignment
+                  adding={adding}
+                  toggleAdd={toggleAdd}
+                  user={props.user}
+                  classid={classID} />
+                <div className="key">
+                  <div style={{width: '95%', display: 'flex', justifyContent: 'space-between'}}>
+                    <h1>Assignment Name</h1>
+                    <h2>Info</h2>
+                  </div>
+                </div>
+                {assignments.map(item => {
+                  return <Assignment key={item.id}
+                    assignment={item}
+                  />
+                })}
+              </div>
+            </>) : (
           <div className="container">
             <div className="key">
               <div style={{width: '95%', display: 'flex', justifyContent: 'space-between'}}>
@@ -128,7 +141,7 @@ const Assignments = (props) => {
                 <p>Grade: {grade.length ? <>{grade[0]} {grade[1]}</> : <></>}</p>
               </div>
             </div>
-          </div>
+          </div>)}
         </div>
       )
     } else {
