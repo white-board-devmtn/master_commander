@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { Document } from 'react-pdf/dist/entry.webpack';
 import document from './Syllabus_Sample.pdf';
 
 const ClassSyllabus = (props) => {
@@ -14,14 +13,8 @@ const ClassSyllabus = (props) => {
   return (
     <div className="home-box">
       <h1 className="title">Syllabus</h1>
-      <div>
-        <Document
-          file="https://s3-us-west-1.amazonaws.com/group-project-whiteboard/Sample-Syllabus.pdf"
-          onLoadSuccess={onDocumentLoadSuccess}
-          onLoadError={console.error}
-          loading={"please wait!"}
-          noData={"No PDF Found"}
-        />
+      <div className="syl-container">
+        <iframe name="syllubus"src={document} className="syl" width="80em"></iframe>
       </div>
     </div>
   )
