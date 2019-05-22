@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import axios from 'axios';
+import React, { useState } from 'react';
 import document from './Syllabus_Sample.pdf';
+
 
 const ClassSyllabus = (props) => {
 

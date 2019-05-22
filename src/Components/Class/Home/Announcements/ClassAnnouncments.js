@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment'
 import AddAnnouncement from './AddAnnouncement';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
 
 
 const ClassAnnouncements = (props) => {
@@ -52,7 +53,7 @@ const ClassAnnouncements = (props) => {
 
       <div className="home-box">
         <h1 className="title">Announcements</h1>
-        <button onClick={() => toggleAdd(true)}>New Announcement</button>
+        <Button onClick={() => toggleAdd(true)} className="add-announcement">+</Button>
         {announcements.length ? (
           <div>
             {showAnnouncements()}
