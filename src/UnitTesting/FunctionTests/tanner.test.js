@@ -1,4 +1,4 @@
-const { CalculateAverage } = require('./Components/shared/MathCalculations')
+const { CalculateAverage } = require('../../Components/shared/MathCalculations')
 
 test('CalculateAverage only takes arrays', () => {
   expect(CalculateAverage(1, 2)).toBe('pPossible or pRecieved are not a(n) array(s)');
