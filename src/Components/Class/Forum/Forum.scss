@@ -2,20 +2,25 @@
   margin-left: 3em;
   min-height: 100vh;
   .class-posts {
-    background: grey;
+    background: rgb(255, 255, 255);
     width: 50em;
     margin: 0 auto;
     padding: 2em;
+    border: double 2px grey;
+    border-radius: .2em
   }
   .post {
     background: white;
+    // width: 5em;
+      height: 5em;
     padding: .4em .5em;
     margin: 1em auto;
     display: flex;
     align-items: center;
+    border: solid 1px grey;
     img {
-      width: 5em;
-      height: 5em;
+      width: 3em;
+      height: 3em;
       border-radius: 50%;
       border: 1px solid grey;
     }
@@ -31,7 +36,7 @@
         justify-content: space-between;
         h3 {
           font-weight: bold;
-          font-size: 1.4em;
+          font-size: 1em;
         }
         p {
           font-weight: bold;
@@ -39,9 +44,12 @@
       }
       .details {
         width: 90%;
-        margin: 0 auto;
-        padding: 1.4em 0;
-        font-size: 1.3em;
+        margin: .1em;
+        height: 1.5em;
+        padding: .6em 0;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
       }
     }
   }
