@@ -47,7 +47,6 @@
         flex-direction: column;
         align-items: flex-end;
         justify-content: space-between;
-
         margin: .7rem 0rem;
       }
     }
@@ -55,6 +54,7 @@
     .assignment {
       width: 50rem;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 1em;
