@@ -79,5 +79,17 @@ module.exports = {
     console.log(res.data)
 
 
+  },
+
+  getClassCount: async (req, res) => {
+    let { ids } = req.body;
+    const db = req.app.get('db');
+
+    let studentCount = [];
+    for (let i in ids) {
+      const students = await db.getStudentCountByClassID(+ids[i]);
+      studentCount.push(students.length);
+    }
+    res.status(200).send(studentCount);
   }
 }
