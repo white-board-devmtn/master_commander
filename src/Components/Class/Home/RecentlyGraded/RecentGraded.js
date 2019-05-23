@@ -61,13 +61,15 @@ const RecentGraded = (props) => {
             <h1>Assignment Name</h1>
             {showRecentName()}
           </ul>
-          <ul>
-            <h1>Points Possible</h1>
-            {showRecentPossible()}
-          </ul>
+            {props.user.isTeacher ? <></> : (
           <ul>
             <h1>Grade</h1>
             {showRecentGrade()}
+          </ul>
+            )}
+          <ul>
+            <h1>Points Possible</h1>
+            {showRecentPossible()}
           </ul>
         </div>
       ) : (
