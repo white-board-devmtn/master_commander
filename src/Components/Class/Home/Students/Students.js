@@ -5,7 +5,7 @@ import { CalculateAverage } from '../../../shared/MathCalculations';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment'
-import { Link } from 'react-router-dom'
+import Student from './Student/Student';
 
 
 const styles = theme => ({
@@ -44,11 +44,26 @@ const Students = (props) => {
         delete item.points[i]
       }
     }
-    let grade = CalculateAverage(item.outof, item.points)
+    let pointsArr = [];
+    let outOfArr = [];
+    for (let i = 0; i < item.assignmentname.length; i++) {
+      if (item.submitted[i] && item.points[i] != null) {
+        pointsArr.push(item.points[i])
+        outOfArr.push(item.outof[i])
+      }
+    }
+    let grade = CalculateAverage(outOfArr, pointsArr)
     if (grade) {
-      return <Link to={`/student/${item.id}/${classID}`}> 
-      <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
-      </Link>
+      return (
+        <>
+        <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
+        <Student 
+          id={item.id}
+          classID={classID}
+          student={item}
+        />
+        </>
+      )
     }
     return 
 

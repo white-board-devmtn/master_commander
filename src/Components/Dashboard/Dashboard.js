@@ -7,7 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
-import TopNav from '../shared/TopNav';
 import './Dashboard.css';
 import Assignment from '@material-ui/icons/Assignment'
 
@@ -22,6 +21,7 @@ const Dashboard = (props) => {
 
     const [classList, updateClassList] = useState([])
     const [grades, setGrades] = useState([]);
+    const [studentCount, setCount] = useState([]);
     const { getUser, classes } = props
 
 
@@ -38,17 +38,31 @@ const Dashboard = (props) => {
     }, [grades])
 
     useEffect(() => {
+        return () => {
+            return studentCount
+        };
+    }, [studentCount])
+
+    useEffect(() => {
         getUser()
             .then(res => {
                 const { id } = res.value.userData
-                axios.get(`/api/getClassList?id=${id}`)
-                    .then(response => {
-                        updateClassList(response.data)
+                axios.get(`/api/getClassList?id=${id}`).then(res => {
+                    updateClassList(res.data)
+                    const ids = [];
+                    for (let i in res.data) {
+                        ids.push(res.data[i].classid)
+                    }
+                    axios.post(`/api/class/getClassCount`, {ids}).then(res => {
+                        setCount(res.data);
+                    }).catch((err) => {
+                        console.log(err)
                     })
+                })
                 axios.get(`/api/profile/getGrades/${id}`).then(res => {
                     setGrades(res.data);
-                    // console.log(res.data);
                 }).catch(err => console.log(err));
+
             }).catch(() => props.history.push('/'))
 
     }, [])
@@ -57,8 +71,12 @@ const Dashboard = (props) => {
         if (classList.length) {
             return classList.map((item, i) => {
                 let grade
+                let count
                 if (grades[i]) {
                     grade = CalculateAverage(grades[i].pointspossible, grades[i].pointsrecieved)
+                }
+                if (studentCount[i]) {
+                    count = studentCount[i]
                 }
                 return (
                 <Link to={`/class/${item.classid}`} key={i}>
@@ -92,7 +110,7 @@ const Dashboard = (props) => {
                                 </div>
                                 )) : (
                                 <div className='class-tiles-bottom-grades'>
-                                    <h1 style={{fontSize:18, fontWeight:600, color:'black'}}>You have 50 students</h1>
+                                    <h1 style={{fontSize:18, fontWeight:600, color:'black'}}>{count ? `You have ${count} students` : <></>}</h1>
                                 </div>
                                     )}
                             <div className="class-tiles-bottom-semester">

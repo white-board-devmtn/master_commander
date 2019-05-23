@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './NavBar.css';
 import CalendarToday  from '@material-ui/icons/CalendarToday';
@@ -11,9 +11,10 @@ import wb from '../../images/wb.png'
 import { logOutUser, getUser } from '../../Redux/Ducks/userReducer'
 
 const NavBar = (props) => {
+
   async function logout() {
-    await props.logOutUser();
-    window.location.reload();
+    props.logOutUser();
+    props.history.push('/');
   }
   
 
@@ -48,7 +49,7 @@ const NavBar = (props) => {
           </Link>
           <Link to="/dashboard"><div className="Navbar-icon-container"><Dashboard className="navbar-font"/><h2 className="tooltiptext">Dashboard</h2></div></Link>
           <Link to="/calendar"><div className="Navbar-icon-container"><CalendarToday className="navbar-font"/><h2 className='tooltiptext'>Calendar</h2></div></Link>
-          <a href="/"><div className="Navbar-icon-container"><PowerSettingsNew className="navbar-font"/><h2 className='tooltiptext'>Logout</h2></div></a>
+          <div className="Navbar-icon-container" onClick={logout}><PowerSettingsNew className="navbar-font"/><h2 className='tooltiptext'>Logout</h2></div>
         </div>
       </div>
     </div>
@@ -61,4 +62,4 @@ function mapStateToProps(reduxState) {
   }
 }
 
-export default connect(mapStateToProps, { logOutUser })(NavBar);
+export default connect(mapStateToProps, { logOutUser })(withRouter(NavBar));

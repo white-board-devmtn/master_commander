@@ -16,10 +16,7 @@ app.use(express.json());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    }
+    saveUninitialized: false
 }))
 
 // CONTROLLERS
@@ -62,6 +59,7 @@ app.get('/api/profile/getGrades/:id', userC.getGradesById); // Will get the clas
 app.get('/api/class/recentlyGraded', userC.getRecentlyGraded); //GETS RECENT GRADED ASSIGNMENTS
 app.put('/api/class/submitAssignment', userC.submitAssignment) //student submitting the assignment
 app.get('/api/class/classTitle', userC.getClassTitle)
+app.post('/api/class/getClassCount', userC.getClassCount) //get student count
 
 // TEACHER ENDPOINTS 
 app.post('/api/class/addAssignment', teachCtrl.createAssignment);

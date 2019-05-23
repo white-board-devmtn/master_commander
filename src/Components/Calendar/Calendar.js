@@ -47,10 +47,9 @@ class MyCalendar extends Component {
     this.props.getUser().then(res => {
       const { id } = res.value.userData
       axios.get(`/api/getAssignments/${id}`).then(res => {
-        console.log(res.data)
         let myAssignments = [];
         res.data.map(assignment => {
-          myAssignments.push({ assignment_id: assignment.id, title: assignment.title, start: new Date(assignment.duedate), end: new Date(assignment.duedate) })
+          myAssignments.push({ assignment_id: assignment.id, assignment_type: assignment.assignment_type, title: assignment.title, start: new Date(assignment.duedate), end: new Date(assignment.duedate) })
         })
         this.setState({
           assignments: myAssignments
@@ -94,10 +93,14 @@ class MyCalendar extends Component {
       arr.push({ id: event.id, title: event.title, date: split })
     })
 
+    this.state.assignments.map(event => {
+      let split = JSON.stringify(event.start.toString()).split('').splice(1, 15).join('');
+      arr.push({ assignment_id: event.assignment_id, title: event.title, date: split })
+    })
 
     arr.map(event => {
       if (event.date === dateToday) {
-        todayArr.push({ id: event.id, title: event.title })
+        event.assignment_id ? todayArr.push({ assignment_id: event.assignment_id, title: event.title }) : todayArr.push({ id: event.id, title: event.title })
       }
     })
 
@@ -119,7 +122,7 @@ class MyCalendar extends Component {
       events: nextEvents
     })
     axios.put('/api/updateEvent', updatedEvent)
-    Alert.success(`Moved ${event.title} from ${moment(events[idx].start).format('MM-DD-YYYY')} to ${moment(updatedEvent.start).format('MM-DD-YYYY')}`, {
+    Alert.success(`Moved ${event.title} from ${moment(events[idx].start).format('MM-DD-YYYY, h:mm a')} to ${moment(updatedEvent.start).format('MM-DD-YYYY, h:mm a')}`, {
       position: 'bottom-right',
       effect: 'genie',
       beep: false,
@@ -144,7 +147,7 @@ class MyCalendar extends Component {
     });
 
     axios.put('/api/updateEvent', nextEvents[index])
-    Alert.success(`Modified ${event.title} from ${moment(event.start).format('hh:mma')}-${moment(event.end).format('hh:mma')} to ${moment(nextEvents[index].start).format('hh:mma')}-${moment(nextEvents[index].end).format('hh:mma')}`, {
+    Alert.success(`Modified ${event.title} from ${moment(event.start).format('MM-DD-YYYY, hh:mm a')}-${moment(event.end).format('MM-DD-YYYY, hh:mm a')} to ${moment(nextEvents[index].start).format('MM-DD-YYYY, hh:mma')}-${moment(nextEvents[index].end).format('MM-DD-YYYY, hh:mma')}`, {
       position: 'bottom-right',
       effect: 'genie',
       beep: false,
@@ -172,16 +175,22 @@ class MyCalendar extends Component {
       backgroundColor: 'white',
       borderRadius: '3px',
       opacity: 0.8,
-      color: 'red',
-      border: '1px solid red',
+      color: '#9c00da',
+      border: '1px solid #9c00da',
       display: 'block',
       fontWeight: '900',
       textIndent: '.3rem'
     };
 
     if (event.assignment_id) {
-      style.border = '1px solid #8b68ff'
-      style.color = '#8b68ff'
+      if (event.assignment_type === 'assignment') {
+        style.border = '1px solid #D13030'
+        style.color = '#D13030'
+      }
+      if (event.assignment_type === 'test') {
+        style.border = '1px solid rgb(29, 109, 0)'
+        style.color = 'rgb(29, 109, 0)'
+      }
     }
 
     return {
@@ -234,7 +243,7 @@ class MyCalendar extends Component {
           <div className='right-container'>
             <hr />
             <p id='clicker' style={{ textDecoration: 'underline' }}>Today</p>
-            <p>{this.state.time}</p>
+            <p style={{marginBottom: '1rem'}}>{this.state.time}</p>
             <DatePicker
               inline
               selected={this.state.date}
@@ -247,6 +256,12 @@ class MyCalendar extends Component {
               {eventsList}
             </div>
             <button id="clicker2" className='add-event-button' onClick={() => this.setState({ addEvent: !this.state.addEvent })}>Add Event</button>
+            <div style={{width: '10rem', marginTop: '2rem'}}>
+              {/* <h4>Key:</h4> */}
+              <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>Your Events:<div style={{width: '.8rem', height: '.8rem', borderRadius: '3px', border: '2px solid #9c00da'}}/></h4>
+              <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>Assignments:<div style={{width: '.8rem', height: '.8rem', borderRadius: '3px', border: '2px solid #D13030'}}/></h4>
+              <h4 style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>Tests:<div style={{width: '.8rem', height: '.8rem', borderRadius: '3px', border: '2px solid rgb(29, 109, 0)'}}/></h4>
+            </div>
           </div>
         </div>
       </div>

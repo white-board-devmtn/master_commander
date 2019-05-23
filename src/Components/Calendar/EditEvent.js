@@ -58,6 +58,13 @@ function EditEvent (props) {
           <i className="fas fa-check edit-event-icons" onClick={() => handleEditTitle()}></i>
         </div>
       </div>
+    ) : props.event.assignment_id ? 
+    (
+      <div className='assignment-list-item'>
+        <li className='daily-event-title'>
+          {props.event.title}
+        </li>
+      </div>
     ) : (
       <div className="event-list-item">
         <li className='daily-event-title'>
