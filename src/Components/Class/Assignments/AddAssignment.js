@@ -4,7 +4,6 @@ import axios from 'axios';
 import Alert from 'react-s-alert';
 
 const AddAssignment = (props) => {
-  const [newAssignment, setNewAssignment] = useState('')
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [points, setPoints] = useState('');
@@ -19,10 +18,10 @@ const AddAssignment = (props) => {
       dueDate,
       type,
       classid: props.classid,
-
+      id: props.id
     }
     axios.post('/api/class/addAssignment', post).then(res => {
-      props.updateForum(res.data);
+      props.setAssignments(res.data);
       Alert.success(`Added assignment ${post.name}`, {
         position: 'top-right',
         effect: 'genie',
@@ -30,8 +29,8 @@ const AddAssignment = (props) => {
         timeout: 2000,
         offset: 100
       });
-    }).catch(() => {
-      console.log('error adding post');
+    }).catch((err) => {
+      console.log(err);
       Alert.error(`Error adding assignment ${post.name}`, {
         position: 'top-right',
         effect: 'genie',
