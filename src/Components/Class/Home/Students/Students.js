@@ -47,7 +47,7 @@ const Students = (props) => {
     let pointsArr = [];
     let outOfArr = [];
     for (let i = 0; i < item.assignmentname.length; i++) {
-      if (item.submitted[i] && item.points[i]) {
+      if (item.submitted[i] && item.points[i] != null) {
         pointsArr.push(item.points[i])
         outOfArr.push(item.outof[i])
       }

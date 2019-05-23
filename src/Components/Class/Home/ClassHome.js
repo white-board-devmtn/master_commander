@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import axios from 'axios';
+import React from 'react';
 
 import './ClassHome.scss';
 import ClassAnnouncements from './Announcements/ClassAnnouncments';
@@ -9,7 +8,7 @@ import ClassSyllabus from './Syllabus/ClassSyllabus';
 
 
 const ClassHome = (props) => {
-  // console.log(props)
+
   return (
     <div className="class-information-container">
       <ClassAnnouncements 

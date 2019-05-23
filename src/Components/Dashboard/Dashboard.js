@@ -7,7 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import NavBar from '../NavBar/NavBar';
-import TopNav from '../shared/TopNav';
 import './Dashboard.css';
 import Assignment from '@material-ui/icons/Assignment'
 

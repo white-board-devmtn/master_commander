@@ -46,9 +46,10 @@ module.exports = {
 
   gradeAssignment: async (req, res) => {
     const db = req.app.get('db');
-    const { id, assignmentId } = req.query;
+    const { id, assignmentId, classid } = req.query;
     const { grade } = req.body
-    const assignment = await db.gradeAssignment([id, assignmentId, grade])
-    res.status(200).send(assignment)
+    await db.gradeAssignment([id, assignmentId, grade])
+    const assignments = await db.getAssignmentsByStudentId(id, classid)
+    res.status(200).send(assignments)
   }
 }
