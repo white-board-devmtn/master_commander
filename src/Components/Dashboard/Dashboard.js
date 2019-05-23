@@ -63,11 +63,24 @@ const Dashboard = (props) => {
                 return (
                 <Link to={`/class/${item.classid}`} key={i}>
                         <div className="class-tiles" >
-                            <div className="class-tiles-top">
+                        { i === 0 ? (
+                            <>
+                             <div className="class-tiles-top" style={{background: 'rgb(6, 73, 161)'}}>
+                                 <Assignment style={{marginRight:2}}></Assignment>
+
+                                 <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
+                            </div> 
+                            </>
+                            ):(
+                            <>
+                            <div className="class-tiles-top" style={{background: 'rgb(209, 48, 48)'}}>
                                 <Assignment style={{marginRight:2}}></Assignment>
-    
+        
                                 <h2 style={{ fontSize: 25, fontWeight: 600 }}>{item.name}-{item.classid}</h2>
                             </div> 
+                            </>
+                            )
+                        }
                             <div className='class-tiles-bottom'>
                             {!props.user.isTeacher ? (Array.isArray(grade) ? (
                                 <div className='class-tiles-bottom-grades'>
@@ -78,7 +91,9 @@ const Dashboard = (props) => {
                                     <p style={{color: 'black'}}>No grades available</p>
                                 </div>
                                 )) : (
-                                    <h1>You have 50 students</h1>
+                                <div className='class-tiles-bottom-grades'>
+                                    <h1 style={{fontSize:18, fontWeight:600, color:'black'}}>You have 50 students</h1>
+                                </div>
                                     )}
                             <div className="class-tiles-bottom-semester">
                                 <p>{item.des}</p>

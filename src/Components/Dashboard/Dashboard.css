@@ -99,7 +99,7 @@
 .myProfileFlagContainerD{
     height:50px;
     width:100%;
-    padding-left: 100px;
+    padding-left: 40px;
     display: flex;
     flex-direction: row;
 }
