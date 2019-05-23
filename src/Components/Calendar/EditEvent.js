@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 function EditEvent (props) {
   
@@ -7,15 +8,45 @@ function EditEvent (props) {
   const [editText, setEditText] = useState(props.event.title)
 
   async function handleEditTitle() {
-    axios.put('/api/editTitle', {id: props.event.id, title: editText})
-      .catch(err => console.log(err))
+    axios.put('/api/editTitle', {id: props.event.id, title: editText}).then(() => {
+      Alert.success(`Modified ${props.event.title}'s name to ${editText}`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    }).catch(() => {
+      Alert.error(`Failed to modify ${props.event.title}'s name`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    })
     await props.getData();
     setEditEvent(false)
   }
 
   function deleteEvent() {
-    axios.delete(`/api/deleteEvent/${props.event.id}`)
-      .catch(err => console.log(err))
+    axios.delete(`/api/deleteEvent/${props.event.id}`).then(() => {
+      Alert.success(`Deleted ${props.event.title}`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    }).catch(() => {
+      Alert.error(`Failed to delete ${props.event.title}`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    })
     props.getData();
   }
 
