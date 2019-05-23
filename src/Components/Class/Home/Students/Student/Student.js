@@ -6,7 +6,6 @@ import Alert from 'react-s-alert';
 const Student = (props) => {
 
   const [assignments, setAssignments] = useState([]);
-  const [edit, setEdit] = useState(false);
   const [grade, setGrade] = useState(false);
   const [display, toggleDisplay] = useState(false);
 
@@ -32,20 +31,19 @@ const Student = (props) => {
 
   }, [props.id])
 
-
   function mapAssignments() {
     if (assignments.length) {
       return assignments.map(assignment => {
 
-
         function gradeAssignment() { // Function to grade assignment
           const assignmentID = assignment.ass_id;
-          axios.put(`/api/class/gradeAssignment?id=${id}&assignmentId=${assignmentID}`, { grade }).then((res) => {
-            Alert.success(`Graded assignment '${assignment.name}. Refresh the page to see update.'`, {
+          axios.put(`/api/class/gradeAssignment?id=${id}&assignmentId=${assignmentID}&classid=${classID}`, { grade }).then((res) => {
+            setAssignments(res.data)
+            Alert.success(`Graded assignment '${assignment.name} for ${props.student.firstname} ${props.student.lastname}.`, {
               position: 'top-right',
               effect: 'genie',
               beep: false,
-              timeout: 2000,
+              timeout: 4000,
               offset: 100
             });
           }).catch(() => console.log('failed to grade'));
@@ -113,7 +111,7 @@ const Student = (props) => {
   return (
     <>
       <div>
-        <button onClick={() => toggleDisplay(!display)}>{display ? `Show more` : `Hide`}</button>
+        <button onClick={() => toggleDisplay(!display)}>{display ? `Hide` : `Show More`}</button>
         {display ? mapAssignments() : <></>}
       </div>
 
