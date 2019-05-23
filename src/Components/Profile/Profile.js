@@ -9,8 +9,6 @@ import lake from '../../images/lake.jpg';
 
 // import ProfileImage from './ProfileCard/ProfileImage'
 
-import withStyles from '@material-ui/core/styles/withStyles';
-
 import ClassGrades from './ClassGrades/ClassGrades';
 import UploadFile from '../shared/UploadFile';
 import Alert from 'react-s-alert';

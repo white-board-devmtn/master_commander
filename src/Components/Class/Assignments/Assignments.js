@@ -13,11 +13,6 @@ import './Assignments.scss';
 
 
 
-const styles = theme => ({
-  progress: {
-    margin: theme.spacing.unit * 2,
-  },
-});
 
 
 
@@ -102,7 +97,7 @@ const Assignments = (props) => {
                   </div>
                 </div>
                 {assignments.map(item => {
-                  return <Assignment key={item.id}
+                  return <Assignment key={item.ass_id}
                     assignment={item}
                   />
                 })}
@@ -141,7 +136,7 @@ const Assignments = (props) => {
     } else {
       return (
         <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-          <CircularProgress className={classes.progress} size={50} color="secondary" />
+          <CircularProgress size={50} color="secondary" />
         </div>
       )
     }
@@ -151,4 +146,4 @@ const Assignments = (props) => {
   )
 }
 
-export default withRouter(withStyles(styles)(Assignments));
+export default withRouter(Assignments);
