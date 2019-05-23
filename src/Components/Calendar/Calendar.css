@@ -1,6 +1,6 @@
 .calendar-component {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +41,7 @@
   align-items: center;
   width: 15rem;
   height: 8rem;
+  min-height: 5rem;
   border: 1px solid grey;
   border-radius: 5px;
   margin-bottom: 1rem;
@@ -71,6 +72,15 @@
 }
 
 .event-list-item {
+  display: flex;
+  justify-content: space-between;
+  width:90%;
+  padding: .3rem 0rem .3rem 0rem;
+  margin-left: .3rem;
+  font-size: .8rem;
+}
+
+.assignment-list-item {
   display: flex;
   justify-content: space-between;
   width:90%;
