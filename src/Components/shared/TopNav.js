@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './TopNav.scss';
 
@@ -59,6 +59,15 @@ export default function TopNav(props) {
   return (
     <>
       <nav className="topNav-container">
+        <header className="class-title">
+          { props.classList.course_name ? (
+            <h1>{props.classList.course_name}-{props.classList.course_id}</h1>
+            ):(
+              <>
+              </>
+            )
+          }
+        </header>
         <div className="container">
           {applySections()}
         </div>

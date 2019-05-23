@@ -9,10 +9,24 @@ import Students from './Home/Students/Students'
 import NavBar from '../NavBar/NavBar';
 import TopNav from '../shared/TopNav';
 import { getUser } from '../../Redux/Ducks/userReducer';
+import axios from 'axios'
 
 const Class = (props) => {
 
+  
   const [displayComponent, setDisplay] = useState('Class Home')
+  const [classDetails, updateClassDetails] = useState([])
+
+
+
+
+  useEffect(() => {
+    const { id } = props.match.params
+    axios.get(`/api/class/classTitle?id=${id}`)
+      .then(response => {                
+        updateClassDetails(response.data[0])
+        })
+  }, [])
 
   useEffect(() => {
     props.getUser().then().catch(err => props.history.push('/'))
@@ -78,6 +92,7 @@ const Class = (props) => {
                 name3={'FORUM'}
                 setComponent={setDisplay}
                 displayComponent={displayComponent}
+                classList={classDetails}
               />
               {changeDisplay()}
             </div>

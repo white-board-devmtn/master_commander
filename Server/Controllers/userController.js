@@ -77,8 +77,12 @@ module.exports = {
     const assignment = await db.submitAssignment([id, assignmentId, file])
     res.status(200).send(assignment)
     console.log(res.data)
-
-
+  },
+  getClassTitle: async (req, res) => {
+    const db = req.app.get('db');
+    const { id } = req.query;
+    const classes = await db.getClassTitle(id)
+    res.status(200).send(classes);
   },
 
   getClassCount: async (req, res) => {
@@ -92,4 +96,5 @@ module.exports = {
     }
     res.status(200).send(studentCount);
   }
+
 }
