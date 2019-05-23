@@ -58,18 +58,18 @@ const Forum = (props) => {
         classid={classID}
         updateForum={updateForum}
       />
-      <div className="header">
-        <Button onClick={() => toggleAdd(() => !adding)}>Add Post</Button>
-      </div>
+      <div className="class-posts">
+      <Button onClick={() => toggleAdd(() => !adding)}>Add Post</Button>
       {forum.length ? (
-        <div className="class-posts">
+        <>
           {showForum()}
-        </div>
+        </>
       ) : (
-          <div>
-            <CircularProgress size={50} color="secondary" />
-          </div>
+        <div>
+          <CircularProgress size={50} color="secondary" />
+        </div>
         )}
+      </div>
     </div>
   )
 }
