@@ -43,16 +43,13 @@ const Assignments = (props) => {
 // console.log(props)
   useEffect(() => {
     if (props.user.id) {
-      console.log(props.user.id, classID);
       axios.get(`/api/class/classAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
-        console.log(res);
         setAssignments(res.data);
         getPoints(res.data);
         return;
       }).catch((err) => console.log('could not get at this time', err));
     }
   }, [props.id])
-  console.log(assignments);
 
   useEffect(() => {
     return () => {

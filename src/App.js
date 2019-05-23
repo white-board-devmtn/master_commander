@@ -6,6 +6,12 @@ import './App.css';
 import routes from './Routes/routes'
 import store from './Redux/store';
 
+// REACT-S-ALERT //
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/genie.css';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -27,6 +33,7 @@ function App() {
       <Provider store={store}>
         <div className="App">
           {routes}
+          <Alert stack={{limit: 3}} />
         </div>
       </Provider>
     </MuiThemeProvider>

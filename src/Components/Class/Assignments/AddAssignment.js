@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 const AddAssignment = (props) => {
   const [newAssignment, setNewAssignment] = useState('')
@@ -22,10 +23,26 @@ const AddAssignment = (props) => {
     }
     axios.post('/api/class/addAssignment', post).then(res => {
       props.updateForum(res.data);
-    }).catch(err => console.log('error adding post'));
+      Alert.success(`Added assignment ${post.name}`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    }).catch(() => {
+      console.log('error adding post');
+      Alert.error(`Error adding assignment ${post.name}`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    })
     props.toggleAdd()
   }
-  
+
   // console.log(props)
   return (
 

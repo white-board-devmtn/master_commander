@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react'
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import Alert from 'react-s-alert';
 
 const AddAnnouncement = (props) => {
   const [name, setName] = useState('');
@@ -15,9 +16,25 @@ const AddAnnouncement = (props) => {
       classid: props.classid,
 
     }
-    axios.post('/api/class/addAnnouncement', post).then(res => {
-      props.updateForum(res.data);
-    }).catch(err => console.log('error adding post'));
+    axios.post('/api/class/addAnnouncement', post).then(() => {
+      props.getAnnouncements();
+      Alert.success(`Added post '${post.name}'`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    }).catch((err) => {
+      console.log(err);
+      Alert.error(`Error adding assignment '${post.name}'`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    });
     props.toggleAdd()
   }
   

@@ -20,10 +20,14 @@ const ClassAnnouncements = (props) => {
   }, [announcements])
 
   useEffect(() => {
+    getAnnouncements()
+  }, []);
+
+  function getAnnouncements() {
     axios.get(`/api/class/getAnnouncements?classid=${classID}`).then(res => {
       setAnnouncements(res.data);
     }).catch(() => console.log('could not get at this time'));
-  }, []);
+  }
 
   function showAnnouncements() {
     if (announcements) {
@@ -36,7 +40,8 @@ const ClassAnnouncements = (props) => {
               adding={adding}
               toggleAdd={toggleAdd}
               user={props.user}
-              classid={classID} />
+              classid={classID}
+              getAnnouncements={getAnnouncements} />
             <div className="box">
               <p>{announcement.date}</p>
               <h3>{announcement.info}</h3>

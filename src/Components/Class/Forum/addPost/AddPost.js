@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 import './AddPost.css'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -17,7 +18,22 @@ function AddPost (props) {
     }
     axios.put('/api/class/addPost', post).then(res => {
       props.updateForum(res.data);
-    }).catch(err => console.log('error adding post'));
+      Alert.success(`Added post`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    }).catch(() => {
+      Alert.error(`Error adding post`, {
+        position: 'top-right',
+        effect: 'genie',
+        beep: false,
+        timeout: 2000,
+        offset: 100
+      });
+    });
     props.toggleAdd()
   }
 
