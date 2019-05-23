@@ -79,6 +79,7 @@ const Class = (props) => {
                 name4={'STUDENTS'}
                 setComponent={setDisplay}
                 displayComponent={displayComponent}
+                classList={classDetails}
               />
               {changeDisplay()}
             </div>
