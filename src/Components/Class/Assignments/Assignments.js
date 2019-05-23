@@ -38,9 +38,6 @@ const Assignments = (props) => {
     };
   }, [assignments])
 
-  // console.log(props.user.id)
-// console.log(assignments)
-// console.log(props)
   useEffect(() => {
     if (props.user.id) {
       axios.get(`/api/class/classAssignments?id=${props.user.id}&classid=${classID}`).then((res) => {
@@ -91,7 +88,6 @@ const Assignments = (props) => {
         <div className="assignment-home">
           {props.user.isTeacher ? (
             <>
-              <Button onClick={() => toggleAdd(!adding)}>Add Assignment</Button>
               <div className='container'>
                 <AddAssignment
                   adding={adding}
@@ -99,8 +95,9 @@ const Assignments = (props) => {
                   user={props.user}
                   classid={classID} />
                 <div className="key">
-                  <div style={{width: '95%', display: 'flex', justifyContent: 'space-between'}}>
+                  <div style={{width: '95%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <h1>Assignment Name</h1>
+                    <Button className='add-assignment' onClick={() => toggleAdd(!adding)}>Add Assignment</Button>
                     <h2>Info</h2>
                   </div>
                 </div>

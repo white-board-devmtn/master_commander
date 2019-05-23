@@ -55,20 +55,27 @@ const ClassAnnouncements = (props) => {
   return (
 
     props.user.isTeacher ? (
-
-      <div className="home-box">
-        <h1 className="title">Announcements</h1>
-        <Button onClick={() => toggleAdd(true)} className="add-announcement">+</Button>
-        {announcements.length ? (
-          <div>
-            {showAnnouncements()}
-          </div>
-        ) : (
+      <>
+        <div className="home-box">
+          <h1 className="title">Announcements</h1>
+          <Button onClick={() => toggleAdd(true)} className="add-announcement">+</Button>
+          {announcements.length ? (
             <div>
-              <CircularProgress size={50} color="secondary" />
+              {showAnnouncements()}
             </div>
-          )}
-      </div>
+          ) : (
+            <div>
+                <CircularProgress size={50} color="secondary" />
+              </div>
+            )}
+        </div>
+        <AddAnnouncement
+          adding={adding}
+          toggleAdd={toggleAdd}
+          user={props.user}
+          classid={classID} 
+        />
+      </>
     ) : (
         <div className="home-box">
           <h1 className="title">Announcements</h1>
