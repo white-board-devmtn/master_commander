@@ -25,6 +25,7 @@ const RecentGraded = (props) => {
   function showRecentName() {
     if (recent) {
       return recent.map((assignment, index) => {
+        if(!assignment.complete) return
         return (
           <li key={index}>{assignment.name}</li>
         )
@@ -35,6 +36,7 @@ const RecentGraded = (props) => {
   function showRecentPossible() {
     if (recent) {
       return recent.map((assignment, index) => {
+        if(!assignment.complete) return
         return (
           <li key={index + 100}>{assignment.outof}</li>
         )
@@ -45,6 +47,7 @@ const RecentGraded = (props) => {
   function showRecentGrade() {
     if (recent) {
       return recent.map((assignment, index) => {
+        if(!assignment.complete) return
         return (
           <li key={index + 1000}>{assignment.grade}</li>
         )
