@@ -68,11 +68,6 @@ const Dashboard = (props) => {
 
     }, [])
 
-    console.log(studentCount);
-    if (studentCount) {
-        console.log(studentCount[0]);
-    }
-
     function showClasses() {
         if (classList.length) {
             return classList.map((item, i) => {
