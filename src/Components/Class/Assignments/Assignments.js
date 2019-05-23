@@ -88,7 +88,9 @@ const Assignments = (props) => {
                   adding={adding}
                   toggleAdd={toggleAdd}
                   user={props.user}
-                  classid={classID} />
+                  classid={classID}
+                  setAssignments={setAssignments}
+                  id={props.user.id} />
                 <div className="key">
                   <div style={{width: '95%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <h1>Assignment Name</h1>
@@ -135,8 +137,8 @@ const Assignments = (props) => {
       )
     } else {
       return (
-        <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
-          <CircularProgress size={50} color="secondary" />
+        <div style={{ marginLeft: '100px', minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <CircularProgress size={50} color="secondary"/>
         </div>
       )
     }

@@ -14,4 +14,5 @@ join user_class using (user_id)
 join user_ass using (user_id)
 join ass using (ass_id)
 where user_class.class_id = $1
+AND ass.class_id = $1
 group by users.first_name, users.last_name, users.user_id, user_class.class_id;
