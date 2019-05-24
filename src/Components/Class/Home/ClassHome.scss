@@ -42,7 +42,9 @@
     .title {
       font-size: 2em;
       text-align: center;
-      text-decoration: underline;
+      border-bottom: solid rgb(202, 202, 202) 1px;
+      background: rgb(223, 223, 223);
+      color: black;
     }
     .assignment-box {
       padding-top: 2em;
