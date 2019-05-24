@@ -53,7 +53,7 @@ const Student = (props) => {
         function assignmentDisplay() {
           if (assignment.points && assignment.complete) {
             return (
-              <div className="points">
+              <div className="points" >
                 <div style={{ width: '3.25rem', display: 'flex', justifyContent: 'space-between' }}>
                   <p>{assignment.complete ? assignment.points : `N/A`}</p>
                   <p>/</p>
@@ -64,7 +64,7 @@ const Student = (props) => {
           } else {
             return (
               <div className="points">
-                <Popup trigger={<Button>Grade</Button>} position="bottom left" contentStyle={{ width: '8%' }} style={{width:'rem'}}>
+                <Popup trigger={<Button>Grade</Button>} position="bottom left" contentStyle={{ width: '8%' }} style={{ width: 'rem' }}>
                   {close => (
                     <div >
                       <div>
@@ -88,25 +88,30 @@ const Student = (props) => {
         }
 
         return (
-          <div key={assignment.name} style={{width: "50em" }} className="assignment" style={{borderBottom: 'none'}}>
+          <div key={assignment.name} style={{ width: "50em" }} className="assignment" style={{ borderBottom: 'none', borderTop: 'none' }}>
             <div className="info">
               <div className='title'>
                 <p>{assignment.name}</p>
-                <Popup trigger={<Button>View Assignment</Button>} position="bottom left">
+                <Popup trigger={<Button>View Assignment</Button>} position="left" contentStyle={{ width: '40rem', height: '75vh',  }}>
                   {close => (
                     <div >
                       <div >
                         {assignment.name}
                       </div>
-                      <iframe src={assignment.link} style={{ width: '50rem', height: '50vh' }}></iframe>
-                      <Button className="close" onClick={close}>
-                        Close
+                      <div>
+                        <iframe src={assignment.link} style={{ width: '37rem', height: '70vh', zIndex:'100000' }}></iframe>
+                      </div>
+                      <div>
+                        <Button className="close" onClick={close}>
+                          Close
                        </Button>
+                      </div>
+
                     </div>
                   )}
                 </Popup>
               </div>
-            {assignmentDisplay()}
+              {assignmentDisplay()}
             </div>
           </div>
         )
@@ -114,11 +119,11 @@ const Student = (props) => {
       })
     }
   }
-  
+
 
   return (
     <>
-      <div className='assignment' style={{borderTop:'none'}}>
+      <div className='assignment' style={{ borderTop: 'none' }}>
         <div className='info'>
           <div className='title'>
             <span>{props.student.firstname} {props.student.lastname}</span> <Button onClick={() => toggleDisplay(!display)}>{display ? `Close` : `Details`}</Button>

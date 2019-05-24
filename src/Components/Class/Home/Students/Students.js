@@ -66,8 +66,7 @@ const Students = (props) => {
               grade ={grade}
             />
           </div>
-          </>
-          
+          </>         
       )
     }
     return
@@ -93,12 +92,10 @@ const Students = (props) => {
           </div>
         </div>
       ) : (
-
-          <div>
+          <div style={{ marginLeft: '100px', minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <CircularProgress className={classes.progress} size={50} color="secondary" />
           </div>
         )}
-
     </div>
   )
 
