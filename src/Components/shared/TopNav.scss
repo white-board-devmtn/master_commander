@@ -60,6 +60,7 @@
         border: none;
         font-size: 1em;
         cursor: pointer;
+        outline: none;
         &.two {
           background: rgb(172, 0, 0);
         }
@@ -71,5 +72,9 @@
         }
       }
     }
+    .option:hover {
+      transform: scale(1.03);
+    }
+    
   }
 }
