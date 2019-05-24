@@ -7,6 +7,7 @@ const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const app = express();
 
+app.use( express.static( `${__dirname}/../build` ) );
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('Master Chief checking in')
