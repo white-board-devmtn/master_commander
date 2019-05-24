@@ -1,0 +1,114 @@
+.student-home {
+  margin-top: 3em;
+  min-height: calc(100vh - 6.5rem);
+  padding-top: 1rem;
+  .container {
+    width: fit-content;
+    margin: 0 auto;
+    background: white;
+    margin-bottom: 2rem;
+    
+
+    .key {
+      width: 50rem;
+      height: 2em;
+      margin: 0;
+      background-color: rgba(0, 163, 68, 0.774);
+      color: white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border: 1px solid grey;
+      border-bottom: none;
+      border-radius: 1%;
+
+      .add-assignment {
+        color: white
+      }
+    }
+
+    .grade-box {
+      width: 50rem;
+      margin: 0 auto;
+      background-color: rgba(141, 0, 0, 0.774);
+      color: white;
+
+      display: flex;
+      justify-content: center;
+
+      border: 1px solid grey;
+      border-top: none;
+
+      .grade {
+        height: 2rem;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin: .7rem 0rem;
+      }
+    }
+
+
+    .assignment {
+      width: 50rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 1em;
+      border: 1px solid grey;
+      border-top: none;
+      margin: 0;
+      .info {
+        height: 100%;
+        width: 95%;
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+          width: 35rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          min-width: 30%;
+          hr {
+            height: 1rem;
+            margin: 0rem .5rem
+          }
+          span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p {
+              font-weight: bold;
+            }
+          }
+          .button {
+            background: none;
+          }
+        }
+        .points {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 6.5em;
+          p {
+            font-size: .9em;
+          }
+        }
+      }
+      .more-info {
+        margin: 1em;
+        text-align: center;
+      }
+    }
+    .assignment:first-of-type {
+      border-top: 1px solid grey;
+    }
+  }
+}

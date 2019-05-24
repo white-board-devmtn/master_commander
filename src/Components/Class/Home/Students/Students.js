@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment'
 import Student from './Student/Student';
+import './Students.scss'
 
 
 const styles = theme => ({
@@ -56,25 +57,39 @@ const Students = (props) => {
     if (grade) {
       return (
         <>
-        <li>{item.firstname} {item.lastname} {grade[0]} {grade[1]}% </li>
-        <Student 
-          id={item.id}
-          classID={classID}
-          student={item}
-        />
-        </>
+          <div >
+            <Student
+              id={item.id}
+              classID={classID}
+              student={item}
+              grade ={grade}
+            />
+          </div>
+          </>
       )
     }
-    return 
+    return
 
   })
   // console.log(mappedStudents)
   return (
     <div style={{ marginLeft: '100px', minHeight: '100vh' }}>
       {mappedStudents.length ? (
-        <ul>
-          {mappedStudents}
-        </ul>
+        <div className="student-home">
+          <div className="container">
+          <div className="key">
+            <div style={{ width: '95%', display: 'flex', justifyContent: 'space-between' }}>
+              <h1>Student</h1>
+              <div style={{ width: '6.5rem', display: 'flex', justifyContent: 'space-between' }}>
+                <h2>Grade</h2>
+              </div>
+            </div>
+          </div>
+            <ul>
+              {mappedStudents}
+            </ul>
+          </div>
+        </div>
       ) : (
 
           <div>
