@@ -85,7 +85,7 @@ const Assignment = (props) => {
             <div className="assignment">
               <div className="info">
                 <div className="title">
-                  <span>{complete ? <p>&#10003;</p> : <p>&#x2717;</p>}<hr/><p style={{width: '25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</p></span>
+                  <span>{complete ? <p style={{color: 'green'}}>&#10003;</p> : <p>&#x2717;</p>}<hr/><p style={{width: '25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</p></span>
                   <Button style={{textAlign: 'center'}} className="button" onClick={() => setEdit(!edit)}>{!edit ? 'Details' : 'Close'}</Button>
                 </div>
                 <div className="points">
