@@ -122,8 +122,8 @@ const Assignments = (props) => {
             })}
             <div className="grade-box">
               <div className="grade">
-                <p style={{marginRight:'22.5rem'}} >TOTALS:</p>
-                <p style={{marginRight:'4rem'}}>Grade: {grade.length ? <>{grade[0]} ({grade[1]}%)</> : <></>}</p>
+                <p style={{marginRight:'23.1rem'}} >TOTALS:</p>
+                <p style={{marginRight:'3.5rem'}}>Grade: {grade.length ? <>{grade[0]} ({grade[1]}%)</> : <></>}</p>
                 <div style={{width: '6.5rem', display: 'flex', justifyContent : 'space-between'}}>
                   <div style={{width: '3.25rem', display: 'flex', justifyContent : 'space-between'}}>
                     <p style={{width: '3.25rem', display: 'flex', justifyContent : 'space-between'}}>{points[1]}</p>
