@@ -45,6 +45,7 @@ const Students = (props) => {
         delete item.points[i]
       }
     }
+    console.log(item);
     let pointsArr = [];
     let outOfArr = [];
     for (let i = 0; i < item.assignmentname.length; i++) {

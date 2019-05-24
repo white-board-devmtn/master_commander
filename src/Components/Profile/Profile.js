@@ -7,8 +7,6 @@ import axios from 'axios';
 
 import lake from '../../images/lake.jpg';
 
-// import ProfileImage from './ProfileCard/ProfileImage'
-
 import ClassGrades from './ClassGrades/ClassGrades';
 import UploadFile from '../shared/UploadFile';
 import Alert from 'react-s-alert';
@@ -78,12 +76,18 @@ const Profile = (props) => {
             <div className={editToggle ? 'user-info' : 'no-display'}><h3 style={{ width: '50%' }}>Profile Image:</h3><UploadFile setFile={setImg} /></div>
             <div className='user-info' style={{ borderBottom: '1px solid rgba(128, 128, 128, 0.466)' }}><h3 style={{ width: '50%' }}>Password:</h3><p style={{ width: '50%' }}>change password</p></div>
           </div>
-          <hr />
-          <div className='class-info-container'>
-            <ClassGrades
-              id={props.user.id}
-            />
-          </div>
+          {props.user.isTeacher ? (
+          <></>
+          ) : (
+          <>
+            <hr />
+            <div className='class-info-container'>
+              <ClassGrades
+                id={props.user.id}
+              />
+            </div>
+          </>
+          )}
         </div>
       </div>
     </div>
