@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Popup from 'reactjs-popup'
 import Alert from 'react-s-alert';
+import Button from '@material-ui/core/Button';
 
 const Student = (props) => {
 
@@ -52,68 +53,88 @@ const Student = (props) => {
         function assignmentDisplay() {
           if (assignment.points && assignment.complete) {
             return (
-              <div style={{ display: 'flex' }}>
-                <h2>{assignment.complete ? assignment.points : `N/A`}</h2>
-                <h2>/</h2>
-                <h2>{assignment.outof}</h2>
+              <div className="points">
+                <div style={{ width: '3.25rem', display: 'flex', justifyContent: 'space-between' }}>
+                  <p>{assignment.complete ? assignment.points : `N/A`}</p>
+                  <p>/</p>
+                  <p>{assignment.outof}</p>
+                </div>
               </div>
             )
           } else {
             return (
-              <div style={{ display: 'flex' }}>
-                <Popup trigger={<button>Grade Now</button>} position="bottom left" contentStyle={{width: '8%'}}>
-              {close => (
-                <div >
-                  <div>
-                  <input type="number" name="grade" onChange={(e) => setGrade(e.target.value)} style={{width: '4em'}}/>
-                  / {assignment.outof}
-                  </div>
-                  <button className="close" onClick={close}>
-                    Cancel
-                  </button>
-                  <button className="close" onClick={(e) => {
-                    gradeAssignment(); close()
-                  }}>
-                    Submit
-                  </button>
-                </div>
-              )}
-            </Popup>
+              <div className="points">
+                <Popup trigger={<Button>Grade</Button>} position="bottom left" contentStyle={{ width: '8%' }} style={{width:'rem'}}>
+                  {close => (
+                    <div >
+                      <div>
+                        <input type="number" name="grade" onChange={(e) => setGrade(e.target.value)} style={{ width: '4em' }} />
+                        / {assignment.outof}
+                      </div>
+                      <Button className="close" onClick={close}>
+                        Cancel
+                  </Button>
+                      <Button className="close" onClick={(e) => {
+                        gradeAssignment(); close()
+                      }}>
+                        Submit
+                  </Button>
+                    </div>
+                  )}
+                </Popup>
               </div>
             )
           }
         }
 
         return (
-          <div key={assignment.name} style={{ display: 'flex', justifyContent: 'space-between', width: "50em" }}>
-            <h2>{assignment.name}</h2>
-            <Popup trigger={<button>View Assignment</button>} position="bottom left">
-              {close => (
-                <div >
-                  <div >
-                    {assignment.name}
-                  </div>
-                  <iframe src={assignment.link} style={{ width: '50rem', height: '50vh' }}></iframe>
-                  <button className="close" onClick={close}>
-                    Close
-                       </button>
-                </div>
-              )}
-            </Popup>
+          <div key={assignment.name} style={{width: "50em" }} className="assignment" style={{borderBottom: 'none'}}>
+            <div className="info">
+              <div className='title'>
+                <p>{assignment.name}</p>
+                <Popup trigger={<Button>View Assignment</Button>} position="bottom left">
+                  {close => (
+                    <div >
+                      <div >
+                        {assignment.name}
+                      </div>
+                      <iframe src={assignment.link} style={{ width: '50rem', height: '50vh' }}></iframe>
+                      <Button className="close" onClick={close}>
+                        Close
+                       </Button>
+                    </div>
+                  )}
+                </Popup>
+              </div>
             {assignmentDisplay()}
+            </div>
           </div>
         )
 
       })
     }
   }
+  
 
   return (
     <>
-      <div>
-        <button onClick={() => toggleDisplay(!display)}>{display ? `Hide` : `Show More`}</button>
-        {display ? mapAssignments() : <></>}
+      <div className='assignment' style={{borderTop:'none'}}>
+        <div className='info'>
+          <div className='title'>
+            <span>{props.student.firstname} {props.student.lastname}</span> <Button onClick={() => toggleDisplay(!display)}>{display ? `Close` : `Details`}</Button>
+          </div>
+          <div className='points'>
+            <div >
+              <p>{props.grade[0]} </p>
+              <p>{props.grade[1]}%</p>
+            </div>
+          </div>
+        </div>
+        <div className={display ? "more-info" : 'no-display'}>
+          {mapAssignments()}
+        </div>
       </div>
+
 
     </>
   )
