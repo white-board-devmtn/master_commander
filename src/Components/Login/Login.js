@@ -58,6 +58,7 @@ const Login = (props) => {
                         onChange={e => updateEmail(e.target.value)}
                         margin="normal"
                         variant="outlined"
+                        required
 
                     >
                     </TextField>
@@ -70,8 +71,9 @@ const Login = (props) => {
                         margin="normal"
                         value={password}
                         onChange={e => updatePassword(e.target.value)}
-                        variant="outlined">
-                    </TextField>
+                        variant="outlined"
+                        required
+                    />
                     <button onClick={handleLogin}> Login </button>
                 </div>
 

@@ -7,8 +7,9 @@
   height: 6.5em;
   border-bottom: #d6d3d3 solid 1.5px;
   margin-bottom: 2.5em;
+  width: calc(100vw - 7rem);
+  
   .class-title {
-    width: 100%;
     text-align: center;
     height: 6.5em;
     display: flex;
