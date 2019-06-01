@@ -6,7 +6,7 @@
 }
 
 .profile-component-container {
-  width: calc(100% - 7rem);
+  width: calc(100% - 7em);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 
 .profile-header {
   width: 100%;
-  height: 12rem;
+  height: 12em;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,16 +22,16 @@
 }
 
 .profile-pic {
-  width: 15rem;
-  height: 15rem;
+  width: 15em;
+  height: 15em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
   border: 6px solid rgb(236, 236, 236);
   position: absolute;
-  left: calc(50% - 7.5rem);
-  top: 3rem;
+  left: calc(50% - 7.5em);
+  top: 3em;
 }
 
 .edit-profile:hover, .cancel-edit-profile:hover {
@@ -41,39 +41,41 @@
 .edit-profile {
   position: absolute;
   right: 0;
-  bottom: -1.5rem;
+  bottom: -1.5em;
   color: blue
 }
 
 .cancel-edit-profile {
   position: absolute;
   left: 0;
-  bottom: -1.5rem;
+  bottom: -1.5em;
   color: blue
 }
 
 .user-name {
-  margin-top: 7rem;
-  font-size: 2rem;
+  margin-top: 4em;
+  font-size: 2em;
 }
 
 .user-info {
   width: auto;
-  height: 3rem;
+  height: 3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1em;
   border: 1px solid rgba(128, 128, 128, 0.466);
   border-bottom: none;
   position: relative;
+
+  text-overflow: ellipsis;
 }
 
 .info-display-container {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: space-around;
-  margin: 2rem 0rem 4rem 0rem;
+  margin: 2em 0em 4em 0em;
 }
 
 .user-info-container {
@@ -94,7 +96,7 @@
   top: 0; 
   left: 0; 
   width: 100%; 
-  height: 1.3rem; 
+  height: 1.3em; 
   background-color: rgba(0, 0, 0, 0.637);
   border: none;
   color: white;
@@ -105,4 +107,73 @@
 
 .no-display {
   display: none;
+}
+
+
+@media only screen and (max-width:1200px) {
+  .info-display-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-info-container {
+    width: 40em;
+    margin-bottom: 3em;
+  }
+
+  .class-info-container {
+    width: 40em;
+  }
+}
+
+@media only screen and (max-width:800px) {
+  .info-display-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-info-container {
+    width: 25em;
+    margin-bottom: 3em;
+  }
+
+  .class-info-container {
+    width: 25em;
+  }
+}
+
+@media only screen and (max-width:530px) {
+  .info-display-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-info-container {
+    width: 15em;
+    margin-bottom: 3em;
+  }
+
+  .class-info-container {
+    width: 15em;
+  }
+
+  .user-info {
+    font-size: .6em;
+  }
+
+  .no-display {
+    font-size: .6em;
+  }
+
+  .profile-pic {
+  width: 7em;
+  height: 7em;
+  position: absolute;
+  left: calc(50% - 3.5em);
+  top: 8em;
+  }
+
+  .user-name {
+    margin-top: 2em;
+  }
 }

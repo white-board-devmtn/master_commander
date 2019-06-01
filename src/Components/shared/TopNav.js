@@ -60,12 +60,12 @@ export default function TopNav(props) {
     <>
       <nav className="topNav-container">
         <header className="class-title">
-          { props.classList.course_name ? (
+          { props.classList ? props.classList.course_name ? (
             <h1>{props.classList.course_name}-{props.classList.course_id}</h1>
             ):(
               <>
               </>
-            )
+            ) : null
           }
         </header>
         <div className="container">
